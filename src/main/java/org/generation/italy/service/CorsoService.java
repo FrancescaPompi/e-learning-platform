@@ -21,4 +21,8 @@ public class CorsoService {
 	public Corso getById(Integer id) {
 		return repo.getById(id);
 	}
+	
+	public List<Corso> findByKeywordSortedByTitolo(String keyword) {
+		return repo.findByTitoloContainingIgnoreCaseOrderByTitolo(keyword);
+	}
 }
