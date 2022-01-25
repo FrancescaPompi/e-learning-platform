@@ -17,4 +17,8 @@ public class CorsoService {
 	public List<Corso> findAllSortedByRecent(){
 		return repo.findAll(Sort.by("dataCreazione"));
 	}
+	
+	public Corso getById(Integer id) {
+		return repo.getById(id);
+	}
 }
