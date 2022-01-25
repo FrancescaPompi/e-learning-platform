@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<div th:replace="fragments/resources :: headTags"></div>
+		<title>E-learning Platform</title>
+	</head>
+	<body>
+		<header class="container-fluid">
+			<img class="w-100" src="https://be-original.co.uk/wp-content/uploads/2019/11/wh-you-need-a-LInkedIn-header-850x266.jpg" alt="e-learning">
+		</header >
+		<main>
+			<h1 class="text-uppercase text-center my-4">e-learning platform</h1>
+			<div class="container">
+				<div class="d-flex d-flex-row justfy-content-center text-center mb-2">
+					<div class="card mx-3" style="width: auto;">
+					  <img src="https://www.claruscommerce.com/wp-content/uploads/2018/11/loyalty-lessons-from-2018-0x0.jpg" class="card-img-top" alt="...">
+					  <div class="card-body">
+					    <h5 class="card-title">Lista dei corsi</h5>
+					    <a href="#" class="btn btn-primary">Vai alla lista</a>
+					  </div>
+					</div>
+					<div class="card mx-3" style="width: auto;">
+					  <img src="https://www.claruscommerce.com/wp-content/uploads/2018/11/loyalty-lessons-from-2018-0x0.jpg" class="card-img-top" alt="...">
+					  <div class="card-body">
+					    <h5 class="card-title">Lista degli insegnanti</h5>
+					    <a href="#" class="btn btn-primary">Vai alla lista</a>
+					  </div>
+					</div>
+				</div>
+				<a href="#" class="btn btn-primary my-5">Amministratore</a>
+			</div>
+		</main>
+		
+		<div th:replace="fragments/resources :: scripts"></div>
+	</body>
+</html>
