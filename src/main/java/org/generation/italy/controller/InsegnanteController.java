@@ -33,7 +33,7 @@ public class InsegnanteController {
 	@GetMapping("/info/{id}")
 	public String info(@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("insegnante", service.getById(id));
-		return "/corso/insegnanti/info";
+		return "/corso/insegnanti/detail";
 	}
 
 }
