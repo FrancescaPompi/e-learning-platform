@@ -40,7 +40,7 @@ public class InsegnanteAmministratoreController {
 		}
 		
 		insegnanteService.save(formInsegnante);
-		return "/amministrazione/insegnanti/edit";	
+		return "redirect:/insegnanti";	
 	}
 
 }
