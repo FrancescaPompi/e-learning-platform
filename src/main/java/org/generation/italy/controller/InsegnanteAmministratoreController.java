@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/index/amministrazione/insegnanti")
+@RequestMapping("/amministrazione/insegnanti")
 public class InsegnanteAmministratoreController {
 	
 	@Autowired
