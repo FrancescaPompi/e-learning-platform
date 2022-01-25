@@ -26,7 +26,6 @@ public class Insegnante {
 	@NotEmpty
 	private String cognome;
 	
-	@NotNull
 	@Lob
 	private byte[] foto;
 	
