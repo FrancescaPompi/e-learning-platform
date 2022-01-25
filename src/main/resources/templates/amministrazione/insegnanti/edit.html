@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>	
+	<title>Nuovo Insegnante</title>
+</head>
+
+<body>
+<div class="container">	
+	
+		<h1 class="text-center">Aggiungi un insegnante</h1 >
+		
+	<div class="container">
+		
+		    <form 
+		    
+		    id= "insegnante-form"
+		    th:object="${insegnante}"
+		    th:action="@{/index/amministrazione/insegnanti/create}"
+		    method="post">
+		    
+        <div class="mb-3 ">
+        
+        <div class="col-6">
+					
+        
+        
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" id="nome" th:field="*{nome}"  placeholder="Inserisci il tuo nome">
+          </div>
+          <br/>
+          <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label">Cognome</label>
+              <input type="text" id="cognome" th:field="*{cognome}"  placeholder="Inserisci il tuo cognome">
+            
+            <button class="btn btn-primary" type="submit"><i class="fas fa-check"></i></i> Salva</button>
+          </div>
+      </form >
+      
+	</div>
+		
+		
+	
+</body>
+</html>
+
+	
