@@ -45,7 +45,7 @@ public class InsegnanteController {
 		}
 		
 		insegnanteService.save(formInsegnante);
-		return "/index/amministrazione/insegnanti";	
+		return "/amministrazione/insegnanti/edit";	
 	}
 
 }
