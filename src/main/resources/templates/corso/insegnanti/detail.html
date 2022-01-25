@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<div th:replace="fragments/resources :: headTags"></div>
+	<title th:text="${insegnante.cognome}"></title>
+</head>
+
+<body>
+	<nav th:replace="fragments/navbar :: navbar('insegnanti')"></nav>
+	<div class="container" th:object="${insegnante}">
+		<h1 th:text="|ID insegnante: *{id}|"></h1>
+		<h2 th:text="Test" class="text-muted"></h2>
+		<hr />
+		<div class="row">
+			<div class="col-8">
+				<dl>
+					<dt>Nome</dt>
+					<dd th:text="*{nome}"></dd>
+					<dt>Cognome</dt>
+					<dd th:text="*{Cognome}"></dd>
+					<dt>Foto</dt>
+					<dd></dd>
+				</dl>
+			</div>
+			<div class="col-4">
+				<h3>Prenotazioni</h3>
+				<ul>
+					<li th:each="pre : *{prenotazioni}" th:text="${pre.dataInizio}"></li>
+				</ul>
+			</div>
+			<div class="col-4">
+				<h3>Corsi</h3>
+				<ul>
+					<li th:each="item : *{corsi}" th:text="${item.titolo}"></li>
+				</ul>
+			</div>
+			<a class="btn btn-primary" aria-current="page" th:href="@{/insegnanti/info/*{id}/prenota}">Prenota qui!</a>
+		</div>
+	</div>
+	<div th:replace="fragments/resources :: scripts"></div>
+</body>
+
+</html>
