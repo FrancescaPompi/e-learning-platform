@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 
 @Controller
-@RequestMapping("/index/insegnanti")
+@RequestMapping("/insegnanti")
 public class InsegnanteController {
 
 	@Autowired

@@ -20,18 +20,28 @@ import org.springframework.stereotype.Service;
 public class InsegnanteService {
 
 	@Autowired
-	private InsegnanteRepository rep;
+	private InsegnanteRepository insegnanteRep;
 	
 	public List<Insegnante> findAllSortedByCognome() {
-		return rep.findAll(Sort.by("cognome"));
+		return insegnanteRep.findAll(Sort.by("cognome"));
 	}
 	
 	// Search bar method
 	public List<Insegnante> findByKeywordSortedByCognome(String keyword) {
-		return rep.findByNomeContainingIgnoreCaseOrderByCognome(keyword);
+		return insegnanteRep.findByNomeContainingIgnoreCaseOrderByCognome(keyword);
 	}
 	
 	public Insegnante getById(Integer id) {
-		return rep.getById(id);
+		return insegnanteRep.getById(id);
 	}
+	
+	public Insegnante save(Insegnante insegnante) {		
+		return insegnanteRep.save(insegnante);
+
+	}
+	
+	public void deleteById(Integer id) {
+		insegnanteRep.deleteById(id);
+	}
+
 }
