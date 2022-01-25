@@ -1,6 +1,3 @@
-/**
- * 
- */
 package org.generation.italy.controller;
 
 import java.util.List;
@@ -15,22 +12,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-/**
- * @author lucai
- *
- */
-
 @Controller
 @RequestMapping("/insegnanti")
 public class InsegnanteController {
-
 	@Autowired
 	private InsegnanteService service;
-	
+
 	@GetMapping
-	public String list(Model model, @RequestParam(name="keyword", required = false) String keyword) {
+	public String list(Model model, @RequestParam(name = "keyword", required = false) String keyword) {
 		List<Insegnante> result;
-		if(keyword != null) {
+		if (keyword != null) {
 			result = service.findByKeywordSortedByCognome(keyword);
 			model.addAttribute("keyword", keyword);
 		} else
@@ -38,11 +29,11 @@ public class InsegnanteController {
 		model.addAttribute("list", result);
 		return "/corso/insegnanti/list";
 	}
-	
+
 	@GetMapping("/info/{id}")
 	public String info(@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("insegnante", service.getById(id));
 		return "/corso/insegnanti/info";
 	}
-	
+
 }
