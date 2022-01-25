@@ -35,7 +35,7 @@
 					<li th:each="item : *{corsi}" th:text="${item.titolo}"></li>
 				</ul>
 			</div>
-			<a class="btn btn-primary" aria-current="page" th:href="@{/insegnanti/info/*{id}/prenota}">Corsi</a>
+			<a class="btn btn-primary" aria-current="page" th:href="@{/insegnanti/info/*{id}/prenota}">Prenota qui!</a>
 		</div>
 	</div>
 	<div th:replace="fragments/resources :: scripts"></div>
