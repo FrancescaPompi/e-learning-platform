@@ -12,17 +12,17 @@ import org.springframework.stereotype.Service;
 public class CorsoService {
 
 	@Autowired
-	private CorsoRepository repo;
+	private CorsoRepository corsoRepo;
 	
 	public List<Corso> findAllSortedByRecent(){
-		return repo.findAll(Sort.by("dataCreazione"));
+		return corsoRepo.findAll(Sort.by("dataCreazione"));
 	}
 	
 	public Corso getById(Integer id) {
-		return repo.getById(id);
+		return corsoRepo.getById(id);
 	}
 	
 	public List<Corso> findByKeywordSortedByTitolo(String keyword) {
-		return repo.findByTitoloContainingIgnoreCaseOrderByTitolo(keyword);
+		return corsoRepo.findByTitoloContainingIgnoreCaseOrderByTitolo(keyword);
 	}
 }
