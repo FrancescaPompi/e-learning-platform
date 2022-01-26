@@ -8,7 +8,7 @@
 		<nav th:replace="fragments/navbar :: navbar('insegnanti')"></nav>
 		<div class="container">
 			<!-- prenotazioni -->
-			<table class="table" th:if="${list.size() > 0}">
+			<table class="table">
 					<thead>
 						<tr>
 							<th>Data Inizio</th>
@@ -24,7 +24,7 @@
 						</tr >
 					</tbody>
 			</table >
-			<div class="alert alert-primary mt-5" role="alert" th:unless="${list.size() > 0}">
+			<div class="alert alert-primary mt-5" role="alert">
 				Non ci sono ancora prenotazioni
 			</div>
 		
@@ -33,7 +33,7 @@
 			<form 
 				id="prenotazione-form" 
 				th:object="${prenotazione}"
-				th:action="@{/insegnanti/info/{id}/prenota}"
+				th:action="@{|/insegnanti/info/${id}/prenota|}"
 				method="post"
 			>
 				<div class="row">
@@ -41,13 +41,11 @@
 						<div class="row d-flex flex-column">
 							<div class="col-6 mb-4">
 								<label class="form-label" for="inizio">Data di inizio</label>
-								<input type="date" class="form-control" id="inizio" th:field="*{dataInizio}">
-								<input type="time" class="form-control mt-2" th:field="*{dataInizio}">
+								<input type="datetime-local" class="form-control" id="inizio" th:field="*{dataInizio}">
 							</div>
 							<div class="col-6 mb-4">
 								<label class="form-label" for="fine">Data di fine</label>
-								<input type="date" class="form-control" id="fine" th:field="*{dataFine}">
-								<input type="time" class="form-control mt-2" th:field="*{dataFine}">
+								<input type="datetime-local" class="form-control" id="fine" th:field="*{dataFine}">
 							</div>
 							<div class="col-12">
 								<label class="form-label" for="note">Note</label>
@@ -55,7 +53,7 @@
 							</div>
 							<div class="col-12 d-flex d-flex-row mt-3">
 								<button class="btn btn-info me-2" type="submit"> Save</button>
-								<a class="btn btn-secondary" th:href="@{/insegnanti/info/{id}}"> Cancel</a>
+								<a class="btn btn-secondary" th:href="@{|/insegnanti/info/{id}|}"> Cancel</a>
 							</div>
 						</div >
 					</div >

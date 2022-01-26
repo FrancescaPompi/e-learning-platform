@@ -3,6 +3,7 @@ package org.generation.italy.controller;
 import javax.validation.Valid;
 
 import org.generation.italy.model.Prenotazione;
+import org.generation.italy.service.InsegnanteService;
 import org.generation.italy.service.PrenotazioneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,9 @@ public class PrenotazioneController {
 	@Autowired
 	private PrenotazioneService prenotazioneService;
 	
+	@Autowired
+	private InsegnanteService insegnanteService;
+	
 	@GetMapping("/{id}/prenota")
 	public String prenota(@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("list", prenotazioneService.findAllSortByDataInizio());
@@ -29,13 +33,14 @@ public class PrenotazioneController {
 	}
 	
 	@PostMapping("/{id}/prenota")
-	public String doPrenota(@Valid @ModelAttribute("prenotazione") Prenotazione prenotazione,
+	public String doPrenota(@PathVariable("id") Integer id, @Valid @ModelAttribute("prenotazione") Prenotazione prenotazione,
 			BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
+			model.addAttribute("list", prenotazioneService.findAllSortByDataInizio());
 			return "/corso/insegnanti/prenotazioni/form";
 		}
 		prenotazioneService.save(prenotazione);
-		return "redirect:/prenota" + prenotazione.getInsegnante().getId();
+		return "redirect:/insegnanti/info/{" + insegnanteService.getById(id) + "}/prenota";
 	}
 	
 }

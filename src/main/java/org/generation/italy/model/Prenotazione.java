@@ -1,7 +1,6 @@
 package org.generation.italy.model;
 
-import java.time.LocalDateTime;
-
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,18 +18,17 @@ public class Prenotazione {
 	private Integer id;
 	
 	@NotNull
-	@Column(name="data_inizio")
-	private LocalDateTime dataInizio;
-	
-	@NotNull
-	@Column(name="data_fine")
-	private LocalDateTime dataFine;
+	@Column(name="data_prenotazione")
+	private LocalDate dataPrenotazione;
 	
 	@Lob
 	private String note;
 	
 	@ManyToOne
 	private Insegnante insegnante;
+	
+	@ManyToOne
+	private FasceOrarie fasciaOraria;
 
 	public Integer getId() {
 		return id;
@@ -40,20 +38,12 @@ public class Prenotazione {
 		this.id = id;
 	}
 
-	public LocalDateTime getDataInizio() {
-		return dataInizio;
+	public LocalDate getDataPrenotazione() {
+		return dataPrenotazione;
 	}
 
-	public void setDataInizio(LocalDateTime dataInizio) {
-		this.dataInizio = dataInizio;
-	}
-
-	public LocalDateTime getDataFine() {
-		return dataFine;
-	}
-
-	public void setDataFine(LocalDateTime dataFine) {
-		this.dataFine = dataFine;
+	public void setDataPrenotazione(LocalDate dataPrenotazione) {
+		this.dataPrenotazione = dataPrenotazione;
 	}
 
 	public String getNote() {
@@ -70,6 +60,14 @@ public class Prenotazione {
 
 	public void setInsegnante(Insegnante insegnante) {
 		this.insegnante = insegnante;
+	}
+
+	public FasceOrarie getFasciaOraria() {
+		return fasciaOraria;
+	}
+
+	public void setFasciaOraria(FasceOrarie fasciaOraria) {
+		this.fasciaOraria = fasciaOraria;
 	}
 	
 	
