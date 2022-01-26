@@ -29,8 +29,11 @@ public class InsegnanteAmministratoreController {
 	@GetMapping("/create")
 	public String creaInsegnante(Model model) {
 		model.addAttribute("insegnante", new PhotoForm());
+		
 		return "/amministrazione/insegnanti/edit";
 	}
+	
+
 	
 	@PostMapping("/create")
 	public String doCreate(@Valid @ModelAttribute("insegnante") PhotoForm insegnante, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) throws IOException {
@@ -51,5 +54,10 @@ public class InsegnanteAmministratoreController {
 
 		return "redirect:/insegnanti";	
 	}
+	
+	
+	
+	
+	
 
 }

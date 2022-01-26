@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
 @Controller
 @RequestMapping("/amministrazione/corsi")
 public class CorsoAmministratoreController {
@@ -49,5 +50,7 @@ public class CorsoAmministratoreController {
 		corsiService.save(formCorsi);
 		return "redirect:/corsi";	
 	}
+	
+	
 
 } 
