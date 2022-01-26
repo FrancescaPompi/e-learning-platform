@@ -32,12 +32,12 @@ public class CorsoService {
 		if (corso.getDataCreazione() == null)
 			corso.setDataCreazione(LocalDate.now());
 		
-		return repo.save(corso);
+		return corsoRepo.save(corso);
 
 	}
 	
 	public void deleteById(Integer id) {
-		repo.deleteById(id);
+		corsoRepo.deleteById(id);
 	}
 
 }
