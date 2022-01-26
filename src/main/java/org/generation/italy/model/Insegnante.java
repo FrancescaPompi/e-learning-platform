@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -31,6 +32,23 @@ public class Insegnante {
 	
 	@OneToMany(mappedBy="insegnante")
 	private List<Prenotazione> prenotazioni;
+	
+	@ManyToMany(mappedBy="insegnanti")
+	private List<Corso> corsi;
+
+	/**
+	 * @return the corsi
+	 */
+	public List<Corso> getCorsi() {
+		return corsi;
+	}
+
+	/**
+	 * @param corsi the corsi to set
+	 */
+	public void setCorsi(List<Corso> corsi) {
+		this.corsi = corsi;
+	}
 
 	public Integer getId() {
 		return id;
