@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<div th:replace="fragments/resources :: headTags"></div>
+		<title>Corsi</title>
+	</head>
+	<body>
+		<div th:replace="fragments/navbar :: navbar(current)"></div>
+		<div class="container p-3">
+			
+			<h1 class="text-center">Lista corsi</h1 >
+			<hr>
+			
+			<div class="mb-3 d-flex justify-content-between">
+				<form th:action="${edit} ? @{/amministrazione/corsi/edit/{id}(id=${corso.id})} : @{/amministrazione/corsi/create}"
+				 method="post"
+				 th:object="${corso}"
+				 >
+				 
+					<div class="input-group">
+						<input name="keyword" th:value="${keyword}" class="form-control" type="search" placeholder="Search"
+							aria-label="Search">
+						<button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+					</div>
+				</form>
+			</div>
+			
+			<table class="table" >
+				<thead>
+					<tr>
+						<th>Titolo</th>
+						<th>Data di creazione</th>
+						<th>Livello</th>
+						<th></th>
+					</tr>
+				</thead >
+				<tbody>
+					<tr th:each="item : ${list}">
+						<td th:text="${item.titolo}"></td>
+						<td th:text="${item.dataCreazione}"></td>
+						<td th:text="${item.livello}"></td >
+						<td>							
+							<a class="btn btn-primary" th:href="@{|/amministrazione/corsi/delete/${item.id}|}" onclick="return confirm('Sicuro di voler cancellare il corso?')"><i class="fas fa-trash-alt"></i></a>
+							<a class="btn btn-primary" th:href="@{|/corsi/detail/${item.id}|}"><i class="fas fa-info-circle"></i></a>
+							<a class="btn btn-primary" th:href="@{|/amministrazione/corsi/edit/${item.id}|}"><i class="fas fa-edit"></i></a>
+						</td>
+					</tr >
+				</tbody>
+			</table >
+			
+		</div >
+		<div th:replace="fragments/resources :: scripts"></div>
+	</body>
+</html>
