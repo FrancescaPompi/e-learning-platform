@@ -33,12 +33,13 @@ public class InsegnanteAmministratoreController {
 	}
 	
 	@PostMapping("/create")
-	public String doCreate(@Valid @ModelAttribute("insegnante") PhotoForm insegnante, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
+	public String doCreate(@Valid @ModelAttribute("insegnante") PhotoForm insegnante, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) throws IOException {
 		if(bindingResult.hasErrors()) {
 			
 			return "/amministrazione/insegnanti/edit";
 		}
 		
+
 		try {
 			insegnanteService.save(insegnante);
 			redirectAttributes.addFlashAttribute("successMessage", "Insegnante salvata!");
@@ -46,6 +47,8 @@ public class InsegnanteAmministratoreController {
 			redirectAttributes.addFlashAttribute("errorMessage", "Impossibile salvare l'insegnante!");
 			e.printStackTrace();
 		}
+	
+
 		return "redirect:/insegnanti";	
 	}
 
