@@ -41,9 +41,9 @@ public class InsegnanteAmministratoreController {
 		
 		try {
 			insegnanteService.save(insegnante);
-			redirectAttributes.addFlashAttribute("successMessage", "Foto salvata!");
+			redirectAttributes.addFlashAttribute("successMessage", "Insegnante salvata!");
 		} catch (IOException e) {
-			redirectAttributes.addFlashAttribute("errorMessage", "Impossibile salvare l'immagine!");
+			redirectAttributes.addFlashAttribute("errorMessage", "Impossibile salvare l'insegnante!");
 			e.printStackTrace();
 		}
 		return "redirect:/insegnanti";	
