@@ -47,7 +47,7 @@
 								<td th:text="${cap.numeroCapitolo}"></td>
 								<td th:text="${cap.titolo}"></td>
 								<td>
-									<a class="btn btn-primary" th:href="@{#}"><i class="fas fa-play"></i></a>
+									<a class="btn btn-primary" th:href="@{/corsi/capitolo{id}/watch(id=${cap.id})}"><i class="fas fa-play"></i></a>
 								</td>
 							</tr >
 						</tbody>

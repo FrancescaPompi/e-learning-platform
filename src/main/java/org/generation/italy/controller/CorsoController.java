@@ -3,6 +3,7 @@ package org.generation.italy.controller;
 import java.util.List;
 
 import org.generation.italy.model.Corso;
+import org.generation.italy.service.CapitoloService;
 import org.generation.italy.service.CorsoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,9 @@ public class CorsoController {
 	
 	@Autowired
 	private CorsoService service;
+	
+	@Autowired
+	private CapitoloService capitoloService;
 	
 	@GetMapping
 	public String list(Model model, @RequestParam(name = "keyword", required = false) String keyword) {
@@ -35,5 +39,11 @@ public class CorsoController {
 	public String detail(@PathVariable("id") Integer id , Model model) {
 		model.addAttribute("corso", service.getById(id));
 		return "/corsi/detail";
+	}
+	
+	@GetMapping("/capitolo{id}/watch")
+	public String capitolo(@PathVariable("id") Integer id, Model model) {
+		model.addAttribute("capitolo", capitoloService.getById(id));
+		return "/corsi/capitolo/video";
 	}
 }
