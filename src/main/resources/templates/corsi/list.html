@@ -7,9 +7,21 @@
 	<body>
 		<div th:replace="fragments/navbar :: navbar(current)"></div>
 		<div class="container p-3">
-			<h1 class="text-center">Lista corsi</h1  >
+			
+			<h1 class="text-center">Lista corsi</h1 >
 			<hr>
-			<table class="table">
+			
+			<div class="mb-3 d-flex justify-content-between">
+				<form th:action="@{/corsi}" method="get">
+					<div class="input-group">
+						<input name="keyword" th:value="${keyword}" class="form-control" type="search" placeholder="Search"
+							aria-label="Search">
+						<button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+					</div>
+				</form>
+			</div>
+			
+			<table class="table" th:if="${list.size() > 0}">
 				<thead>
 					<tr>
 						<th>Titolo</th>

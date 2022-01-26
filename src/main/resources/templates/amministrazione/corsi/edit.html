@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<div th:replace="fragments/resources :: headTags"></div>
+
+
+	<title>Nuovo Corso</title>
+</head>
+
+<body>
+	<div th:replace="fragments/navbar :: navbar(current)"></div>
+<div class="container">	
+	
+		<h1 class="text-center">Aggiungi un Corso</h1 >
+		
+	<div class="container">
+		
+		    <form 
+		    
+		    id= "corsi-form"
+		    th:object="${corso}"
+		    th:action="@{/amministrazione/corsi/create}"
+		    method="post">
+		    
+        <div class="mb-3 ">
+        
+        <div class="row">	
+        
+              
+              	<div class="col-6">
+					<label class="form-label" for="titolo">Titolo</label>
+					<input type="text" class="form-control" id="titolo" th:field="*{titolo}" th:errorClass="is-invalid" >
+					<div th:if="${#fields.hasErrors('titolo')}" class="invalid-feedback">
+							<ul>
+								<li th:each="err : ${#fields.errors('titolo')}" th:text="${err}"></li>
+							</ul>
+						</div>
+				
+				</div>
+				
+					<div class="col-6">
+					<label class="form-label" for="categoria">Categoria</label>
+					<input type="text" class="form-control" id="categoria" th:field="*{categoria}" th:errorClass="is-invalid">
+				<div th:if="${#fields.hasErrors('categoria')}" class="invalid-feedback">
+							<ul>
+								<li th:each="err : ${#fields.errors('categoria')}" th:text="${err}"></li>
+							</ul>
+						</div>
+				
+				</div>
+				
+					<div class="col-3">
+					<label class="form-label" for="durata">Durata in ore</label>
+					<input type="number" class="form-control" id="durata" th:field="*{durata}" th:errorClass="is-invalid">
+					 
+						<div th:if="${#fields.hasErrors('durata')}" class="invalid-feedback">
+							<ul>
+								<li th:each="err : ${#fields.errors('durata')}" th:text="${err}"></li>
+							</ul>
+						</div>
+				</div>	
+				
+				
+					<div class="col-3">
+					<label class="form-label" for="dataCreazione">Data Inizio</label>
+					<input type="date" class="form-control" id="dataCreazione" th:field="*{dataCreazione}" th:errorClass="is-invalid">
+				<div th:if="${#fields.hasErrors('dataCreazione')}" class="invalid-feedback">
+							<ul>
+								<li th:each="err : ${#fields.errors('dataCreazione')}" th:text="${err}"></li>
+							</ul>
+						</div>
+				</div>
+				
+				
+				
+				
+			
+				
+					<div class="col-6">
+					<label class="form-label" for="livello">Livello</label>
+					<input type="text" class="form-control" id="livello" th:field="*{livello}" th:errorClass="is-invalid" placeholder="Facile/Intermedio/Difficile">
+					<div th:if="${#fields.hasErrors('livello')}" class="invalid-feedback">
+							<ul>
+								<li th:each="err : ${#fields.errors('livello')}" th:text="${err}"></li>
+							</ul>
+						</div>
+				</div>
+				
+						
+				
+					<div class="col-12">
+					<label class="form-label" for="descrizione">Descrizione</label>
+					<textarea type="text" class="form-control" id="descrizione" th:field="*{descrizione}" th:errorClass="is-invalid" rows="3"></textarea>
+				<div th:if="${#fields.hasErrors('descrizione')}" class="invalid-feedback">
+							<ul>
+								<li th:each="err : ${#fields.errors('descrizione')}" th:text="${err}"></li>
+							</ul>
+						</div>
+				</div>
+				
+							</div>				
+				
+				<br/>
+				
+				
+            
+            <button class="btn btn-primary" type="submit"><i class="fas fa-check"></i></i> Salva</button>
+            <a class="btn btn-primary" th:href="@{/}"><i class="fas fa-undo"></i> Indietro</a>
+          </div>
+      </form >
+      
+	</div>
+		
+			<div th:replace="fragments/resources :: scripts"></div>
+</body>
+</html>

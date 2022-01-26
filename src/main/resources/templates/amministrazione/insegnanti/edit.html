@@ -1,11 +1,12 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-
-<head>	
+	<head>
+		<div th:replace="fragments/resources :: headTags"></div>	
 	<title>Nuovo Insegnante</title>
 </head>
 
 <body>
+	<div th:replace="fragments/navbar :: navbar(current)"></div>
 <div class="container">	
 	
 		<h1 class="text-center">Aggiungi un insegnante</h1 >
@@ -17,30 +18,48 @@
 		    id= "insegnante-form"
 		    th:object="${insegnante}"
 		    th:action="@{/amministrazione/insegnanti/create}"
-		    method="post">
+
+		    method="post"
+		    encType="multipart/form-data">
+
 		    
-        <div class="mb-3 ">
-        
-        <div class="col-6">
+       <div class="row gy-2">
+			
+				<div class="col-4">
+					<label class="form-label" for="nome">Nome</label>
+					<input type="text" class="form-control" id="nome" th:field="*{nome}" th:errorClass="is-invalid">
+					<div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
+					<ul>
+						<li th:each="err :${#fields.errors('nome')}" th:text="${err}"></li >
+					</ul>
+					</div >
+				
+				</div>
+			<div class="col-4">
+					<label class="form-label" for="cognome">Cognome</label>
+					<input type="text" class="form-control" id="cognome" th:field="*{cognome}" th:errorClass="is-invalid">
+					<div th:if="${#fields.hasErrors('cognome')}" class="invalid-feedback">
+					<ul>
 					
-        
-        
-            <label for="nome" class="form-label">Nome</label>
-            <input type="text" id="nome" th:field="*{nome}"  placeholder="Inserisci il tuo nome">
-          </div>
-          <br/>
-          <div class="mb-3">
-            <label for="formGroupExampleInput2" class="form-label">Cognome</label>
-              <input type="text" id="cognome" th:field="*{cognome}"  placeholder="Inserisci il tuo cognome">
-            
-            <button class="btn btn-primary" type="submit"><i class="fas fa-check"></i></i> Salva</button>
-          </div>
-      </form >
-      
+					<li th:each="err : ${#fields.errors('cognome')}" th:text="${err}"></li >
+					</ul>
+					</div >
+				</div>
+				
+				<div class ="col-4">
+					<label for ="foto" class="form-label">Foto profilo</label>
+					<input id="foto" type="file" class= "form-control" th:field="*{foto}">
+			
+				</div>
 	</div>
+		<br/>
+			
+		<div class="container text-center">
+		<button class="btn btn-primary" type="submit"><i class="fas fa-check"></i></i> Salva</button>
+		<a class="btn btn-primary" th:href="@{/}"><i class="fas fa-undo"></i> Indietro</a>
+		</div>
 		
-		
-	
+			<div th:replace="fragments/resources :: scripts"></div>
 </body>
 </html>
 
