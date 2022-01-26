@@ -6,9 +6,59 @@
 	</head>
 	<body>
 		<div th:replace="fragments/navbar :: navbar(current)"></div>
-		<div class="container">
-			<h1>Dettaglio corso</h1>
+		<div class="container text-center" th:object="${corso}">
+			<h1 class="p-2" th:text="|Dettaglio del corso: *{titolo}|"></h1  >
 			<hr>
+			<div class="text-center">
+				<a class="btn btn-primary fw-bold" th:href="@{/corsi}"><i class="fas fa-undo-alt"></i> Torna alla lista</a>
+			</div >
+			<div class="row justify-content-center">
+				<div class="col-4">
+					<dl>
+						<dt>Titolo</dt>
+						<dd th:text="*{titolo}"></dd>
+						<dt>Descrizione</dt>
+						<dd th:text="*{descrizione}"></dd>
+						<dt>Categoria</dt>
+						<dd th:text="*{categoria}"></dd>
+						<dt>Livello di difficoltà</dt>
+						<dd th:text="*{livello}"></dd>
+						<dt>Data di creazione</dt>
+						<dd th:text="*{dataCreazione}"></dd>
+						<dt>Durata corso</dt>
+						<dd th:text="*{durata}"></dd>
+						<dt>Visualizzazioni</dt>
+						<dd th:text="*{visualizzazioni}"></dd>
+					</dl>
+				</div >
+				<div class="col-8">
+					<h4>Capitoli:</h4>
+
+					<table class="table" th:if="${corso.capitoli.size() > 0}">
+						<thead>
+							<tr>
+								<th>Numero del capitolo</th>
+								<th>Titolo</th>
+								<th></th>
+							</tr>
+						</thead >
+						<tbody>
+							<tr th:each="cap : ${corso.capitoli}">
+								<td th:text="${cap.numeroCapitolo}"></td>
+								<td th:text="${cap.titolo}"></td>
+								<td>
+									<a class="btn btn-primary" th:href="@{#}"><i class="fas fa-play"></i></a>
+								</td>
+							</tr >
+						</tbody>
+					</table >
+					
+					<div class="alert alert-primary" role="alert" th:unless="${corso.capitoli.size() > 0}">
+				 		Non ci sono capitoli
+					</div>
+					
+				</div>
+			</div >
 		</div >
 		<div th:replace="fragments/resources :: scripts"></div>
 	</body>

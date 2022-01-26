@@ -3,9 +3,11 @@
  */
 package org.generation.italy.service;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.generation.italy.model.Insegnante;
+import org.generation.italy.model.PhotoForm;
 import org.generation.italy.repository.InsegnanteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -35,7 +37,15 @@ public class InsegnanteService {
 		return insegnanteRep.getById(id);
 	}
 	
-	public Insegnante save(Insegnante insegnante) {		
+	public Insegnante save(PhotoForm newInsegnante) throws IOException {	
+		Insegnante insegnante = new Insegnante();
+		insegnante.setNome(newInsegnante.getNome());
+		insegnante.setCognome(newInsegnante.getCognome());
+		if(newInsegnante.getFoto() != null) {
+			byte [] contentSerialized = newInsegnante.getFoto().getBytes();
+			insegnante.setFoto(contentSerialized);
+		}
+		
 		return insegnanteRep.save(insegnante);
 
 	}
@@ -43,5 +53,10 @@ public class InsegnanteService {
 	public void deleteById(Integer id) {
 		insegnanteRep.deleteById(id);
 	}
+	
+	
+	
+		
+
 
 }
