@@ -13,7 +13,7 @@
 				<a class="btn btn-primary fw-bold" th:href="@{/corsi}"><i class="fas fa-undo-alt"></i> Torna alla lista</a>
 			</div >
 			<div class="row justify-content-center">
-				<div class="col-4">
+				<div class="col-3">
 					<dl>
 						<dt>Titolo</dt>
 						<dd th:text="*{titolo}"></dd>
@@ -31,14 +31,15 @@
 						<dd th:text="*{visualizzazioni}"></dd>
 					</dl>
 				</div >
-				<div class="col-8">
+				<div class="col-9">
 					<h4>Capitoli:</h4>
-
+					<hr>
 					<table class="table" th:if="${corso.capitoli.size() > 0}">
 						<thead>
 							<tr>
 								<th>Numero del capitolo</th>
 								<th>Titolo</th>
+								<th>Descrizione</th>
 								<th></th>
 							</tr>
 						</thead >
@@ -46,13 +47,14 @@
 							<tr th:each="cap : ${corso.capitoli}">
 								<td th:text="${cap.numeroCapitolo}"></td>
 								<td th:text="${cap.titolo}"></td>
+								<td th:text="${cap.descrizione}"></td>
 								<td>
-									<a class="btn btn-primary" th:href="@{/corsi/capitolo{id}/watch(id=${cap.id})}"><i class="fas fa-play"></i></a>
+									<a class="btn btn-primary" th:href="@{/corsi/capitolo/{id}/watch(id=${cap.id})}"><i class="fas fa-play"></i></a>
 								</td>
 							</tr >
 						</tbody>
 					</table >
-					
+			
 					<div class="alert alert-primary" role="alert" th:unless="${corso.capitoli.size() > 0}">
 				 		Non ci sono capitoli
 					</div>

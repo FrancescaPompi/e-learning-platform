@@ -6,12 +6,13 @@
 	</head>
 	<body>
 		<div th:replace="fragments/navbar :: navbar(current)"></div>
-		<div class="container">		
+		<div class="container">	
+		<h3 class="p-2 text-center" th:text="${capitolo.corso.titolo}"></h3 >
 			<h3 class="text-center p-3" th:text="|Capitolo: ${capitolo.numeroCapitolo}|"></h3 >
 			<div class="d-flex justify-content-between">
-				<a class="btn btn-primary" th:href="@{/corsi/capitolo{id}/watch(id=${capitolo.id-1})}"><i class="fas fa-undo"> Indietro</i></a>
+				<a class="btn btn-primary" th:href="@{/corsi/capitolo/{id}/before(id=${capitolo.id})}"><i class="fas fa-undo"> Indietro</i></a>
 				<a class="btn btn-primary" th:href="@{/corsi}"><i class="fas fa-undo-alt"></i> Torna alla lista</a>
-				<a class="btn btn-primary" th:href="@{/corsi/capitolo{id}/watch(id=${capitolo.id+1})}"><i class="fas fa-forward"> Avanti</i></a>
+				<a class="btn btn-primary" th:href="@{/corsi/capitolo/{id}/next(id=${capitolo.id})}"><i class="fas fa-forward"> Avanti</i></a>
 			</div>
 			<hr>
 			
@@ -19,7 +20,6 @@
 				<iframe width="800" height="450" th:src="@{https://www.youtube.com/embed/{url} (url=${capitolo.video}, start=${capitolo.video})}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 			</div >
 			<div class="text-center">
-				<h3 class="p-2" th:text="${capitolo.titolo}"></h3 >
 				<p th:text="${capitolo.descrizione}"></p >
 			</div >
 		</div >

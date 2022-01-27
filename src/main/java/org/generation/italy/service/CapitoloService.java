@@ -20,4 +20,6 @@ public class CapitoloService {
 	public List<Capitolo> getFindAll(){
 		return capitoloRepo.findAll();
 	}
+
+	
 }

@@ -2,6 +2,7 @@ package org.generation.italy.controller;
 
 import java.util.List;
 
+import org.generation.italy.model.Capitolo;
 import org.generation.italy.model.Corso;
 import org.generation.italy.service.CapitoloService;
 import org.generation.italy.service.CorsoService;
@@ -35,15 +36,48 @@ public class CorsoController {
 		return "/corsi/list";
 	}
 	
-	@GetMapping("/detail/{id}")
+	@GetMapping("/{id}/detail")
 	public String detail(@PathVariable("id") Integer id , Model model) {
 		model.addAttribute("corso", service.getById(id));
 		return "/corsi/detail";
 	}
 	
-	@GetMapping("/capitolo{id}/watch")
+	@GetMapping("/capitolo/{id}/watch")
 	public String capitolo(@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("capitolo", capitoloService.getById(id));
 		return "/corsi/capitolo/video";
 	}
+	
+	@GetMapping("/capitolo/{id}/next")
+	public String next(@PathVariable("id")Integer id, Model model) {
+		Capitolo capitoloCorrente = capitoloService.getById(id);
+		Corso corsoCorrente = service.getById(capitoloCorrente.getCorso().getId());
+		
+		List<Capitolo> listCap = corsoCorrente.getCapitoli();
+		Capitolo next = null;
+		
+		for(Capitolo c : listCap) {
+			if(capitoloCorrente.getNumeroCapitolo()+1 == c.getNumeroCapitolo()) {
+				next = c; 
+			}
+		}
+		return "redirect:/corsi/capitolo/" + next.getId() + "/watch";
+	}
+	
+	@GetMapping("/capitolo/{id}/before")
+	public String before(@PathVariable("id")Integer id, Model model) {
+		Capitolo capitoloCorrente = capitoloService.getById(id);
+		Corso corsoCorrente = service.getById(capitoloCorrente.getCorso().getId());
+		
+		List<Capitolo> listCap = corsoCorrente.getCapitoli();
+		Capitolo next = null;
+		
+		for(Capitolo c : listCap) {
+			if(capitoloCorrente.getNumeroCapitolo()-1 == c.getNumeroCapitolo()) {
+				next = c; 
+			}
+		}
+		return "redirect:/corsi/capitolo/" + next.getId() + "/watch";
+	}
+	
 }
