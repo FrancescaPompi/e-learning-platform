@@ -97,6 +97,7 @@ public class CorsoAmministratoreController {
 		}
 		
 		corsiService.update(formCorsi);
+	
 		return "redirect:/amministrazione/corsi/list";	
 	}
 	
