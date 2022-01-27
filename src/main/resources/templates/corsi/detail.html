@@ -6,34 +6,34 @@
 	</head>
 	<body>
 		<div th:replace="fragments/navbar :: navbar(current)"></div>
-		<div class="container text-center" th:object="${corso}">
-			<h1 class="p-2" th:text="|Dettaglio del corso: *{titolo}|"></h1  >
+		<div class="container text-center">
+			<h1 class="p-2" th:text="|Dettaglio del corso: ${corso.titolo}|"></h1  >
 			<hr>
 			<div class="text-center">
 				<a class="btn btn-primary fw-bold" th:href="@{/corsi}"><i class="fas fa-undo-alt"></i> Torna alla lista</a>
 			</div >
+			
 			<div class="row justify-content-center">
 				<div class="col-3">
 					<dl>
 						<dt>Titolo</dt>
-						<dd th:text="*{titolo}"></dd>
+						<dd th:text="${corso.titolo}"></dd>
 						<dt>Descrizione</dt>
-						<dd th:text="*{descrizione}"></dd>
+						<dd th:text="${corso.descrizione}"></dd>
 						<dt>Categoria</dt>
-						<dd th:text="*{categoria}"></dd>
+						<dd th:text="${corso.categoria}"></dd>
 						<dt>Livello di difficoltà</dt>
-						<dd th:text="*{livello}"></dd>
+						<dd th:text="${corso.livello}"></dd>
 						<dt>Data di creazione</dt>
-						<dd th:text="*{dataCreazione}"></dd>
+						<dd th:text="${corso.dataCreazione}"></dd>
 						<dt>Durata corso</dt>
-						<dd th:text="*{durata}"></dd>
+						<dd th:text="${corso.durata}"></dd>
 						<dt>Visualizzazioni</dt>
-						<dd th:text="*{visualizzazioni}"></dd>
+						<dd th:text="${corso.visualizzazioni}"></dd>
 					</dl>
 				</div >
 				<div class="col-9">
 					<h4>Capitoli:</h4>
-					<hr>
 					<table class="table" th:if="${corso.capitoli.size() > 0}">
 						<thead>
 							<tr>

@@ -44,7 +44,10 @@ public class CorsoController {
 	
 	@GetMapping("/capitolo/{id}/watch")
 	public String capitolo(@PathVariable("id") Integer id, Model model) {
-		model.addAttribute("capitolo", capitoloService.getById(id));
+		Capitolo capitoloCorrente = capitoloService.getById(id);
+		model.addAttribute("capitolo", capitoloCorrente);
+		Corso corsoCorrente = service.getById(capitoloCorrente.getCorso().getId());
+		model.addAttribute("corso", corsoCorrente);
 		return "/corsi/capitolo/video";
 	}
 	
@@ -54,14 +57,20 @@ public class CorsoController {
 		Corso corsoCorrente = service.getById(capitoloCorrente.getCorso().getId());
 		
 		List<Capitolo> listCap = corsoCorrente.getCapitoli();
-		Capitolo next = null;
+		Capitolo next;
 		
-		for(Capitolo c : listCap) {
-			if(capitoloCorrente.getNumeroCapitolo()+1 == c.getNumeroCapitolo()) {
-				next = c; 
+		try {
+			next = null;
+			for (Capitolo c : listCap) {
+				if (capitoloCorrente.getNumeroCapitolo() + 1 == c.getNumeroCapitolo()) {
+					next = c;
+				}
 			}
+			return "redirect:/corsi/capitolo/" + next.getId() + "/watch";
+		} catch (Exception e) {
+			e.getMessage();
 		}
-		return "redirect:/corsi/capitolo/" + next.getId() + "/watch";
+		return "redirect:/corsi";
 	}
 	
 	@GetMapping("/capitolo/{id}/before")
@@ -70,14 +79,21 @@ public class CorsoController {
 		Corso corsoCorrente = service.getById(capitoloCorrente.getCorso().getId());
 		
 		List<Capitolo> listCap = corsoCorrente.getCapitoli();
-		Capitolo next = null;
+		Capitolo before;
 		
-		for(Capitolo c : listCap) {
-			if(capitoloCorrente.getNumeroCapitolo()-1 == c.getNumeroCapitolo()) {
-				next = c; 
+		try {
+			before = null;
+			for (Capitolo c : listCap) {
+
+				if (capitoloCorrente.getNumeroCapitolo() - 1 == c.getNumeroCapitolo()) {
+					before = c;
+				}
 			}
+			return "redirect:/corsi/capitolo/" + before.getId() + "/watch";
+		} catch (Exception e) {
+			e.getMessage();
 		}
-		return "redirect:/corsi/capitolo/" + next.getId() + "/watch";
+		return "redirect:/corsi";
 	}
 	
 }
