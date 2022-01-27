@@ -3,9 +3,8 @@ package org.generation.italy.service;
 import java.time.LocalDate;
 import java.util.List;
 
+
 import org.generation.italy.model.Corso;
-
-
 import org.generation.italy.repository.CorsoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -21,6 +20,7 @@ public class CorsoService {
 		return corsoRepo.findAll(Sort.by("dataCreazione"));
 	}
 	
+	
 	public Corso getById(Integer id) {
 		return corsoRepo.getById(id);
 	}
@@ -30,9 +30,9 @@ public class CorsoService {
 	}
 	
 	public Corso save(Corso corso) {
-		if (corso.getDataCreazione() == null)
+		if (corso.getDataCreazione() == null) {
 			corso.setDataCreazione(LocalDate.now());
-		
+		}
 		return corsoRepo.save(corso);
 
 	}
@@ -43,6 +43,5 @@ public class CorsoService {
 	
 	public Corso update(Corso corso) {		
 		return corsoRepo.save(corso);
-
-}
+	}
 }
