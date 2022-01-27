@@ -9,7 +9,7 @@
 		<div class="container mt-4">
 			<!-- prenotazioni -->
 			<h1>Lista Prenotazioni</h1>
-			<table class="table" th:if="${list.size() > 0}">
+			<table class="table">
 					<thead>
 						<tr>
 							<th>Data Prenotazione</th>
@@ -18,14 +18,14 @@
 						</tr>
 					</thead >
 					<tbody>
-						<tr th:each="item : ${list}">
+						<tr th:each="item : ${listaPren}">
 							<td th:text="${item.dataPrenotazione}"></td>
 							<td th:text="${item.fasciaOraria.fasciaOraria}"></td>
 							<td th:text="${item.note}"></td >
 						</tr >
 					</tbody>
 			</table >
-			<div class="alert alert-primary mt-5" role="alert" th:unless="${list.size() > 0}">
+			<div class="alert alert-primary mt-5" role="alert">
 				Non ci sono ancora prenotazioni
 			</div>
 		

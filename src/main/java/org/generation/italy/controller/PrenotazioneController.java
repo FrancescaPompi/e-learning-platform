@@ -1,5 +1,8 @@
 package org.generation.italy.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.generation.italy.model.Insegnante;
@@ -16,7 +19,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/insegnanti/info")
@@ -31,9 +33,11 @@ public class PrenotazioneController {
 	@Autowired
 	private InsegnanteService insegnanteService;
 	
+	
 	@GetMapping("/{id}/prenota")
 	public String prenota(@PathVariable("id") Integer id, Model model) {
-		model.addAttribute("list", prenotazioneService.findAllSortByFasciaOraria());
+		List<Prenotazione> listPren = insegnanteService.getById(id).getPrenotazioni();
+		model.addAttribute("listaPren", listPren);
 		model.addAttribute("orariList", fasceOrarieService.findAllSortedByFasciaOraria());
 		model.addAttribute("prenotazione", new Prenotazione());
 		return "/corso/insegnanti/prenotazioni/form";
