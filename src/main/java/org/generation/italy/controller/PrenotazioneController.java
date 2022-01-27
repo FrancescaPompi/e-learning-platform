@@ -1,8 +1,13 @@
 package org.generation.italy.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.Valid;
 
+import org.generation.italy.model.Insegnante;
 import org.generation.italy.model.Prenotazione;
+import org.generation.italy.service.FasceOrarieService;
 import org.generation.italy.service.InsegnanteService;
 import org.generation.italy.service.PrenotazioneService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,24 +28,34 @@ public class PrenotazioneController {
 	private PrenotazioneService prenotazioneService;
 	
 	@Autowired
+	private FasceOrarieService fasceOrarieService;
+	
+	@Autowired
 	private InsegnanteService insegnanteService;
+	
 	
 	@GetMapping("/{id}/prenota")
 	public String prenota(@PathVariable("id") Integer id, Model model) {
-		model.addAttribute("list", prenotazioneService.findAllSortByDataInizio());
+		List<Prenotazione> listPren = insegnanteService.getById(id).getPrenotazioni();
+		model.addAttribute("listaPren", listPren);
+		model.addAttribute("orariList", fasceOrarieService.findAllSortedByFasciaOraria());
 		model.addAttribute("prenotazione", new Prenotazione());
 		return "/corso/insegnanti/prenotazioni/form";
 	}
 	
-	@PostMapping("/{id}/prenota")
-	public String doPrenota(@PathVariable("id") Integer id, @Valid @ModelAttribute("prenotazione") Prenotazione prenotazione,
+	@PostMapping("/{idInsegnante}/prenota")
+	public String doPrenota(@PathVariable("idInsegnante") Integer idInsegnante, @Valid @ModelAttribute("prenotazione") Prenotazione formPrenotazione,
 			BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
-			model.addAttribute("list", prenotazioneService.findAllSortByDataInizio());
+			model.addAttribute("edit", false);
+			model.addAttribute("list", prenotazioneService.findAllSortByFasciaOraria());
+			model.addAttribute("orariList", fasceOrarieService.findAllSortedByFasciaOraria());
 			return "/corso/insegnanti/prenotazioni/form";
 		}
-		prenotazioneService.save(prenotazione);
-		return "redirect:/insegnanti/info/{" + insegnanteService.getById(id) + "}/prenota";
+		Insegnante insegnante = insegnanteService.getById(idInsegnante);
+		formPrenotazione.setInsegnante(insegnante);
+		prenotazioneService.save(formPrenotazione);
+		return "redirect:/insegnanti/info/" + insegnante.getId() + "/prenota";
 	}
 	
 }

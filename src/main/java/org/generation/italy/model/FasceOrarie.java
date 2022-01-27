@@ -23,4 +23,30 @@ public class FasceOrarie {
 	
 	@OneToMany(mappedBy="fasciaOraria")
 	private List<Prenotazione> prenotazioniFasciaOraria;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getFasciaOraria() {
+		return fasciaOraria;
+	}
+
+	public void setFasciaOraria(String fasciaOraria) {
+		this.fasciaOraria = fasciaOraria;
+	}
+
+	public List<Prenotazione> getPrenotazioniFasciaOraria() {
+		return prenotazioniFasciaOraria;
+	}
+
+	public void setPrenotazioniFasciaOraria(List<Prenotazione> prenotazioniFasciaOraria) {
+		this.prenotazioniFasciaOraria = prenotazioniFasciaOraria;
+	}
+	
+	
 }

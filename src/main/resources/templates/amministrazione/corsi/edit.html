@@ -19,7 +19,7 @@
 		    
 		    id= "corsi-form"
 		    th:object="${corso}"
-		    th:action="@{/amministrazione/corsi/create}"
+		    th:action="${edit} ? @{|/amministrazione/corsi/edit/${id}|} : @{|/amministrazione/corsi/create|}"
 		    method="post">
 		    
         <div class="mb-3 ">
@@ -29,6 +29,7 @@
               
               	<div class="col-6">
 					<label class="form-label" for="titolo">Titolo</label>
+					
 					<input type="text" class="form-control" id="titolo" th:field="*{titolo}" th:errorClass="is-invalid" >
 					<div th:if="${#fields.hasErrors('titolo')}" class="invalid-feedback">
 							<ul>

@@ -20,6 +20,12 @@ public class CapitoloService {
 	public List<Capitolo> getFindAll(){
 		return capitoloRepo.findAll();
 	}
-
 	
+	public Capitolo save(Capitolo capitolo) {
+		return capitoloRepo.save(capitolo);
+	}
+	
+	public void deleteById(Integer id) {
+		capitoloRepo.deleteById(id);
+	}
 }

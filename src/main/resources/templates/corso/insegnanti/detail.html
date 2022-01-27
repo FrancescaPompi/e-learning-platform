@@ -26,7 +26,7 @@
 			<div class="col-4">
 				<h3>Prenotazioni</h3>
 				<ul>
-					<li th:each="pre : *{prenotazioni}" th:text="${pre.dataInizio}"></li>
+					<li th:each="pre : ${prenotazioni}" th:text="${pre.dataPrenotazione}"></li>
 				</ul>
 			</div>
 			<div class="col-4">
@@ -35,6 +35,18 @@
 					<li th:each="item : *{corsi}" th:text="${item.titolo}"></li>
 				</ul>
 			</div>
+			<div th:each="item :${list}" class="col-3">
+			
+			
+				<div class="card">
+				
+					<img th:src="|/insegnanti/${item.id}/foto|" class="card-img-top"/>
+					<div class="card-body">
+					<div class="h5 card-title" th:text=${item.nome}></div>
+					</div>
+				</div>
+			</div>
+		</div>
 			<a class="btn btn-primary" aria-current="page" th:href="@{|/insegnanti/info/${insegnante.id}/prenota|}">Prenota qui!</a>
 		</div>
 	</div>

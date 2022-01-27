@@ -30,9 +30,9 @@ public class CorsoService {
 	}
 	
 	public Corso save(Corso corso) {
-		if (corso.getDataCreazione() == null)
+		if (corso.getDataCreazione() == null) {
 			corso.setDataCreazione(LocalDate.now());
-		
+		}
 		return corsoRepo.save(corso);
 
 	}
@@ -40,6 +40,8 @@ public class CorsoService {
 	public void deleteById(Integer id) {
 		corsoRepo.deleteById(id);
 	}
-
+	
+	public Corso update(Corso corso) {		
+		return corsoRepo.save(corso);
+	}
 }
-
