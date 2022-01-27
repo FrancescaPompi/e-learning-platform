@@ -87,7 +87,13 @@
 						</div>
 				</div>
 				
-						
+					<div class="col-4 my-3">
+						<h6>Insegnanti</h6>
+						<div class="form-check" th:each="item : ${insegnanti}">
+							<label class="form-check-label" th:for="|insegnante_${item.id}|" th:text="|${item.cognome} ${item.nome}|"></label>
+						  	<input class="form-check-input" type="checkbox" th:id="|insegnante_${item.id}|" th:value="${item.id}" th:field="*{insegnanti}">
+						</div>
+					</div>
 				
 					<div class="col-12">
 					<label class="form-label" for="descrizione">Descrizione</label>
