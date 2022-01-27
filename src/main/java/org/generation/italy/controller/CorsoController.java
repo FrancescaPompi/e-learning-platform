@@ -2,7 +2,9 @@ package org.generation.italy.controller;
 
 import java.util.List;
 
+import org.generation.italy.model.Capitolo;
 import org.generation.italy.model.Corso;
+import org.generation.italy.service.CapitoloService;
 import org.generation.italy.service.CorsoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,9 @@ public class CorsoController {
 	@Autowired
 	private CorsoService service;
 	
+	@Autowired
+	private CapitoloService capitoloService;
+	
 	@GetMapping
 	public String list(Model model, @RequestParam(name = "keyword", required = false) String keyword) {
 		List<Corso> result;
@@ -31,9 +36,64 @@ public class CorsoController {
 		return "/corsi/list";
 	}
 	
-	@GetMapping("/detail/{id}")
+	@GetMapping("/{id}/detail")
 	public String detail(@PathVariable("id") Integer id , Model model) {
 		model.addAttribute("corso", service.getById(id));
 		return "/corsi/detail";
 	}
+	
+	@GetMapping("/capitolo/{id}/watch")
+	public String capitolo(@PathVariable("id") Integer id, Model model) {
+		Capitolo capitoloCorrente = capitoloService.getById(id);
+		model.addAttribute("capitolo", capitoloCorrente);
+		Corso corsoCorrente = service.getById(capitoloCorrente.getCorso().getId());
+		model.addAttribute("corso", corsoCorrente);
+		return "/corsi/capitolo/video";
+	}
+	
+	@GetMapping("/capitolo/{id}/next")
+	public String next(@PathVariable("id")Integer id, Model model) {
+		Capitolo capitoloCorrente = capitoloService.getById(id);
+		Corso corsoCorrente = service.getById(capitoloCorrente.getCorso().getId());
+		
+		List<Capitolo> listCap = corsoCorrente.getCapitoli();
+		Capitolo next;
+		
+		try {
+			next = null;
+			for (Capitolo c : listCap) {
+				if (capitoloCorrente.getNumeroCapitolo() + 1 == c.getNumeroCapitolo()) {
+					next = c;
+				}
+			}
+			return "redirect:/corsi/capitolo/" + next.getId() + "/watch";
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return "redirect:/corsi";
+	}
+	
+	@GetMapping("/capitolo/{id}/before")
+	public String before(@PathVariable("id")Integer id, Model model) {
+		Capitolo capitoloCorrente = capitoloService.getById(id);
+		Corso corsoCorrente = service.getById(capitoloCorrente.getCorso().getId());
+		
+		List<Capitolo> listCap = corsoCorrente.getCapitoli();
+		Capitolo before;
+		
+		try {
+			before = null;
+			for (Capitolo c : listCap) {
+
+				if (capitoloCorrente.getNumeroCapitolo() - 1 == c.getNumeroCapitolo()) {
+					before = c;
+				}
+			}
+			return "redirect:/corsi/capitolo/" + before.getId() + "/watch";
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return "redirect:/corsi";
+	}
+	
 }
