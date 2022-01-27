@@ -4,7 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.generation.italy.model.Corso;
-import org.generation.italy.model.Insegnante;
+
+
 import org.generation.italy.repository.CorsoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -39,6 +40,9 @@ public class CorsoService {
 	public void deleteById(Integer id) {
 		corsoRepo.deleteById(id);
 	}
+	
+	public Corso update(Corso corso) {		
+		return corsoRepo.save(corso);
 
 }
-
+}
