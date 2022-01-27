@@ -12,7 +12,7 @@
 			<hr>
 			
 			<div class="mb-3 d-flex justify-content-between">
-				<form th:action="${edit} ? @{/amministrazione/corsi/edit/{id}(id=${corso.id})} : @{/amministrazione/corsi/create}"
+				<form th:action="${edit} ? @{|/amministrazione/corsi/edit/${id}|} : @{|/amministrazione/corsi/create|}"
 				 method="post"
 				 th:object="${corso}"
 				 >

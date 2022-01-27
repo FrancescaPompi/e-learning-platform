@@ -87,7 +87,7 @@ public class CorsoAmministratoreController {
 		return "/amministrazione/corsi/edit";
 	}
 	
-	@PostMapping("/edit({id}")
+	@PostMapping("/edit/{id}")
 	public String modificaCorso(@Valid @ModelAttribute("corso") Corso formCorsi, BindingResult bindingResult, Model model) {
 		
 		if(bindingResult.hasErrors()) {
