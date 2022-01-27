@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -48,8 +49,24 @@ public class CapitoloAmministrazioneController {
 		}
 	
 		capService.save(formCapitolo);
-		return "redirect:/amministrazione/capitoli/list";	
+		return "redirect:/amministrazione/corsi/detail";	
 	}
+	
+	@GetMapping("/detail/{id}")
+	public String detail(@PathVariable("id") Integer id , Model model) {
+		model.addAttribute("capitoli", capService.getById(id));
+		return "/amministrazione/capitoli/detail";
+	}
+
+	
+	@GetMapping("/delete/{id}")
+	public String doDelete(@PathVariable("id") Integer id) {		
+		capService.deleteById(id);
+		return "redirect:/amministrazione/corsi/detail";
+	}
+	
+	
+	
 	
 	
 }

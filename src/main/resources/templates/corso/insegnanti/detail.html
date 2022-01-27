@@ -26,7 +26,7 @@
 			<div class="col-4">
 				<h3>Prenotazioni</h3>
 				<ul>
-					<li th:each="pre : ${list}" th:text="${pre.dataPrenotazione}"></li>
+					<li th:each="pre : *{prenotazioni}" th:text="${pre.dataPrenotazione}"></li>
 				</ul>
 			</div>
 			<div class="col-4">

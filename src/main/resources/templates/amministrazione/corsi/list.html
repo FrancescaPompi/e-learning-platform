@@ -44,7 +44,7 @@
 						<td th:text="${item.livello}"></td >
 						<td>							
 							<a class="btn btn-primary" th:href="@{|/amministrazione/corsi/delete/${item.id}|}" onclick="return confirm('Sicuro di voler cancellare il corso?')"><i class="fas fa-trash-alt"></i></a>
-							<a class="btn btn-primary" th:href="@{|/corsi/detail/${item.id}|}"><i class="fas fa-info-circle"></i></a>
+							<a class="btn btn-primary" th:href="@{|/amministrazione/corsi/detail/${item.id}|}"><i class="fas fa-info-circle"></i></a>
 							<a class="btn btn-primary" th:href="@{|/amministrazione/corsi/edit/${item.id}|}"><i class="fas fa-edit"></i></a>
 						</td>
 					</tr >

@@ -99,5 +99,15 @@ public class CorsoAmministratoreController {
 		corsiService.update(formCorsi);
 		return "redirect:/amministrazione/corsi/list";	
 	}
+	
+
+	
+	
+	
+	@GetMapping("/detail/{id}")
+	public String detail(@PathVariable("id") Integer id , Model model) {
+		model.addAttribute("corso", corsiService.getById(id));
+		return "/amministrazione/corsi/detail";
+	}
 
 } 
