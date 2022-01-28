@@ -107,9 +107,5 @@ public class InsegnanteAmministratoreController {
 		return "redirect:/amministrazione/insegnanti";
 	}
 	
-	
-	
-	
-	
 
 }
