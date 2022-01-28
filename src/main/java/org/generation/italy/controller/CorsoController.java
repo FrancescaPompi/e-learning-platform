@@ -27,13 +27,9 @@ public class CorsoController {
 	
 	@GetMapping
 	public String list(Model model, @RequestParam(name = "keyword", required = false) String keyword) {
-		List<Corso> result;
-		if (keyword != null) {
-			result = service.findByKeywordSortedByTitolo(keyword);
-			model.addAttribute("keyword", keyword);
-		} else
-			result = service.findAllSortedByRecent();
-		model.addAttribute("list", result);
+		List<Corso> lista = service.listAll(keyword);
+		model.addAttribute("list", lista);
+		model.addAttribute("keyword", keyword);
 		return "/corsi/list";
 	}
 	
