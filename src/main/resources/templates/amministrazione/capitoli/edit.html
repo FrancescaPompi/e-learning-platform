@@ -14,7 +14,7 @@
 			
 			
 			
-			<form th:action="${edit} ? @{|/amministrazione/capitoli/edit/${capitoloObj.corso.id}/${capitoloObj.id}|} : @{|/amministrazione/capitoli/create/${capitoloObj.id}|}"
+			<form th:action="${edit} ? @{|/amministrazione/capitoli/edit/${capitoloObj.corso.id}/${capitoloObj.id}|} : @{|/amministrazione/capitoli/create/${corso.id}|}"
 				 method="post"
 				 th:object="${capitoloObj}"
 				 id= "capitoli-form">
@@ -74,8 +74,9 @@
 				</div>
 					
 				</div>
+				
 		<button class="btn btn-primary" type="submit"><i class="fas fa-check"></i></i> Salva</button>
-	
+			
 				</form>
 	
 
