@@ -15,8 +15,8 @@
 		<div class="container">
 
 			<form id="insegnante-form" th:object="${insegnante}"
-				th:action="${edit} ? @{|/amministrazione/insegnanti/edit/${id}|} : @{|/amministrazione/insegnanti/create|}" method="post"
-				encType="multipart/form-data">
+				th:action="${edit} ? @{|/amministrazione/insegnanti/edit/${id}|} : @{|/amministrazione/insegnanti/create|}"
+				method="post" encType="multipart/form-data">
 
 
 				<div class="row gy-2">
@@ -47,13 +47,22 @@
 						<label for="foto" class="form-label">Foto profilo</label>
 						<input id="foto" type="file" class="form-control" th:field="*{foto}">
 
+						<div class="card">
+
+							<img th:src="|/insegnanti/${insegnante.id}/foto|" class="card-img-top" />
+							<div class="card-body">
+								<div class="h5 card-title" th:text=${insegnante.nome}></div>
+							</div>
+						</div>
+
 					</div>
 				</div>
 				<br />
 
 				<div class="container text-center">
 					<button class="btn btn-primary" type="submit"><i class="fas fa-check"></i></i> Salva</button>
-					<a class="btn btn-primary" th:href="@{/amministrazione/insegnanti}"><i class="fas fa-undo"></i> Indietro</a>
+					<a class="btn btn-primary" th:href="@{/amministrazione/insegnanti}"><i class="fas fa-undo"></i>
+						Indietro</a>
 				</div>
 
 				<div th:replace="fragments/resources :: scripts"></div>
