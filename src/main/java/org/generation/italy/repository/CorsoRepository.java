@@ -8,5 +8,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface CorsoRepository extends JpaRepository<Corso, Integer> {
 
 	List<Corso> findByTitoloContainingIgnoreCaseOrderByTitolo(String keyword);
-
 }

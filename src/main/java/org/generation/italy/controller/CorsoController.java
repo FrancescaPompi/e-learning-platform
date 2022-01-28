@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.generation.italy.model.Capitolo;
 import org.generation.italy.model.Corso;
+import org.generation.italy.model.Insegnante;
 import org.generation.italy.service.CapitoloService;
 import org.generation.italy.service.CorsoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,8 @@ public class CorsoController {
 	@GetMapping("/{id}/detail")
 	public String detail(@PathVariable("id") Integer id , Model model) {
 		model.addAttribute("corso", service.getById(id));
+		List<Insegnante> listIns = service.getById(id).getInsegnanti();
+		model.addAttribute("listIns", listIns);
 		return "/corsi/detail";
 	}
 	

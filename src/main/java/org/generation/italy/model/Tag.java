@@ -1,9 +1,12 @@
 package org.generation.italy.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -15,6 +18,10 @@ public class Tag {
 	
 	@NotNull
 	private String nome;
+	
+	@ManyToMany(mappedBy="tags")
+	private List<Corso> corsi;
+	
 
 	public Integer getId() {
 		return id;
@@ -30,6 +37,14 @@ public class Tag {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public List<Corso> getCorsi() {
+		return corsi;
+	}
+
+	public void setCorsi(List<Corso> corsi) {
+		this.corsi = corsi;
 	}
 	
 	
