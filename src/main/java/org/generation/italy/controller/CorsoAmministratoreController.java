@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.generation.italy.model.Capitolo;
 import org.generation.italy.model.Corso;
+import org.generation.italy.model.Insegnante;
 import org.generation.italy.service.CapitoloService;
 import org.generation.italy.service.CorsoService;
 import org.generation.italy.service.InsegnanteService;
@@ -132,6 +133,8 @@ public class CorsoAmministratoreController {
 	@GetMapping("/detail/{id}")
 	public String detail(@PathVariable("id") Integer id , Model model) {
 		model.addAttribute("corso", corsiService.getById(id));
+		List<Insegnante> listIns = corsiService.getById(id).getInsegnanti();
+		model.addAttribute("listIns", listIns);
 		return "/amministrazione/corsi/detail";
 	}
 

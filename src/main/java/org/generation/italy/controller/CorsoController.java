@@ -26,7 +26,7 @@ public class CorsoController {
 	private CapitoloService capitoloService;
 	
 	@GetMapping
-	public String list(Model model, @RequestParam(name = "keywords", required = false) String keyword) {
+	public String list(Model model, @RequestParam(name = "keyword", required = false) String keyword) {
 		List<Corso> result;
 		if (keyword != null) {
 			result = service.findByKeywords(keyword);
