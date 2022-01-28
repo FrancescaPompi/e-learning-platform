@@ -18,7 +18,7 @@
 				<a class="btn btn-primary fw-bold" th:href="@{/amministrazione/corsi/list}"><i class="fas fa-undo-alt"></i> Torna alla lista</a>
 				
 				
-				<a th:href="@{/amministrazione/capitoli/create/{corsoId}(corsoId=${corso.id})}" class="btn btn-primary my-5">Aggiungi un nuovo capitolo</a>
+				<a th:href="@{/amministrazione/capitoli/create/{id}(id=${corso.id})}" class="btn btn-primary my-5">Aggiungi un nuovo capitolo</a>
 				
 			</div >
 			<div class="row justify-content-center">
@@ -41,7 +41,7 @@
 					</dl>
 				</div >
 				<div class="col-8">
-					<form th:action="${edit} ? @{|/amministrazione/capitoli/edit/${id}|} : @{|/amministrazione/capitoli/create|}"
+					<form th:action="${edit} ? @{|/amministrazione/capitoli/edit/${corso.id}|} : @{|/amministrazione/capitoli/create/${corso.id}|}"
 				 method="post"
 				 th:object="${corso}"
 				 >
@@ -63,8 +63,8 @@
 								<td>
 								
 									<a class="btn btn-primary" th:href="@{|/amministrazione/capitoli/delete/${corso.id}/${cap.id}|}" onclick="return confirm('Sicuro di voler cancellare il capitolo?')"><i class="fas fa-trash-alt"></i></a>
-									<a class="btn btn-primary" th:href="@{|/amministrazione/capitoli/edit/${cap.id}|}"><i class="fas fa-edit"></i></a>
-								</td>
+									<a class="btn btn-primary" th:href="@{/amministrazione/capitoli/edit/{id}(id=${cap.id})}"><i class="fas fa-edit"></i></a>
+								</td>   
 							</tr >
 						</tbody>
 					</table >

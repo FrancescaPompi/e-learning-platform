@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,92 +29,86 @@ public class CapitoloAmministrazioneController {
 	@Autowired
 	private CorsoService corsoService;
 
+	@GetMapping("/create/{corsoId}")
 
-
-	
-	@GetMapping("create/{corsoId}")
-	public String creaCapitolo(@PathVariable("corsoId") Integer id, Model model) {
-		
+	public String capitolo(@PathVariable("corsoId") Integer corsoId, Model model) {
+		List<Capitolo> ListaCorso = corsoService.getById(corsoId).getCapitoli();
 		model.addAttribute("edit", false);
-		model.addAttribute("capitolo", new Capitolo());
-		model.addAttribute("corso", corsoService.getById(id));
-		return "amministrazione/capitoli/edit";
-		
+
+		model.addAttribute("capitoloObj", new Capitolo());
+
+		Corso corso = corsoService.getById(corsoId);
+
+		model.addAttribute("corso", corso);
+
+		return "/amministrazione/capitoli/edit";
+
 	}
-	
 
-	@PostMapping("/{corsoId}/create")
-	public String doCreate(@PathVariable("corsoId") Integer id, @Valid @ModelAttribute("capitolo") Capitolo formCapitolo, BindingResult bindingResult, Model model) {
+	@PostMapping("/create/{corsoId}")
+	public String doCreate(@PathVariable("corsoId") Integer corsoId,
+			@Valid @ModelAttribute("capitoloObj") Capitolo formCapitolo, BindingResult bindingResult, Model model) {
 
-		if(bindingResult.hasErrors()) {
-			
- 		model.addAttribute("edit", false);
-			model.addAttribute("corso", corsoService.getById(id));		
-			
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("edit", false);
+
 			return "/amministrazione/capitoli/edit";
 		}
-	
+
+		Corso corso = corsoService.getById(corsoId);
+		formCapitolo.setCorso(corso);
 		capService.save(formCapitolo);
-		return "redirect:/amministrazione/corsi/detail/{corsoId}";	
+
+		return "redirect:/amministrazione/corsi/detail/" + corso.getId();
 	}
 	
 	
+	
+	
+	
+	@GetMapping("/edit/{capitoloId}")
 
-@GetMapping("/delete/{corsoId}/{id}")
+	public String editCapitolo(@PathVariable("capitoloId") Integer capitoloId, Model model) {
+		
+		
+		model.addAttribute("edit", true);
 
-public String doDelete(@PathVariable("id") Integer id, @PathVariable("corsoId") Integer corsoId, Model model) {		
-	capService.deleteById(id);
+		model.addAttribute("capitoloObj", capService.getById(capitoloId));
 
-	model.addAttribute("corso", corsoService.getById(corsoId));
+	
+		return "/amministrazione/capitoli/edit";
 
+	}
 
-	return "redirect:/amministrazione/corsi/detail/{corsoId}";
+	@PostMapping("/edit/{corsoId}")
+	public String doEdit(@PathVariable("corsoId") Integer corsoId,
+			@Valid @ModelAttribute("capitoloObj") Capitolo formCapitolo, BindingResult bindingResult, Model model) {
+
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("edit", true);
+
+			return "/amministrazione/capitoli/edit";
+		}
+
+		Corso corso = corsoService.getById(corsoId);
+		formCapitolo.setCorso(corso);
+		capService.save(formCapitolo);
+
+		return "redirect:/amministrazione/corsi/detail/" + corso.getId();
+	}
+	
+	
+	
+	
+	
+
+	@GetMapping("/delete/{corsoId}/{id}")
+	public String doDelete(@PathVariable("id") Integer id, @PathVariable("corsoId") Integer corsoId, Model model) {
+		capService.deleteById(id);
+
+		model.addAttribute("corso", corsoService.getById(corsoId));
+
+		return "redirect:/amministrazione/corsi/detail/{corsoId}";
+	}
+
 }
-
-}
-
-//	
-
-//	
-//	
-//	
-//	
-//	
-//	
-//	
-//	
-//	
-//	
-//	
-//	
-//	
-//	
-//	
-//	
-//	
-//	
-//	
-//	
-//	
-//	
-//	
-//
-
-//	
-//	
-//	
-//	
-//	
-//	
-//	@GetMapping("/delete/{id}")
-//	public String doDelete(@PathVariable("id") Integer id) {		
-//		capService.deleteById(id);
-//		return "redirect:/amministrazione/corsi/detail";
-//	}
-//	
-//	
-//	
-//	
-//	
-//	
-
