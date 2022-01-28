@@ -24,10 +24,17 @@
 				</dl>
 			</div>
 			<div class="col-4">
-				<h3>Prenotazioni</h3>
-				<ul>
-					<li th:each="pre : ${prenotazioni}" th:text="${pre.dataPrenotazione}"></li>
-				</ul>
+
+				<h3>Prenotazioni attive</h3>
+				<ul class="list-group">
+					<li class="list-group-item d-flex justify-content-between align-items-start" th:each="pre : *{prenotazioni}">
+						<div class="ms-2 me-auto">
+							<div class="fw-bold" th:text="${pre.dataPrenotazione}"></div >
+							<div th:text="|Ore: ${pre.fasciaOraria.fasciaOraria}|"></div >						
+						</div>
+					</li>
+				</ul >
+
 			</div>
 			<div class="col-4">
 				<h3>Corsi</h3>

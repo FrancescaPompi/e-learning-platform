@@ -1,6 +1,5 @@
 package org.generation.italy.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
