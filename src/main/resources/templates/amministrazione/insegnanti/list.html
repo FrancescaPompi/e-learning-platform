@@ -16,8 +16,9 @@
 		</th:block>
 		<h1>Insegnanti</h1>
 		<hr />
+		
 		<div class="mb-3 d-flex justify-content-between">
-			<form th:action="@{/insegnanti}" method="get">
+			<form th:action="@{/amministrazione/insegnanti}" method="get">
 				<div class="input-group">
 					<input name="keyword" th:value="${keyword}" class="form-control" type="search" placeholder="Search"
 						aria-label="Search">
@@ -27,6 +28,7 @@
 				
 			</form>
 		</div>
+		
 		<table class="table" th:if="${list.size() > 0}">
 			<thead>
 				<tr>

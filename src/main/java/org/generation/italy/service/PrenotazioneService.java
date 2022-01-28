@@ -25,4 +25,7 @@ public class PrenotazioneService {
 		return repository.getById(id);
 	}
 	
+	public void deleteAll(List<Prenotazione> list) {
+		repository.deleteAll(list);
+	}
 }

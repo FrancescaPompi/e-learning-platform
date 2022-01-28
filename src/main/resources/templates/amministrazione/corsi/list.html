@@ -12,11 +12,15 @@
 			<hr>
 			
 			<div class="mb-3 d-flex justify-content-between">
-				<form th:action="${edit} ? @{|/amministrazione/corsi/edit/${id}|} : @{|/amministrazione/corsi/create|}"
-				 method="post"
-				 th:object="${corso}"
-				 >
-				 
+<<<<<<< HEAD
+				<form th:action="@{/corsi}" method="get">
+			        <div class="input-group">
+			        	<input name="keyword" th:value="${keyword}" class="form-control" type="search" placeholder="Search" aria-label="Search">
+			        	<button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+			     	</div>
+			     </form>
+=======
+				<form th:action="@{/amministrazione/corsi/list}" method="get">
 					<div class="input-group">
 						<input name="keyword" th:value="${keyword}" class="form-control" type="search" placeholder="Search"
 							aria-label="Search">
@@ -24,8 +28,8 @@
 					</div>
 					
 					
-					
 				</form>
+>>>>>>> 50e86c67e5f60cf11b8d1195d9fcd6bc024d9e0e
 			</div>
 			
 			<table class="table" >
@@ -44,7 +48,11 @@
 						<td th:text="${item.livello}"></td >
 						<td>							
 							<a class="btn btn-primary" th:href="@{|/amministrazione/corsi/delete/${item.id}|}" onclick="return confirm('Sicuro di voler cancellare il corso?')"><i class="fas fa-trash-alt"></i></a>
-							<a class="btn btn-primary" th:href="@{|/corsi/detail/${item.id}|}"><i class="fas fa-info-circle"></i></a>
+
+						
+
+							<a class="btn btn-primary" th:href="@{|/amministrazione/corsi/detail/${item.id}|}"><i class="fas fa-info-circle"></i></a>
+
 							<a class="btn btn-primary" th:href="@{|/amministrazione/corsi/edit/${item.id}|}"><i class="fas fa-edit"></i></a>
 						</td>
 					</tr >

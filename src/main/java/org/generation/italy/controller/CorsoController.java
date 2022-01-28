@@ -26,10 +26,10 @@ public class CorsoController {
 	private CapitoloService capitoloService;
 	
 	@GetMapping
-	public String list(Model model, @RequestParam(name = "keyword", required = false) String keyword) {
+	public String list(Model model, @RequestParam(name = "keywords", required = false) String keyword) {
 		List<Corso> result;
 		if (keyword != null) {
-			result = service.findByKeywordSortedByTitolo(keyword);
+			result = service.findByKeywords(keyword);
 			model.addAttribute("keyword", keyword);
 		} else
 			result = service.findAllSortedByRecent();
@@ -73,7 +73,7 @@ public class CorsoController {
 		} catch (Exception e) {
 			e.getMessage();
 		}
-		return "redirect:/corsi";
+		return "redirect:/corsi/" + corsoCorrente.getId() + "/detail";
 	}
 	
 	@GetMapping("/capitolo/{id}/before")
@@ -93,10 +93,12 @@ public class CorsoController {
 				}
 			}
 			return "redirect:/corsi/capitolo/" + before.getId() + "/watch";
+			
 		} catch (Exception e) {
 			e.getMessage();
 		}
-		return "redirect:/corsi";
+		
+		return "redirect:/corsi/" + corsoCorrente.getId() + "/detail";
 	}
 	
 }

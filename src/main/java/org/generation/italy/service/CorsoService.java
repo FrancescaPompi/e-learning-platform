@@ -25,7 +25,7 @@ public class CorsoService {
 		return corsoRepo.getById(id);
 	}
 	
-	public List<Corso> findByKeywordSortedByTitolo(String keyword) {
+	public List<Corso> findByKeywords(String keyword) {
 		return corsoRepo.findByTitoloContainingIgnoreCaseOrderByTitolo(keyword);
 	}
 	
