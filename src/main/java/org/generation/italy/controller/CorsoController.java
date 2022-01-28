@@ -73,7 +73,7 @@ public class CorsoController {
 		} catch (Exception e) {
 			e.getMessage();
 		}
-		return "redirect:/corsi";
+		return "redirect:/corsi/" + corsoCorrente.getId() + "/detail";
 	}
 	
 	@GetMapping("/capitolo/{id}/before")
@@ -93,10 +93,12 @@ public class CorsoController {
 				}
 			}
 			return "redirect:/corsi/capitolo/" + before.getId() + "/watch";
+			
 		} catch (Exception e) {
 			e.getMessage();
 		}
-		return "redirect:/corsi";
+		
+		return "redirect:/corsi/" + corsoCorrente.getId() + "/detail";
 	}
 	
 }

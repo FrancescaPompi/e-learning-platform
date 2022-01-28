@@ -27,13 +27,12 @@
 						<dt>Data di creazione</dt>
 						<dd th:text="${corso.dataCreazione}"></dd>
 						<dt>Durata corso</dt>
-
-						<dd th:text="*{durata}"></dd>
+						<dd th:text="${corso.durata}"></dd>
 						<dt>Insegnanti</dt>
 						<dd th:each="item : ${listIns}" th:text="|${item.nome} ${item.cognome}|"></dd >
 
 						<dt>Visualizzazioni</dt>
-						<dd id="views" th:text="${corso.visualizzazioni}"></dd>
+						<dd th:text="${corso.visualizzazioni}"></dd>
 					</dl>
 				</div >
 				<div class="col-9">

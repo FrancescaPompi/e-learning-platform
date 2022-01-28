@@ -24,5 +24,4 @@ public class PrenotazioneService {
 	public Prenotazione getById(Integer id) {
 		return repository.getById(id);
 	}
-	
 }
