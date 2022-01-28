@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.generation.italy.model.Corso;
 import org.generation.italy.service.CorsoService;
 import org.generation.italy.service.InsegnanteService;
+import org.generation.italy.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +31,9 @@ public class CorsoAmministratoreController {
 	@Autowired
 	private InsegnanteService insegnanteService;
 	
+	@Autowired
+	private TagService tagService;
+	
 	@GetMapping
 	public String corsi(Model model) {		
 		return "/amministrazione/corsi/edit";
@@ -41,6 +45,7 @@ public class CorsoAmministratoreController {
 		model.addAttribute("edit", false);
 		model.addAttribute("corso", new Corso());
 		model.addAttribute("insegnanti", insegnanteService.findAllSortedByCognome());
+		model.addAttribute("tags", tagService.findAllSortByNome());
 		return "/amministrazione/corsi/edit";
 	}
 	
@@ -89,6 +94,8 @@ public class CorsoAmministratoreController {
 	public String modificaCorso(@PathVariable("id") Integer id, Model model) {	
 		model.addAttribute("edit", true);
 		model.addAttribute("corso", corsiService.getById(id));
+		model.addAttribute("insegnanti", insegnanteService.findAllSortedByCognome());
+		model.addAttribute("tags", tagService.findAllSortByNome());
 		return "/amministrazione/corsi/edit";
 	}
 	

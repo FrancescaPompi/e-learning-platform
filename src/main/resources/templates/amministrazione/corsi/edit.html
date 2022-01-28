@@ -89,39 +89,47 @@
 								</ul>
 							</div>
 						</div>
-
-						<div class="col-4 my-3">
-							<h6>Insegnanti</h6>
-							<div class="form-check" th:each="item : ${insegnanti}">
-								<label class="form-check-label" th:for="|insegnante_${item.id}|"
-									th:text="|${item.cognome} ${item.nome}|"></label>
-								<input class="form-check-input" type="checkbox" th:id="|insegnante_${item.id}|"
-									th:value="${item.id}" th:field="*{insegnanti}">
-							</div>
-						</div>
-
-						<div class="col-12">
-							<label class="form-label" for="descrizione">Descrizione</label>
-							<textarea type="text" class="form-control" id="descrizione" th:field="*{descrizione}"
-								th:errorClass="is-invalid" rows="3"></textarea>
-							<div th:if="${#fields.hasErrors('descrizione')}" class="invalid-feedback">
-								<ul>
-									<li th:each="err : ${#fields.errors('descrizione')}" th:text="${err}"></li>
-								</ul>
-							</div>
-						</div>
-
-					</div>
-
-					<br />
-
-					<button class="btn btn-primary" type="submit"><i class="fas fa-check"></i></i> Salva</button>
-					<a class="btn btn-primary" th:href="@{/}"><i class="fas fa-undo"></i> Indietro</a>
 				</div>
-			</form>
-
-		</div>
+				
+					<div class="col-6 my-3">
+						<h6>Insegnanti</h6>
+						<div class="form-check" th:each="item : ${insegnanti}">
+							<label class="form-check-label" th:for="|insegnante_${item.id}|" th:text="|${item.cognome} ${item.nome}|"></label>
+						  	<input class="form-check-input" type="checkbox" th:id="|insegnante_${item.id}|" th:value="${item.id}" th:field="*{insegnanti}">
+						</div>
+					</div>
+					
+					<div class="col-6 my-3">						
+						<h6>Tag</h6>
+						<div class="form-check" th:each="item : ${tags}">
+							<label class="form-check-label" th:for="|tag_${item.id}|" th:text="${item.nome}"></label>
+						  	<input class="form-check-input" type="checkbox" th:id="|tag_${item.id}|" th:value="${item.id}" th:field="*{tags}">
+						</div>
+					</div >
+				
+					<div class="col-12">
+						<label class="form-label" for="descrizione">Descrizione</label>
+						<textarea type="text" class="form-control" id="descrizione" th:field="*{descrizione}" th:errorClass="is-invalid" rows="3"></textarea>
+						<div th:if="${#fields.hasErrors('descrizione')}" class="invalid-feedback">
+							<ul>
+								<li th:each="err : ${#fields.errors('descrizione')}" th:text="${err}"></li>
+							</ul>
+						</div>
+					</div>
+				
+			</div>				
+				
+				<br/>
+				
+				
+            
+            <button class="btn btn-primary" type="submit"><i class="fas fa-check"></i></i> Salva</button>
+            <a class="btn btn-primary" th:href="@{/}"><i class="fas fa-undo"></i> Indietro</a>
+          </div>
+      </form >
+      
 	</div>
+		
 	<div th:replace="fragments/resources :: scripts"></div>
 </body>
 
