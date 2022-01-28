@@ -2,9 +2,12 @@ package org.generation.italy.service;
 
 import java.util.List;
 
+import java.util.List;
+
 import org.generation.italy.model.Capitolo;
 import org.generation.italy.repository.CapitoloRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,10 +25,21 @@ public class CapitoloService {
 	}
 	
 	public Capitolo save(Capitolo capitolo) {
+		System.out.println(capitolo.getCorso().getId());
 		return capitoloRepo.save(capitolo);
 	}
 	
 	public void deleteById(Integer id) {
 		capitoloRepo.deleteById(id);
 	}
+
+	
+	public List<Capitolo> findAllSortedByRecent(){
+		return capitoloRepo.findAll(Sort.by("numeroCapitolo"));
+	}
+
+	public void deleteAll(List<Capitolo> list) {
+		capitoloRepo.deleteAll(list);
+	}
+
 }

@@ -12,16 +12,21 @@
 
 		<h1 class="text-center">Aggiungi un capitolo</h1>
 			
-		<form id="capitolo-form" th:object="${capitolo}"
-				th:action="${edit} ? @{|/amministrazione/capitoli/edit/${id}|} : @{|/amministrazione/capitoli/create|}" method="post">
-		
+			
+			
+			<form th:action="${edit} ? @{|/amministrazione/capitoli/edit/${capitoloObj.corso.id}/${capitoloObj.id}|} : @{|/amministrazione/capitoli/create/${capitoloObj.id}|}"
+				 method="post"
+				 th:object="${capitoloObj}"
+				 id= "capitoli-form">
+	
+	
 		
 		 <div class="row">
 	
               	<div class="col-6">
 					<label class="form-label" for="titolo">Titolo</label>
 					
-					<input type="text" class="form-control" id="titolo" th:field="*{titolo}" th:errorClass="is-invalid" >
+					<input type="text" class="form-control" id="titolo" th:field="${capitoloObj.titolo}" th:errorClass="is-invalid" >
 					<div th:if="${#fields.hasErrors('titolo')}" class="invalid-feedback">
 							<ul>
 								<li th:each="err : ${#fields.errors('titolo')}" th:text="${err}"></li>
@@ -67,12 +72,11 @@
 						</div>
 						</div>
 				</div>
-					</div>
-				
+					
+				</div>
 		<button class="btn btn-primary" type="submit"><i class="fas fa-check"></i></i> Salva</button>
 	
-		</form >
-	
+				</form>
 	
 
 				<div th:replace="fragments/resources :: scripts"></div>
