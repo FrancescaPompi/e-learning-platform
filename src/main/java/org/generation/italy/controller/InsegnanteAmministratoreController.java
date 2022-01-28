@@ -8,7 +8,6 @@ import javax.validation.Valid;
 import org.generation.italy.model.Insegnante;
 import org.generation.italy.model.PhotoForm;
 import org.generation.italy.service.InsegnanteService;
-import org.generation.italy.service.PrenotazioneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -58,7 +57,7 @@ public class InsegnanteAmministratoreController {
 	@GetMapping("/edit/{id}")
 	public String edit(@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("edit", true);
-		model.addAttribute("insegnante", new PhotoForm());
+		model.addAttribute("insegnante", insegnanteService.getById(id));
 		return "/amministrazione/insegnanti/edit";
 	}
 
