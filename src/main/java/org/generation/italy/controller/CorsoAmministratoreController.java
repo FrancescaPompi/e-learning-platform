@@ -76,13 +76,9 @@ public class CorsoAmministratoreController {
 	
 	@GetMapping ("/list")
 	public String list(Model model, @RequestParam(name = "keyword", required = false) String keyword) {
-		List<Corso> result;
-		if (keyword != null) {
-			result = corsiService.findByKeywords(keyword);
-			model.addAttribute("keyword", keyword);
-		} else
-			result = corsiService.findAllSortedByRecent();
-		model.addAttribute("list", result);
+		List<Corso> lista = corsiService.listAll(keyword);
+		model.addAttribute("list", lista);
+		model.addAttribute("keyword", keyword);
 		return "/amministrazione/corsi/list";
 	}
 	
