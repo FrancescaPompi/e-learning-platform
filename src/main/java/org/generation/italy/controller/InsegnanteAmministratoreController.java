@@ -57,7 +57,7 @@ public class InsegnanteAmministratoreController {
 	@GetMapping("/edit/{id}")
 	public String edit(@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("edit", true);
-		model.addAttribute("insegnante", new PhotoForm());
+		model.addAttribute("insegnante", insegnanteService.getById(id));
 		return "/amministrazione/insegnanti/edit";
 	}
 
