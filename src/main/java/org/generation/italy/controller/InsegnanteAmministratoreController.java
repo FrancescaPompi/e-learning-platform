@@ -7,7 +7,9 @@ import javax.validation.Valid;
 
 import org.generation.italy.model.Insegnante;
 import org.generation.italy.model.PhotoForm;
+import org.generation.italy.model.Prenotazione;
 import org.generation.italy.service.InsegnanteService;
+import org.generation.italy.service.PrenotazioneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +28,9 @@ public class InsegnanteAmministratoreController {
 
 	@Autowired
 	private InsegnanteService insegnanteService;
+	
+	@Autowired
+	private PrenotazioneService prenotazioneService;
 
 	@GetMapping("/create")
 	public String creaInsegnante(Model model) {
@@ -95,7 +100,8 @@ public class InsegnanteAmministratoreController {
 		if (insegnanteService.getById(id) == null) {
 			// Return error message
 		}
-		
+		List<Prenotazione> listPrenotazioni = insegnanteService.getById(id).getPrenotazioni();
+		prenotazioneService.deleteAll(listPrenotazioni);
 		insegnanteService.deleteById(id);
 		redirectAttributes.addFlashAttribute("successMessage", "Insegnante cancellato!");
 		return "redirect:/amministrazione/insegnanti";
