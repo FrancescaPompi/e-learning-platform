@@ -69,7 +69,7 @@ public class CapitoloAmministrazioneController {
 	@GetMapping("/edit/{capitoloId}")
 
 	public String editCapitolo(@PathVariable("capitoloId") Integer capitoloId, Model model) {
-		
+	
 		
 		model.addAttribute("edit", true);
 
@@ -80,8 +80,8 @@ public class CapitoloAmministrazioneController {
 
 	}
 
-	@PostMapping("/edit/{corsoId}")
-	public String doEdit(@PathVariable("corsoId") Integer corsoId,
+	@PostMapping("/edit/{corsoId}/{capitoloId}")
+	public String doEdit(@PathVariable("capitoloId") Integer capitoloId, @PathVariable("corsoId") Integer corsoId,
 			@Valid @ModelAttribute("capitoloObj") Capitolo formCapitolo, BindingResult bindingResult, Model model) {
 
 		if (bindingResult.hasErrors()) {
@@ -92,6 +92,7 @@ public class CapitoloAmministrazioneController {
 
 		Corso corso = corsoService.getById(corsoId);
 		formCapitolo.setCorso(corso);
+		formCapitolo.setId(capitoloId);
 		capService.save(formCapitolo);
 
 		return "redirect:/amministrazione/corsi/detail/" + corso.getId();

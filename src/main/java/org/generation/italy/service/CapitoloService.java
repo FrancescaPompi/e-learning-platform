@@ -25,6 +25,7 @@ public class CapitoloService {
 	}
 	
 	public Capitolo save(Capitolo capitolo) {
+		System.out.println(capitolo.getCorso().getId());
 		return capitoloRepo.save(capitolo);
 	}
 	
@@ -37,5 +38,8 @@ public class CapitoloService {
 		return capitoloRepo.findAll(Sort.by("numeroCapitolo"));
 	}
 
+	public void deleteAll(List<Capitolo> list) {
+		capitoloRepo.deleteAll(list);
+	}
 
 }

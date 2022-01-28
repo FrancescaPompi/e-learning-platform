@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.generation.italy.model.Capitolo;
 import org.generation.italy.model.Corso;
+import org.generation.italy.service.CapitoloService;
 import org.generation.italy.service.CorsoService;
 import org.generation.italy.service.InsegnanteService;
 import org.generation.italy.service.TagService;
@@ -33,6 +35,9 @@ public class CorsoAmministratoreController {
 	
 	@Autowired
 	private TagService tagService;
+	
+	@Autowired
+	private CapitoloService capService;
 	
 	@GetMapping
 	public String corsi(Model model) {		
@@ -82,7 +87,14 @@ public class CorsoAmministratoreController {
 	
 	
 	@GetMapping("/delete/{id}")
-	public String doDelete(@PathVariable("id") Integer id) {		
+	public String doDelete(@PathVariable("id") Integer id) {	
+		if(corsiService.getById(id) == null) {
+			
+		}
+		List<Capitolo> listCapitolo = corsiService.getById(id).getCapitoli();
+		
+		capService.deleteAll(listCapitolo);
+		
 		corsiService.deleteById(id);
 		return "redirect:/amministrazione/corsi/list";
 	}

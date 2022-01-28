@@ -14,7 +14,7 @@
 			
 			
 			
-			<form th:action="${edit} ? @{|/amministrazione/capitoli/edit/${capitoloObj.id}|} : @{|/amministrazione/capitoli/create/${corso.id}|}"
+			<form th:action="${edit} ? @{|/amministrazione/capitoli/edit/${capitoloObj.corso.id}/${capitoloObj.id}|} : @{|/amministrazione/capitoli/create/${capitoloObj.id}|}"
 				 method="post"
 				 th:object="${capitoloObj}"
 				 id= "capitoli-form">
