@@ -44,11 +44,11 @@
 				</div >
 				<div class="col-8">
 					<form th:action="${edit} ? @{|/amministrazione/capitoli/edit/${corso.id}|} : @{|/amministrazione/capitoli/create/${corso.id}|}"
-				 method="post"
-				 th:object="${corso}"
-				 >
-					<h4>Capitoli:</h4>
-	</form>
+					 method="post"
+					 th:object="${corso}"
+					 >
+						<h4>Capitoli:</h4>
+					</form>
 					<table class="table" th:if="${corso.capitoli.size() > 0}">
 						<thead>
 						

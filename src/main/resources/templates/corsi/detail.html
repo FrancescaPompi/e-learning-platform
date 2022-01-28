@@ -31,8 +31,9 @@
 						<dt>Insegnanti</dt>
 						<dd th:each="item : ${listIns}" th:text="|${item.nome} ${item.cognome}|"></dd >
 
-						<dt>Visualizzazioni</dt>
+						<dt>Visualizzazioni</dt >
 						<dd th:text="${corso.visualizzazioni}"></dd>
+					    
 					</dl>
 				</div >
 				<div class="col-9">

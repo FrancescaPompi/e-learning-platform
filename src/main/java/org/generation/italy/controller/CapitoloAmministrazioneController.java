@@ -1,6 +1,5 @@
 package org.generation.italy.controller;
 
-import java.util.List;
 
 import javax.validation.Valid;
 
@@ -32,7 +31,7 @@ public class CapitoloAmministrazioneController {
 	@GetMapping("/create/{corsoId}")
 
 	public String capitolo(@PathVariable("corsoId") Integer corsoId, Model model) {
-		List<Capitolo> ListaCorso = corsoService.getById(corsoId).getCapitoli();
+//		List<Capitolo> ListaCorso = corsoService.getById(corsoId).getCapitoli();
 		model.addAttribute("edit", false);
 
 		model.addAttribute("capitoloObj", new Capitolo());
