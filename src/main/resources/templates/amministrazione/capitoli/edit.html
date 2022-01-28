@@ -12,9 +12,14 @@
 
 		<h1 class="text-center">Aggiungi un capitolo</h1>
 			
-		<form id="capitolo-form" th:object="${capitolo}"
-				th:action="${edit} ? @{|/amministrazione/capitoli/edit/${id}|} : @{|/amministrazione/capitoli/create|}" method="post">
-		
+			
+			
+			<form th:action="${edit} ? @{|/amministrazione/capitoli/edit/${id}|} : @{|/amministrazione/capitoli/create|}"
+				 method="post"
+				 th:object="${capitolo}"
+				 id= "capitoli-form">
+			</form>
+	
 		
 		 <div class="row">
 	
@@ -71,8 +76,7 @@
 				
 		<button class="btn btn-primary" type="submit"><i class="fas fa-check"></i></i> Salva</button>
 	
-		</form >
-	
+		
 	
 
 				<div th:replace="fragments/resources :: scripts"></div>
