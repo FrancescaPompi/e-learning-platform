@@ -2,13 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<div th:replace="fragments/resources :: headTags"></div>
+		
 		<title>Dettaglio corso</title>
 	</head>
 	<body>
+	<div class="container text-center" th:object="${corso}">
 		<div th:replace="fragments/navbar :: navbar(current)"></div>
+			<th:block th:if="${successMessage != null}">
+			<div class="alert alert-success alert-dismissible fade show" role="alert">
+				<span th:text="${successMessage}"></span>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		</th:block>
 		
 		
-		<div class="container text-center" th:object="${corso}">
 		
 		
 			<h1 class="p-2" th:text="|Dettaglio del corso: *{titolo}|"></h1  >

@@ -66,12 +66,13 @@ public class CorsoAmministratoreController {
 			for (ObjectError e : allErrors) {
 				System.out.println(e);
 			}
-
+			model.addAttribute("insegnanti", insegnanteService.findAllSortedByCognome());
 			return "/amministrazione/corsi/edit";
 
 		}
 		try {
-			corsiService.update(formCorsi);
+			
+			corsiService.save(formCorsi);
 			redirectAttributes.addFlashAttribute("successMessage", "Corso salvato nel sistema!");
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("errorMessage", "Impossibile salvare il corso!");
@@ -121,7 +122,7 @@ public class CorsoAmministratoreController {
 		}
 		try {
 		corsiService.save(formCorsi);
-		redirectAttributes.addFlashAttribute("successMessage", "Corso salvato nel sistema!");
+		redirectAttributes.addFlashAttribute("successMessage", "Corso modificato nel sistema!");
 	} catch (Exception e) {
 		redirectAttributes.addFlashAttribute("errorMessage", "Impossibile salvare il corso!");
 		e.printStackTrace();
