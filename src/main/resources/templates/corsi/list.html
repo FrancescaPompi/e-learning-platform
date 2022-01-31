@@ -6,7 +6,7 @@
 	</head>
 	<body>
 	
-		<div class="container p-3">
+		<div class="container">
 				<div th:replace="fragments/navbar :: navbar(current)"></div>
 			<h1 class="text-center">Lista corsi</h1 >
 			<hr>
@@ -44,7 +44,11 @@
 				</tbody>
 			</table >
 			
-					<a class="btn btn-primary" th:href="@{/}"><i class="fas fa-undo"></i> Indietro</a>
+				<div class="d-flex justify-content-center">
+						<a class="btn btn-primary" th:href="@{/}"><i class="fas fa-undo"></i> Indietro</a>
+			
+				
+				</div>
 			<div class="alert alert-primary" role="alert" th:unless="${list.size() > 0}">
 				 Non ci sono corsi in lista
 			</div>

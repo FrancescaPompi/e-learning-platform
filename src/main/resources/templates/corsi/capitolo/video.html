@@ -5,8 +5,9 @@
 		<title>Video capitolo</title>
 	</head>
 	<body>
+		<div class="container">
 		<div th:replace="fragments/navbar :: navbar(current)"></div>
-		<div class="container">	
+		
 		<h3 class="p-2 text-center" th:text="${capitolo.corso.titolo}"></h3 >
 			<h3 class="text-center p-3" th:text="|Capitolo: ${capitolo.numeroCapitolo}|"></h3 >
 			<div class="d-flex justify-content-between">

@@ -6,8 +6,10 @@
 	<title>E-learning Platform</title>
 </head>
 
-<body>
-	<header class="container-fluid">
+<body>	
+<div class="container">
+<header class="container-fluid">
+	<div th:replace="fragments/navbar :: navbar(current)"></div>
 		<img class="w-100"
 			src="https://be-original.co.uk/wp-content/uploads/2019/11/wh-you-need-a-LInkedIn-header-850x266.jpg"
 			alt="e-learning">
@@ -92,8 +94,9 @@
 					    </div>
 					  </div>
 				</div>
-				
+					<div class="d-flex justify-content-center">
 			<a th:href="@{/}" class="btn btn-primary my-5">Index</a>
+					</div>
 		</div>
 	</main>
 

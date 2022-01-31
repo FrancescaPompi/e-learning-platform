@@ -7,8 +7,8 @@
 
 <body>
 	
-	<div class="container text-center">
-	<nav th:replace="fragments/navbar :: navbar('insegnanti')"></nav>
+<div class="container">
+	<nav th:replace="fragments/navbar :: navbar(current)"></nav>
 		<th:block th:if="${successMessage != null}">
 			<div class="alert alert-success alert-dismissible fade show" role="alert">
 				<span th:text="${successMessage}"></span>
