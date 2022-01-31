@@ -7,8 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface CorsoRepository extends JpaRepository<Corso, Integer> {
-
-//	List<Corso> findByTitoloContainingIgnoreCaseOrderByTitolo(String keyword);
 	
 	@Query("SELECT c FROM Corso c WHERE CONCAT(c.titolo, ' ', c.livello, ' ', c.categoria, ' ', c.durata) LIKE %?1%")
     public List<Corso> search(String keyword);
