@@ -32,6 +32,10 @@ public class CorsoService {
         return corsoRepo.findAll();
     }
 	
+	public List<Corso> corsiPiuVisualizzati() {
+		return corsoRepo.dashboard();
+	}
+	
 	public Corso save(Corso corso) {
 		if (corso.getDataCreazione() == null) {
 			corso.setDataCreazione(LocalDate.now());
