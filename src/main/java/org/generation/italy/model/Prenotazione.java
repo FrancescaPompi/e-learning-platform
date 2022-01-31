@@ -17,8 +17,8 @@ public class Prenotazione {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-	@NotNull
 	@Column(name="data_prenotazione")
+	@NotNull
 	private LocalDate dataPrenotazione;
 	
 	@Lob
@@ -70,5 +70,13 @@ public class Prenotazione {
 		this.fasciaOraria = fasciaOraria;
 	}
 	
+	public boolean compareTo(Prenotazione prenotazione) {
+		if (this.dataPrenotazione.equals(prenotazione.dataPrenotazione) &&
+				this.fasciaOraria.equals(prenotazione.fasciaOraria)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 }

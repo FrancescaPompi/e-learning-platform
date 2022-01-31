@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/insegnanti/info")
@@ -35,8 +36,8 @@ public class PrenotazioneController {
 	
 	@GetMapping("/{id}/prenota")
 	public String prenota(@PathVariable("id") Integer id, Model model) {
-		List<Prenotazione> listPren = insegnanteService.getById(id).getPrenotazioni();
-		model.addAttribute("listaPren", listPren);
+		List<Prenotazione> listaPren = insegnanteService.getById(id).getPrenotazioni();
+		model.addAttribute("list", listaPren);
 		model.addAttribute("orariList", fasceOrarieService.findAllSortedByFasciaOraria());
 		model.addAttribute("prenotazione", new Prenotazione());
 		return "/corso/insegnanti/prenotazioni/form";
@@ -44,17 +45,40 @@ public class PrenotazioneController {
 	
 	@PostMapping("/{idInsegnante}/prenota")
 	public String doPrenota(@PathVariable("idInsegnante") Integer idInsegnante, @Valid @ModelAttribute("prenotazione") Prenotazione formPrenotazione,
-			BindingResult bindingResult, Model model) {
+			BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
+		
 		if(bindingResult.hasErrors()) {
-			model.addAttribute("edit", false);
 			model.addAttribute("list", prenotazioneService.findAllSortByFasciaOraria());
 			model.addAttribute("orariList", fasceOrarieService.findAllSortedByFasciaOraria());
 			return "/corso/insegnanti/prenotazioni/form";
 		}
-		Insegnante insegnante = insegnanteService.getById(idInsegnante);
-		formPrenotazione.setInsegnante(insegnante);
-		prenotazioneService.save(formPrenotazione);
+		
+		List<Prenotazione> list = insegnanteService.getById(idInsegnante).getPrenotazioni();
+		Insegnante insegnante = insegnanteService.getById(idInsegnante);;
+		
+		boolean valid = true;
+		for(Prenotazione pren : list) {
+			if(pren.compareTo(formPrenotazione)) {
+				valid = false;
+			} 
+		}
+		if(!valid) {
+			redirectAttributes.addFlashAttribute("errorMessage", "Prenotazione già esistente!");
+		} else {
+	
+			formPrenotazione.setInsegnante(insegnante);
+			prenotazioneService.save(formPrenotazione);
+			redirectAttributes.addFlashAttribute("successMessage", "Prenotato!");
+		}
+			
 		return "redirect:/insegnanti/info/" + insegnante.getId() + "/prenota";
 	}
 	
+	@GetMapping("/delete/{idInsegnante}/{id}")
+	public String delete(@PathVariable("id") Integer id, @PathVariable("idInsegnante") Integer idInsegnante, Model model) {
+		prenotazioneService.deleteById(id);
+		
+		model.addAttribute("insegnante", insegnanteService.getById(idInsegnante));
+		return "redirect:/insegnanti/info/{idInsegnante}";
+	}
 }
