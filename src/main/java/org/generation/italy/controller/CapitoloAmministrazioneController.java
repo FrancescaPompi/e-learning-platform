@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/amministrazione/capitoli")
@@ -46,17 +47,31 @@ public class CapitoloAmministrazioneController {
 
 	@PostMapping("/create/{corsoId}")
 	public String doCreate(@PathVariable("corsoId") Integer corsoId,
-			@Valid @ModelAttribute("capitoloObj") Capitolo formCapitolo, BindingResult bindingResult, Model model) {
+			@Valid @ModelAttribute("capitoloObj") Capitolo formCapitolo, BindingResult bindingResult, Model model,
+			RedirectAttributes redirectAttributes) throws Exception{
 
+		
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("edit", false);
 
 			return "/amministrazione/capitoli/edit";
 		}
-
+		
+	
 		Corso corso = corsoService.getById(corsoId);
 		formCapitolo.setCorso(corso);
-		capService.save(formCapitolo);
+		
+		try {	capService.save(formCapitolo);
+	
+
+		redirectAttributes.addFlashAttribute("successMessage", "Capitolo salvato nel sistema!");
+	} catch (Exception e) {
+		redirectAttributes.addFlashAttribute("errorMessage", "Impossibile salvare il capitolo!");
+		e.printStackTrace();
+	}
+
+		
+
 
 		return "redirect:/amministrazione/corsi/detail/" + corso.getId();
 	}
@@ -81,18 +96,26 @@ public class CapitoloAmministrazioneController {
 
 	@PostMapping("/edit/{corsoId}/{capitoloId}")
 	public String doEdit(@PathVariable("capitoloId") Integer capitoloId, @PathVariable("corsoId") Integer corsoId,
-			@Valid @ModelAttribute("capitoloObj") Capitolo formCapitolo, BindingResult bindingResult, Model model) {
+			@Valid @ModelAttribute("capitoloObj") Capitolo formCapitolo, BindingResult bindingResult, Model model,
+			RedirectAttributes redirectAttributes) {
 
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("edit", true);
 
 			return "/amministrazione/capitoli/edit";
-		}
+		}try {
 
 		Corso corso = corsoService.getById(corsoId);
 		formCapitolo.setCorso(corso);
 		formCapitolo.setId(capitoloId);
 		capService.save(formCapitolo);
+		redirectAttributes.addFlashAttribute("successMessage", "Capitolo modificato nel sistema!");
+		} catch (Exception e) {
+			redirectAttributes.addFlashAttribute("errorMessage", "Impossibile salvare il capitolo!");
+			e.printStackTrace();
+		}
+		Corso corso = corsoService.getById(corsoId);
+		formCapitolo.setCorso(corso);
 
 		return "redirect:/amministrazione/corsi/detail/" + corso.getId();
 	}
@@ -101,13 +124,16 @@ public class CapitoloAmministrazioneController {
 	
 	
 	
+	
+	
 
 	@GetMapping("/delete/{corsoId}/{id}")
-	public String doDelete(@PathVariable("id") Integer id, @PathVariable("corsoId") Integer corsoId, Model model) {
+	public String doDelete(@PathVariable("id") Integer id, @PathVariable("corsoId") Integer corsoId, Model model,
+			RedirectAttributes redirectAttributes) {
 		capService.deleteById(id);
 
 		model.addAttribute("corso", corsoService.getById(corsoId));
-
+		redirectAttributes.addFlashAttribute("successMessage", "Capitolo cancellato!");
 		return "redirect:/amministrazione/corsi/detail/{corsoId}";
 	}
 

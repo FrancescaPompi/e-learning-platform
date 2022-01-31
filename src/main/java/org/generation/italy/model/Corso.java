@@ -23,27 +23,28 @@ public class Corso {
 	private Integer id;
 	
 	@Column(name="data_di_creazione") //, columnDefinition="date default CURRENT_DATE")	
-	@NotNull
+	@NotNull(message = "Inserisci la data di creazione")
 	private LocalDate dataCreazione;
 	
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "Inserisci il titolo")
 	private String titolo;
 	
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "Inserisci una descrizione")
 	@Lob
 	private String descrizione;
 	
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "Inserisci una categoria")
 	private String categoria;
 	
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "Inserisci il livello di difficoltà")
 	private String livello;
 	
-	@NotNull
+	@NotNull(message = "Inserisci la durata")
+	
 	private int durata;
 	
 	@Column(columnDefinition = "integer default 0")
