@@ -30,7 +30,8 @@
 					<li class="list-group-item d-flex justify-content-between align-items-start" th:each="pre : *{prenotazioni}">
 						<div class="ms-2 me-auto">
 							<div class="fw-bold" th:text="${pre.dataPrenotazione}"></div >
-							<div th:text="|Ore: ${pre.fasciaOraria.fasciaOraria}|"></div >						
+							<div th:text="|Ore: ${pre.fasciaOraria.fasciaOraria}|"></div >
+							<a class="btn btn-primary" th:href="@{|/insegnanti/info/delete/${insegnante.id}/${pre.id}|}" onclick="return confirm('Sicuro di voler cancellare la prenotazione?')"><i class="fas fa-trash-alt"></i></a>					
 						</div>
 					</li>
 				</ul >

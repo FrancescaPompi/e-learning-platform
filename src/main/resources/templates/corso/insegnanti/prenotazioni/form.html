@@ -9,7 +9,7 @@
 		<div class="container mt-4">
 			<!-- prenotazioni -->
 			<h1>Lista Prenotazioni</h1>
-			<table class="table" th:if="${listaPren.size() > 0}">
+			<table class="table" th:if="${list.size() > 0}">
 					<thead>
 						<tr>
 							<th>Data Prenotazione</th>
@@ -18,19 +18,31 @@
 						</tr>
 					</thead >
 					<tbody>
-						<tr th:each="item : ${listaPren}">
+						<tr th:each="item : ${list}">
 							<td th:text="${item.dataPrenotazione}"></td>
 							<td th:text="${item.fasciaOraria.fasciaOraria}"></td>
 							<td th:text="${item.note}"></td >
 						</tr >
 					</tbody>
 			</table >
-			<div class="alert alert-primary mt-5" role="alert" th:unless="${listaPren.size() > 0}">
+			<div class="alert alert-primary mt-5" role="alert" th:unless="${list.size() > 0}">
 				Non ci sono ancora prenotazioni
 			</div>
 		
 			<!-- form -->
-			<h1 class="mt-5">Prenota una lezione</h1  >	
+			<h1 class="mt-5">Prenota una lezione</h1  >
+			<th:block th:if="${successMessage != null}">
+				<div class="alert alert-success alert-dismissible fade show" role="alert">
+					<span th:text="${successMessage}"></span>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			</th:block>
+			<th:block th:if="${errorMessage != null}">
+				<div class="alert alert-danger alert-dismissible fade show" role="alert">
+					<span th:text="${errorMessage}"></span>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			</th:block>
 			<form 
 				id="prenotazione-form" 
 				th:object="${prenotazione}"
@@ -42,18 +54,31 @@
 						<div class="row d-flex flex-column">
 							<div class="col-6 mb-4">
 								<label class="form-label" for="inizio">Scegli una data</label>
-								<input type="date" class="form-control" id="inizio" th:field="*{dataPrenotazione}">
+								<input type="date" class="form-control" id="inizio" th:field="*{dataPrenotazione}" 
+									th:errorClass="is-invalid" required>
+								<div th:if="${#fields.hasErrors('dataPrenotazione')}" class="invalid-feedback">
+									<ul>
+										<li th:each="err :${#fields.errors('dataPrenotazione')}" th:text="${err}"></li>
+									</ul>
+								</div>
 							</div>
 							<div class="col-6 mb-4">
 								<label class="form-label" for="orari">Scegli una fascia oraria</label>
-								<select class="form-select" aria-label="Orari" id="orari" th:field="*{fasciaOraria}">
+								<select class="form-select" aria-label="Orari" id="orari" th:field="*{fasciaOraria}" 
+									th:errorClass="is-invalid" required>
 								 	<option value="">Seleziona fascia oraria</option>
 									<option th:each="ora : ${orariList}" th:value="${ora.id}" th:text="${ora.fasciaOraria}"></option>
 								</select>
+								<div th:if="${#fields.hasErrors('fasciaOraria')}" class="invalid-feedback">
+									<ul>
+										<li th:each="err :${#fields.errors('fasciaOraria')}" th:text="${err}"></li>
+									</ul>
+								</div>
 							</div>
 							<div class="col-12">
 								<label class="form-label" for="note">Note</label>
 								<textarea class="form-control" id="note" th:field="*{note}" rows="6"></textarea>
+								
 							</div>
 							<div class="col-12 d-flex d-flex-row mt-3">
 								<button class="btn btn-info me-2" type="submit"> Save</button>
