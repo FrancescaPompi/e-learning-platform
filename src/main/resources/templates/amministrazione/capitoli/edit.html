@@ -14,7 +14,7 @@
 			
 			
 			
-			<form th:action="${edit} ? @{|/amministrazione/capitoli/edit/${capitoloObj.corso.id}/${capitoloObj.id}|} : @{|/amministrazione/capitoli/create/${capitoloObj.id}|}"
+			<form th:action="${edit} ? @{|/amministrazione/capitoli/edit/${capitoloObj.corso.id}/${capitoloObj.id}|} : @{|/amministrazione/capitoli/create/${corso.id}|}"
 				 method="post"
 				 th:object="${capitoloObj}"
 				 id= "capitoli-form">
@@ -26,7 +26,7 @@
               	<div class="col-6">
 					<label class="form-label" for="titolo">Titolo</label>
 					
-					<input type="text" class="form-control" id="titolo" th:field="${capitoloObj.titolo}" th:errorClass="is-invalid" >
+					<input type="text" class="form-control" id="titolo" th:field="*{titolo}" th:errorClass="is-invalid" >
 					<div th:if="${#fields.hasErrors('titolo')}" class="invalid-feedback">
 							<ul>
 								<li th:each="err : ${#fields.errors('titolo')}" th:text="${err}"></li>
@@ -74,8 +74,9 @@
 				</div>
 					
 				</div>
+				
 		<button class="btn btn-primary" type="submit"><i class="fas fa-check"></i></i> Salva</button>
-	
+			
 				</form>
 	
 

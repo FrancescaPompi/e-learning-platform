@@ -2,8 +2,6 @@ package org.generation.italy.service;
 
 import java.util.List;
 
-import java.util.List;
-
 import org.generation.italy.model.Capitolo;
 import org.generation.italy.repository.CapitoloRepository;
 import org.springframework.beans.factory.annotation.Autowired;
