@@ -35,8 +35,10 @@ public class CorsoController {
 	
 	@GetMapping("/{id}/detail")
 	public String detail(@PathVariable("id") Integer id , Model model) {
-		model.addAttribute("corso", service.getById(id));
+		Corso corso = service.getById(id);
+		model.addAttribute("corso", corso);
 		List<Insegnante> listIns = service.getById(id).getInsegnanti();
+		service.increment(corso);
 		model.addAttribute("listIns", listIns);
 		return "/corsi/detail";
 	}
