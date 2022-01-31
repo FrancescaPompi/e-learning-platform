@@ -25,33 +25,55 @@
 				</div>
 			</form>
 		</div>
-		<table class="table" th:if="${list.size() > 0}">
-			<thead>
-				<tr>
-					<th>Nome</th>
-					<th>Cognome</th>
-					<th>Foto</th>
-					<th>Info</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="item : ${list}">
-					<td th:text="${item.nome}"></td>
-					<td th:text="${item.cognome}"></td>
-					<td><img th:src="|/insegnanti/${item.id}/photo|" th:alt="${item.id}"></td>
-					<td>
+		
+		
+		
+			<div class="container">
+			<div class="row mb-2"  th:if="${list.size() > 0}">
+				
+				
+				
+				
+				
+				<div th:each="item : ${list}" class="col-3">
+				<div class="card mx-3">
+					<img th:src="|/insegnanti/${item.id}/foto|"
+				
+						class="card-img-top" th:alt="${item.nome}">
+				
+					<div class="card-body">
+				
+						<h5 class="card-title" th:text="${item.nome}"></h5>
+						<h4 class="card-title" th:text="${item.cognome}"></h4>
+				
 						<a class="btn btn-primary" th:href="@{|/insegnanti/info/${item.id}|}"><i
-								class="fas fa-book"></i></a>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-			<a class="btn btn-primary" th:href="@{/}"><i class="fas fa-undo"></i> Indietro</a>
-		<div class="alert alert-primary" role="alert" th:unless="${list.size() > 0}">
-			There are no insegnanti in the database
+				
+								class="fas fa-info-circle"></i></a>
+				
+					</div>
+				
+				</div>
+			
+			</div>
+		
+	
 		</div>
+		
+		<br/>
+		
+			<a class="btn btn-primary" th:href="@{/}"><i class="fas fa-undo"></i> Indietro</a>
+	
+		<div class="alert alert-primary" role="alert" th:unless="${list.size() > 0}">
+		
+			There are no insegnanti in the database
+	
+		</div>
+	
 	</div>
+	
 	<div th:replace="fragments/resources :: scripts"></div>
+
 </body>
+
 
 </html>

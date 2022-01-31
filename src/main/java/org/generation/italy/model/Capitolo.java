@@ -19,7 +19,7 @@ public class Capitolo {
 	
 	@NotNull(message = "Inserisci il numero del capitolo")
 	@Column(name="numero_capitolo")
-	private int numeroCapitolo;
+	private Integer numeroCapitolo;
 	
 	@NotNull
 	@NotEmpty(message = "Inserisci il titolo")
