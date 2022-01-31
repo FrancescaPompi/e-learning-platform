@@ -51,4 +51,11 @@ public class CorsoService {
 	public Corso update(Corso corso) {		
 		return corsoRepo.save(corso);
 	}
+	
+	public Corso increment(Corso corso) {
+		int view = corso.getVisualizzazioni();
+		view++;
+		corso.setVisualizzazioni(view);
+		return corsoRepo.save(corso);
+	}
 }

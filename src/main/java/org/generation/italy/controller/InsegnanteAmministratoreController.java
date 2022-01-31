@@ -75,7 +75,7 @@ public class InsegnanteAmministratoreController {
 		}
 		try {
 			insegnanteService.update(insegnante);
-			redirectAttributes.addFlashAttribute("successMessage", "Insegnante salvata!");
+			redirectAttributes.addFlashAttribute("successMessage", "Insegnante salvato/a!");
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("errorMessage", "Impossibile salvare l'insegnante!");
 			e.printStackTrace();
