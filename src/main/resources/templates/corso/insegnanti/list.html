@@ -6,8 +6,9 @@
 </head>
 
 <body>
-	<nav th:replace="fragments/navbar :: navbar('insegnanti')"></nav>
+	
 	<div class="container text-center">
+	<nav th:replace="fragments/navbar :: navbar('insegnanti')"></nav>
 		<th:block th:if="${successMessage != null}">
 			<div class="alert alert-success alert-dismissible fade show" role="alert">
 				<span th:text="${successMessage}"></span>
@@ -16,20 +17,28 @@
 		</th:block>
 		<h1>Insegnanti</h1>
 		<hr />
-		<div class="mb-3 d-flex justify-content-between">
+		<div class="mb-3">
 			<form th:action="@{/insegnanti}" method="get">
+				
+				
 				<div class="input-group">
+									
+						<div class="d-flex justify-content-beetween">
 					<input name="keyword" th:value="${keyword}" class="form-control" type="search" placeholder="Search"
 						aria-label="Search">
 					<button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
-				</div>
+					
+						</div>
+							</div >
+		
+				
 			</form>
 		</div>
 		
 		
 		
-			<div class="container">
-			<div class="row mb-2"  th:if="${list.size() > 0}">
+			
+			<div class="row mb-2 d-flex justify-content-between"  th:if="${list.size() > 0}">
 				
 				
 				
@@ -61,7 +70,14 @@
 		
 		<br/>
 		
-			<a class="btn btn-primary" th:href="@{/}"><i class="fas fa-undo"></i> Indietro</a>
+		
+						
+				<div class="d-flex justify-content-center">
+						<a class="btn btn-primary" th:href="@{/}"><i class="fas fa-undo"></i> Indietro</a>
+			
+				
+				</div>
+				
 	
 		<div class="alert alert-primary" role="alert" th:unless="${list.size() > 0}">
 		
@@ -69,7 +85,7 @@
 	
 		</div>
 	
-	</div>
+	
 	
 	<div th:replace="fragments/resources :: scripts"></div>
 
