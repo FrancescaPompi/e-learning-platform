@@ -47,7 +47,7 @@ public class Corso {
 	private int durata;
 	
 	@Column(columnDefinition = "integer default 0")
-	private Integer visualizzazioni;
+	private Integer visualizzazioni = 0;
 	
 	@OneToMany(mappedBy="corso")
 	private List<Capitolo> capitoli;
