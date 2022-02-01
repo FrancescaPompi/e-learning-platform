@@ -6,29 +6,25 @@
 		<title>Dettaglio corso</title>
 	</head>
 	<body>
-	<div class="container text-center" th:object="${corso}">
 		<div th:replace="fragments/navbar :: navbar(current)"></div>
+		<img src="/img/banner-dettagli-corso.png" style="width: 100%; height: 161px;">
+		<div class="container text-center" th:object="${corso}">
+
 			<th:block th:if="${successMessage != null}">
-			<div class="alert alert-success alert-dismissible fade show" role="alert">
-				<span th:text="${successMessage}"></span>
-				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-			</div>
-		</th:block>
+				<div class="alert alert-success alert-dismissible fade show" role="alert">
+					<span th:text="${successMessage}"></span>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			</th:block>
 		
 		
 		
 		
-			<h1 class="p-2" th:text="|Dettaglio del corso: *{titolo}|"></h1  >
+			<h1 class="py-4" th:text="*{titolo}"></h1  >
 			
 			<hr>
-			<div class="text-center">
-				<a class="btn btn-primary fw-bold" th:href="@{/amministrazione/corsi/list}"><i class="fas fa-undo-alt"></i> Torna alla lista</a>
-				
-				
-				<a th:href="@{/amministrazione/capitoli/create/{id}(id=${corso.id})}" class="btn btn-primary my-5">Aggiungi un nuovo capitolo</a>
-				
-			</div >
-			<div class="row justify-content-center">
+			
+			<div class="row justify-content-center pt-5">
 				<div class="col-4">
 					<dl>
 						<dt>Titolo</dt>
@@ -52,34 +48,34 @@
 					</dl>
 				</div >
 				<div class="col-8">
-					<form th:action="${edit} ? @{|/amministrazione/capitoli/edit/${corso.id}|} : @{|/amministrazione/capitoli/create/${corso.id}|}"
-					 method="post"
-					 th:object="${corso}"
-					 >
-						<h4>Capitoli:</h4>
-					</form>
+					<h4 class="mb-3">Capitoli:</h4 >
 					<table class="table" th:if="${corso.capitoli.size() > 0}">
 						<thead>
 						
 							<tr>
 								<th>Numero del capitolo</th>
 								<th>Titolo</th>
-								<th></th>
+								<th class="text-center">Azioni</th >
 							</tr>
 						</thead >
 						<tbody>
 							<tr th:each="cap : ${corso.capitoli}">
 								<td th:text="${cap.numeroCapitolo}"></td>
 								<td th:text="${cap.titolo}"></td>
-								<td>
-								
-									<a class="btn btn-primary" th:href="@{|/amministrazione/capitoli/delete/${corso.id}/${cap.id}|}" onclick="return confirm('Sicuro di voler cancellare il capitolo?')"><i class="fas fa-trash-alt"></i></a>
-									<a class="btn btn-primary" th:href="@{/amministrazione/capitoli/edit/{id}(id=${cap.id})}"><i class="fas fa-edit"></i></a>
-								</td>   
+								<td class="text-center">
+									<a class="btn btn-danger" th:href="@{/amministrazione/capitoli/edit/{id}(id=${cap.id})}"><i class="fas fa-edit"></i></a>
+									<a class="btn btn-danger" th:href="@{|/amministrazione/capitoli/delete/${corso.id}/${cap.id}|}" onclick="return confirm('Sicuro di voler cancellare il capitolo?')"><i class="fas fa-trash-alt"></i></a>
+								</td >   
 							</tr >
 						</tbody>
 					</table >
-					
+					<div class="text-center">
+						<a class="btn btn-danger fw-bold" th:href="@{/amministrazione/corsi/list}"><i class="fas fa-undo-alt"></i> Torna alla lista</a>
+						
+						
+						<a th:href="@{/amministrazione/capitoli/create/{id}(id=${corso.id})}" class="btn btn-danger my-5">Aggiungi un nuovo capitolo</a>
+						
+					</div >
 					<div class="alert alert-primary" role="alert" th:unless="${corso.capitoli.size() > 0}">
 				 		Non ci sono capitoli
 					</div>
