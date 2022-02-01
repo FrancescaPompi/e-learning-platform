@@ -15,9 +15,12 @@
 
 		<div class="container">
 
-			<form id="insegnante-form" th:object="${insegnante}"
+			<form 
+				id="insegnante-form" 
+				th:object="${insegnante}"
 				th:action="${edit} ? @{|/amministrazione/insegnanti/edit/${id}|} : @{|/amministrazione/insegnanti/create|}"
-				method="post" encType="multipart/form-data">
+				method="post" encType="multipart/form-data"
+			>
 
 
 				<div class="row gy-2">
@@ -34,11 +37,9 @@
 					</div>
 					<div class="col-4">
 						<label class="form-label" for="cognome">Cognome</label>
-						<input type="text" class="form-control" id="cognome" th:field="*{cognome}"
-							th:errorClass="is-invalid">
+						<input type="text" class="form-control" id="cognome" th:field="*{cognome}" th:errorClass="is-invalid">
 						<div th:if="${#fields.hasErrors('cognome')}" class="invalid-feedback">
 							<ul>
-
 								<li th:each="err : ${#fields.errors('cognome')}" th:text="${err}"></li>
 							</ul>
 						</div>
@@ -46,8 +47,8 @@
 
 					<div class="col-4">
 						<label for="foto" class="form-label">Foto profilo</label>
-						<input id="foto" type="file" class="form-control" th:field="*{foto}">
-
+						<input id="foto" type="file" class="form-control" th:field="*{foto}" th:errorClass="is-invalid">
+						
 						<div class="card">
 
 							<img th:src="|/insegnanti/${insegnante.id}/foto|" class="card-img-top" />
