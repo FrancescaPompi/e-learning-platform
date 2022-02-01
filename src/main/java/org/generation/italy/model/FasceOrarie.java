@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -18,6 +19,7 @@ public class FasceOrarie {
 	private Integer id;
 	
 	@NotNull
+	@NotEmpty
 	@Column(name="fascia_oraria")
 	private String fasciaOraria;
 	

@@ -28,4 +28,8 @@ public class PrenotazioneService {
 	public void deleteAll(List<Prenotazione> list) {
 		repository.deleteAll(list);
 	}
+	
+	public void deleteById(Integer id) {
+		repository.deleteById(id);
+	}
 }
