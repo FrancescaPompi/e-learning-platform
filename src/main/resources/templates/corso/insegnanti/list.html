@@ -7,15 +7,15 @@
 
 <body>
 	
-	<div class="container text-center">
-	<nav th:replace="fragments/navbar :: navbar('insegnanti')"></nav>
+<div class="container">
+	<nav th:replace="fragments/navbar :: navbar(current)"></nav>
 		<th:block th:if="${successMessage != null}">
 			<div class="alert alert-success alert-dismissible fade show" role="alert">
 				<span th:text="${successMessage}"></span>
 				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 		</th:block>
-		<h1>Insegnanti</h1>
+		<h1 >Insegnanti</h1 >
 		<hr />
 		<div class="mb-3">
 			<form th:action="@{/insegnanti}" method="get">
@@ -26,7 +26,7 @@
 						<div class="d-flex justify-content-beetween">
 					<input name="keyword" th:value="${keyword}" class="form-control" type="search" placeholder="Search"
 						aria-label="Search">
-					<button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+					<button class="btn btn-danger" type="submit"><i class="fas fa-search"></i></button>
 					
 						</div>
 							</div >
@@ -45,7 +45,7 @@
 				
 				
 				<div th:each="item : ${list}" class="col-3">
-				<div class="card mx-3">
+				<div class="card mx-3 shadow bg-body rounded">
 					<img th:src="|/insegnanti/${item.id}/foto|"
 				
 						class="card-img-top" th:alt="${item.nome}">
@@ -55,7 +55,7 @@
 						<h5 class="card-title" th:text="${item.nome}"></h5>
 						<h4 class="card-title" th:text="${item.cognome}"></h4>
 				
-						<a class="btn btn-primary" th:href="@{|/insegnanti/info/${item.id}|}"><i
+						<a class="btn btn-danger" th:href="@{|/insegnanti/info/${item.id}|}"><i
 				
 								class="fas fa-info-circle"></i></a>
 				
@@ -73,7 +73,7 @@
 		
 						
 				<div class="d-flex justify-content-center">
-						<a class="btn btn-primary" th:href="@{/}"><i class="fas fa-undo"></i> Indietro</a>
+						<a class="btn btn-danger" th:href="@{/}"><i class="fas fa-undo"></i> Indietro</a>
 			
 				
 				</div>
