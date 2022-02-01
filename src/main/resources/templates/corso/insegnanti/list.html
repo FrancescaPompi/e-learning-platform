@@ -45,7 +45,7 @@
 				
 				
 				<div th:each="item : ${list}" class="col-3">
-				<div class="card mx-3">
+				<div class="card mx-3 shadow bg-body rounded">
 					<img th:src="|/insegnanti/${item.id}/foto|"
 				
 						class="card-img-top" th:alt="${item.nome}">

@@ -6,12 +6,12 @@
 	</head>
 	<body>
 	
-		<div class="container">
+		<div class="container mb-3">
 				<div th:replace="fragments/navbar :: navbar(current)"></div>
 			<h1 class="text-center">Lista corsi</h1 >
 			<hr>
 			
-			<div class="mb-3 d-flex justify-content-between">
+			<div class="mb-3 d-flex justify-content-beetween">
 				<form th:action="@{/corsi}" method="get">
 					<div class="input-group">
 						<input name="keyword" th:value="${keyword}" class="form-control" type="search" placeholder="Search"
@@ -21,7 +21,9 @@
 				</form>
 			</div>
 			
-			<table class="table" th:if="${list.size() > 0}">
+			
+			
+		<!--	<table class="table" th:if="${list.size() > 0}">
 				<thead>
 					<tr>
 						<th>Titolo</th>
@@ -42,7 +44,39 @@
 						<td th:text="${item.visualizzazioni}"></td >
 					</tr >
 				</tbody>
-			</table >
+			</table >-->
+			
+							
+			<div class="row mb-2 d-flex justify-content-between g-3"  th:if="${list.size() > 0}">
+				<div th:each="item : ${list}" class="col-3">
+				<div class="card mx-3 shadow bg-body rounded">
+									
+						<div class="card text-dark bg-danger mb-3 card-img-top" th:alt="${item.titolo}">
+				
+					<div class="card-body">
+				
+				
+						<h2 class="card-title" th:text="|${item.titolo}|"></h2>
+						<h5 class="card-text" th:text="|${item.dataCreazione}|"></h5>
+																						
+						<h5 class="card-text" th:text="|Difficoltà: ${item.livello}|"></h5>	
+							
+									
+						<h6 class="card-text" th:text="|Visualizzazioni: ${item.visualizzazioni}|"></h6>
+						
+				
+				
+						<a class="btn btn-dark" th:href="@{|/corsi/${item.id}/detail|}">
+						<i class="fas fa-info-circle"></i></a>
+				
+					</div>
+						</div>
+				</div>
+					</div>
+					
+				
+			</div >
+			
 			
 				<div class="d-flex justify-content-center">
 						<a class="btn btn-primary" th:href="@{/}"><i class="fas fa-undo"></i> Indietro</a>
@@ -52,7 +86,8 @@
 			<div class="alert alert-primary" role="alert" th:unless="${list.size() > 0}">
 				 Non ci sono corsi in lista
 			</div>
-		</div >
+		</div>
+		
 		<div th:replace="fragments/resources :: scripts"></div>
 	</body>
 </html>
