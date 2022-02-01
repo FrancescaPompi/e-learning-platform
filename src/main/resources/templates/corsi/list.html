@@ -16,7 +16,7 @@
 					<div class="input-group">
 						<input name="keyword" th:value="${keyword}" class="form-control" type="search" placeholder="Search"
 							aria-label="Search">
-						<button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+						<button class="btn btn-danger" type="submit"><i class="fas fa-search"></i></button>
 					</div>
 				</form>
 			</div>
@@ -51,7 +51,7 @@
 				<div th:each="item : ${list}" class="col-3">
 				<div class="card mx-3 shadow bg-body rounded">
 									
-						<div class="card text-dark bg-danger mb-3 card-img-top" th:alt="${item.titolo}">
+						<div class="card  mb-3 card-img-top" th:alt="${item.titolo}">
 				
 					<div class="card-body">
 				
@@ -59,14 +59,14 @@
 						<h2 class="card-title" th:text="|${item.titolo}|"></h2>
 						<h5 class="card-text" th:text="|${item.dataCreazione}|"></h5>
 																						
-						<h5 class="card-text" th:text="|Difficoltà: ${item.livello}|"></h5>	
+						<h6 class="card-text" th:text="|Difficoltà: ${item.livello}|"></h6>
 							
 									
 						<h6 class="card-text" th:text="|Visualizzazioni: ${item.visualizzazioni}|"></h6>
 						
 				
 				
-						<a class="btn btn-dark" th:href="@{|/corsi/${item.id}/detail|}">
+						<a class="btn btn-danger" th:href="@{|/corsi/${item.id}/detail|}">
 						<i class="fas fa-info-circle"></i></a>
 				
 					</div>
@@ -77,9 +77,9 @@
 				
 			</div >
 			
-			
+			<br/>
 				<div class="d-flex justify-content-center">
-						<a class="btn btn-primary" th:href="@{/}"><i class="fas fa-undo"></i> Indietro</a>
+						<a class="btn btn-danger" th:href="@{/}"><i class="fas fa-undo"></i> Indietro</a>
 			
 				
 				</div>

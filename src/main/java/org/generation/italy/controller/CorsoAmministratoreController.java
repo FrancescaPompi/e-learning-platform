@@ -67,6 +67,7 @@ public class CorsoAmministratoreController {
 				System.out.println(e);
 			}
 			model.addAttribute("insegnanti", insegnanteService.findAllSortedByCognome());
+			model.addAttribute("tags", tagService.findAllSortByNome());
 			return "/amministrazione/corsi/edit";
 
 		}

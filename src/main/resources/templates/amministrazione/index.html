@@ -6,101 +6,74 @@
 	<title>E-learning Platform</title>
 </head>
 
-<body>	
-<div class="container">
-<header class="container-fluid">
-	<div th:replace="fragments/navbar :: navbar(current)"></div>
-		<img class="w-100"
-			src="https://be-original.co.uk/wp-content/uploads/2019/11/wh-you-need-a-LInkedIn-header-850x266.jpg"
-			alt="e-learning">
-	</header>
+
+<body>
+	<img style="width: 100%;"
+			src="https://resumespice.com/wp-content/uploads/2021/03/38.png">
+
 	<main>
 		<h1 class="text-uppercase text-center my-4">e-learning platform</h1>
-		<div class="container">
-			<div class="d-flex d-flex-row justfy-content-center text-center mb-2">
-				<div class="card mx-3" style="width: auto;">
-					<img src="https://www.claruscommerce.com/wp-content/uploads/2018/11/loyalty-lessons-from-2018-0x0.jpg"
-						class="card-img-top" alt="...">
+		<div class="container pb-5">
+			<div class="d-flex d-flex-row justfy-content-center text-center mb-5">
+				<div class="mx-3 card" style="width: auto;">
+					<img src="/img/corsiindex.png"
+						class="card-img-top img-fluid" alt="corsi">
 					<div class="card-body">
 						<h5 class="card-title">Gestore corsi</h5>
-						<a th:href="@{/amministrazione/corsi/list}" class="btn btn-primary">Vai alla modifica</a>
+						<a th:href="@{/amministrazione/corsi/list}" class="btn btn-danger">Vai alla modifica</a>
 					</div>
 				</div>
-				<div class="card mx-3" style="width: auto;">
-					<img src="https://www.claruscommerce.com/wp-content/uploads/2018/11/loyalty-lessons-from-2018-0x0.jpg"
-						class="card-img-top" alt="...">
+				<div class="mx-3 card" style="width: auto;">
+					<img src="https://www.wgu.edu/content/dam/web-sites/blog-newsroom/blog/images/national/2020/march/6-ways-to-improve-online-teaching.jpg"
+						class="card-img-top img-fluid" alt="insegnanti">
 					<div class="card-body">
 						<h5 class="card-title">Gestore insegnanti</h5>
-						<a th:href="@{/amministrazione/insegnanti}" class="btn btn-primary">Vai alla modifica</a>
+						<a th:href="@{/amministrazione/insegnanti}" class="btn btn-danger">Vai alla modifica</a>
 					</div>
 				</div>
 			</div>
-			
-			<h4>Corsi più visualizzati</h4>
-			<div class="box">
-				<table class="table" >
-					<thead>
-						<tr>
-							<th>Titolo</th>
-							<th>Data di creazione</th>
-							<th>Livello</th>
-							<th></th>
-						</tr>
-					</thead >
-					<tbody>
-						<tr th:each="item : ${corsi}">
-							<td th:text="${item.titolo}"></td>
-							<td th:text="${item.dataCreazione}"></td>
-							<td th:text="${item.livello}"></td >
-							<td>							
-								<a class="btn btn-primary" th:href="@{|/amministrazione/corsi/detail/${item.id}|}"><i class="fas fa-info-circle"></i></a>
-							</td>
-						</tr >
-					</tbody>
-				</table >
-			</div >
-			
-			<h4>Corsi più recenti</h4>
-			<table class="table" >
-					<thead>
-						<tr>
-							<th>Titolo</th>
-							<th>Data di creazione</th>
-							<th>Livello</th>
-							<th></th>
-						</tr>
-					</thead >
-					<tbody>
-						<tr th:each="item : ${listaRecente}">
-							<td th:text="${item.titolo}"></td>
-							<td th:text="${item.dataCreazione}"></td>
-							<td th:text="${item.livello}"></td >
-							<td>							
-								<a class="btn btn-primary" th:href="@{|/amministrazione/corsi/detail/${item.id}|}"><i class="fas fa-info-circle"></i></a>
-							</td>
-						</tr >
-					</tbody>
-				</table >
-				
-				<h4>Prossime lezioni prenotate</h4>
-				<div class="accordion" id="accordionExample">
-					  <div class="accordion-item" th:each="item : ${insegnanti}">
-					    <h2 class="accordion-header" id="headingOne">
-					      <button class="accordion-button" th:text="|${item.cognome} ${item.nome}|" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"></button>
-					    </h2>
-					    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-					      <div class="accordion-body" th:each="pren : ${item.getPrenotazioniFuture()}" th:text="|${pren.dataPrenotazione}, ${pren.fasciaOraria.fasciaOraria}|">
-					      </div>
-					    </div>
-					  </div>
+		</div>
+		<img src="/img/banner-6617550__340.png" style="width: 100%;">
+		<div class="container mt-4">
+			<div class="row justify-content-around pt-5" style="height: 550px;">
+					
+				<div class="col-3 list-group overflow-auto h-75">
+				<h4 class="text-center text-uppercase">Corsi più visualizzati</h4 >
+				  <a th:each="item : ${corsi}" th:href="@{|/amministrazione/corsi/detail/${item.id}|}" class="list-group-item shadow p-3 mb-2 bg-body rounded" aria-current="true">
+				    <div class="d-flex w-100 justify-content-between">
+				      <h5 class="mb-1" th:text="${item.titolo}"></h5>
+				      <small th:text="${item.visualizzazioni}"></small >
+				    </div>
+				    <p class="mb-1" th:text="${item.livello}"></p>
+				  </a>
 				</div>
-					<div class="d-flex justify-content-center">
-			<a th:href="@{/}" class="btn btn-primary my-5">Index</a>
+			
+					<div class="col-3 list-group overflow-auto h-75">
+					<h4 class="mt-5 text-center text-uppercase">Corsi più recenti</h4 >
+					  <a th:each="item : ${listaRecente}" th:href="@{|/amministrazione/corsi/detail/${item.id}|}" class="list-group-item shadow p-3 mb-2 bg-body rounded" aria-current="true">
+					    <div class="d-flex w-100 justify-content-between">
+					      <h5 class="mb-1" th:text="${item.titolo}"></h5>
+					      <small th:text="${item.dataCreazione}"></small >
+					    </div>
 
+					    <p class="mb-1" th:text="${item.livello}"></p>
+					  </a>
+					</div >
+					
+					<div class="col-3 list-group overflow-auto h-75">
+					<h4 class="mt-5 text-center text-uppercase">Prossime lezioni</h4 >
+					  <a th:each="item : ${insegnanti}" th:href="@{|/insegnanti/info/${item.id}|}" class="list-group-item shadow p-3 mb-2 bg-body rounded" aria-current="true">
+					    <div class="d-flex w-100 justify-content-between">
+					      <h5 class="mb-1" th:text="|${item.cognome} ${item.nome}|"></h5>
+					    </div>
+					    <p class="mb-1" th:each="pren : ${item.getPrenotazioniFuture()}" th:text="|${pren.dataPrenotazione}, ${pren.fasciaOraria.fasciaOraria}|"></p>
+					  </a>
+					</div >
 
-		</div >
-		
-
+			</div >
+			<a th:href="@{/}" class="btn btn-danger my-5">Index</a>
+		</div>
+>>>>>>> main
 
 	</main>
 

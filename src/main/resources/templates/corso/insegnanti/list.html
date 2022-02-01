@@ -15,7 +15,7 @@
 				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 		</th:block>
-		<h1>Insegnanti</h1>
+		<h1 class="text-center">Insegnanti</h1 >
 		<hr />
 		<div class="mb-3">
 			<form th:action="@{/insegnanti}" method="get">
@@ -26,7 +26,7 @@
 						<div class="d-flex justify-content-beetween">
 					<input name="keyword" th:value="${keyword}" class="form-control" type="search" placeholder="Search"
 						aria-label="Search">
-					<button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+					<button class="btn btn-danger" type="submit"><i class="fas fa-search"></i></button>
 					
 						</div>
 							</div >
@@ -55,7 +55,7 @@
 						<h5 class="card-title" th:text="${item.nome}"></h5>
 						<h4 class="card-title" th:text="${item.cognome}"></h4>
 				
-						<a class="btn btn-primary" th:href="@{|/insegnanti/info/${item.id}|}"><i
+						<a class="btn btn-danger" th:href="@{|/insegnanti/info/${item.id}|}"><i
 				
 								class="fas fa-info-circle"></i></a>
 				
@@ -73,7 +73,7 @@
 		
 						
 				<div class="d-flex justify-content-center">
-						<a class="btn btn-primary" th:href="@{/}"><i class="fas fa-undo"></i> Indietro</a>
+						<a class="btn btn-danger" th:href="@{/}"><i class="fas fa-undo"></i> Indietro</a>
 			
 				
 				</div>
