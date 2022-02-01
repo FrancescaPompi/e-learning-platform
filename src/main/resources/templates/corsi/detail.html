@@ -30,7 +30,8 @@
 						<dd th:text="${corso.durata}"></dd>
 						<dt>Insegnanti</dt>
 						<dd th:each="item : ${listIns}" th:text="|${item.nome} ${item.cognome}|"></dd >
-
+						<dt>Tag</dt>
+						<dd th:each="item : ${listTag}" th:text="${item.nome}"></dd >
 						<dt>Visualizzazioni</dt >
 						<dd th:text="${corso.visualizzazioni}"></dd>
 					    

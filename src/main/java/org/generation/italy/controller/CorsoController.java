@@ -5,6 +5,7 @@ import java.util.List;
 import org.generation.italy.model.Capitolo;
 import org.generation.italy.model.Corso;
 import org.generation.italy.model.Insegnante;
+import org.generation.italy.model.Tag;
 import org.generation.italy.service.CapitoloService;
 import org.generation.italy.service.CorsoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,8 @@ public class CorsoController {
 		List<Insegnante> listIns = service.getById(id).getInsegnanti();
 		service.increment(corso);
 		model.addAttribute("listIns", listIns);
+		List<Tag> listTag = service.getById(id).getTags();
+		model.addAttribute("listTag", listTag);
 		return "/corsi/detail";
 	}
 	
