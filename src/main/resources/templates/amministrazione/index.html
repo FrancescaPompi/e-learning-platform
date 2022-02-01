@@ -33,6 +33,66 @@
 					</div>
 				</div>
 			</div>
+			
+			<h4>Corsi più visualizzati</h4>
+			<div class="box">
+				<table class="table" >
+					<thead>
+						<tr>
+							<th>Titolo</th>
+							<th>Data di creazione</th>
+							<th>Livello</th>
+							<th></th>
+						</tr>
+					</thead >
+					<tbody>
+						<tr th:each="item : ${corsi}">
+							<td th:text="${item.titolo}"></td>
+							<td th:text="${item.dataCreazione}"></td>
+							<td th:text="${item.livello}"></td >
+							<td>							
+								<a class="btn btn-primary" th:href="@{|/amministrazione/corsi/detail/${item.id}|}"><i class="fas fa-info-circle"></i></a>
+							</td>
+						</tr >
+					</tbody>
+				</table >
+			</div >
+			
+			<h4>Corsi più recenti</h4>
+			<table class="table" >
+					<thead>
+						<tr>
+							<th>Titolo</th>
+							<th>Data di creazione</th>
+							<th>Livello</th>
+							<th></th>
+						</tr>
+					</thead >
+					<tbody>
+						<tr th:each="item : ${listaRecente}">
+							<td th:text="${item.titolo}"></td>
+							<td th:text="${item.dataCreazione}"></td>
+							<td th:text="${item.livello}"></td >
+							<td>							
+								<a class="btn btn-primary" th:href="@{|/amministrazione/corsi/detail/${item.id}|}"><i class="fas fa-info-circle"></i></a>
+							</td>
+						</tr >
+					</tbody>
+				</table >
+				
+				<h4>Prossime lezioni prenotate</h4>
+				<div class="accordion" id="accordionExample">
+					  <div class="accordion-item" th:each="item : ${insegnanti}">
+					    <h2 class="accordion-header" id="headingOne">
+					      <button class="accordion-button" th:text="|${item.cognome} ${item.nome}|" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"></button>
+					    </h2>
+					    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+					      <div class="accordion-body" th:each="pren : ${item.getPrenotazioniFuture()}" th:text="|${pren.dataPrenotazione}, ${pren.fasciaOraria.fasciaOraria}|">
+					      </div>
+					    </div>
+					  </div>
+				</div>
+				
 			<a th:href="@{/}" class="btn btn-primary my-5">Index</a>
 		</div >
 		

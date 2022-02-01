@@ -1,5 +1,6 @@
 package org.generation.italy.controller;
 
+
 import java.util.List;
 
 import javax.validation.Valid;
@@ -23,30 +24,29 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/amministrazione/corsi")
 public class CorsoAmministratoreController {
-	
+
 	@Autowired
 	private CorsoService corsiService;
-	
+
 	@Autowired
 	private InsegnanteService insegnanteService;
-	
+
 	@Autowired
 	private TagService tagService;
-	
+
 	@Autowired
 	private CapitoloService capService;
-	
+
 	@GetMapping
-	public String corsi(Model model) {		
+	public String corsi(Model model) {
 		return "/amministrazione/corsi/edit";
 	}
-	
-	
+
 	@GetMapping("/create")
 	public String creaCorso(Model model) {
 		model.addAttribute("edit", false);
@@ -55,80 +55,84 @@ public class CorsoAmministratoreController {
 		model.addAttribute("tags", tagService.findAllSortByNome());
 		return "/amministrazione/corsi/edit";
 	}
-	
+
 	@PostMapping("/create")
-	public String doCreate(@Valid @ModelAttribute("corso") Corso formCorsi, BindingResult bindingResult, Model model) {
-	
-		if(bindingResult.hasErrors()) {
+	public String doCreate(@Valid @ModelAttribute("corso") Corso formCorsi, BindingResult bindingResult, Model model,
+			RedirectAttributes redirectAttributes) throws Exception {
+
+		if (bindingResult.hasErrors()) {
 			model.addAttribute("edit", false);
 			List<ObjectError> allErrors = bindingResult.getAllErrors();
 			for (ObjectError e : allErrors) {
 				System.out.println(e);
 			}
-			
+			model.addAttribute("insegnanti", insegnanteService.findAllSortedByCognome());
 			return "/amministrazione/corsi/edit";
+
 		}
-	
-		corsiService.save(formCorsi);
-		return "redirect:/amministrazione/corsi/list";	
+		try {
+			
+			corsiService.save(formCorsi);
+			redirectAttributes.addFlashAttribute("successMessage", "Corso salvato nel sistema!");
+		} catch (Exception e) {
+			redirectAttributes.addFlashAttribute("errorMessage", "Impossibile salvare il corso!");
+			e.printStackTrace();
+		}
+
+		return "redirect:/amministrazione/corsi/list";
 	}
-	
-	
-	
-	@GetMapping ("/list")
+
+	@GetMapping("/list")
 	public String list(Model model, @RequestParam(name = "keyword", required = false) String keyword) {
 		List<Corso> lista = corsiService.listAll(keyword);
 		model.addAttribute("list", lista);
 		model.addAttribute("keyword", keyword);
 		return "/amministrazione/corsi/list";
 	}
-	
-	
+
 	@GetMapping("/delete/{id}")
-	public String doDelete(@PathVariable("id") Integer id) {	
-		if(corsiService.getById(id) == null) {
-			
+	public String doDelete(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
+		if (corsiService.getById(id) == null) {
+
 		}
 		List<Capitolo> listCapitolo = corsiService.getById(id).getCapitoli();
-		
 		capService.deleteAll(listCapitolo);
-		
 		corsiService.deleteById(id);
+		redirectAttributes.addFlashAttribute("successMessage", "Corso cancellato!");
 		return "redirect:/amministrazione/corsi/list";
 	}
-	
-	
-	
-	
+
 	@GetMapping("/edit/{id}")
-	public String modificaCorso(@PathVariable("id") Integer id, Model model) {	
+	public String modificaCorso(@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("edit", true);
 		model.addAttribute("corso", corsiService.getById(id));
 		model.addAttribute("insegnanti", insegnanteService.findAllSortedByCognome());
 		model.addAttribute("tags", tagService.findAllSortByNome());
 		return "/amministrazione/corsi/edit";
 	}
-	
+
 	@PostMapping("/edit/{id}")
-	public String modificaCorso(@Valid @ModelAttribute("corso") Corso formCorsi, BindingResult bindingResult, Model model) {
-		
-		if(bindingResult.hasErrors()) {
+	public String modificaCorso(@Valid @ModelAttribute("corso") Corso formCorsi, BindingResult bindingResult,
+			Model model, RedirectAttributes redirectAttributes) throws Exception{
+
+		if (bindingResult.hasErrors()) {
 			model.addAttribute("edit", true);
-						
+
 			return "/amministrazione/corsi/edit";
 		}
-		
-		corsiService.update(formCorsi);
-	
-		return "redirect:/amministrazione/corsi/list";	
+		try {
+		corsiService.save(formCorsi);
+		redirectAttributes.addFlashAttribute("successMessage", "Corso modificato nel sistema!");
+	} catch (Exception e) {
+		redirectAttributes.addFlashAttribute("errorMessage", "Impossibile salvare il corso!");
+		e.printStackTrace();
 	}
-	
 
-	
-	
-	
+		return "redirect:/amministrazione/corsi/list";
+	}
+
 	@GetMapping("/detail/{id}")
-	public String detail(@PathVariable("id") Integer id , Model model) {
+	public String detail(@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("corso", corsiService.getById(id));
 		List<Insegnante> listIns = corsiService.getById(id).getInsegnanti();
 		model.addAttribute("listIns", listIns);
@@ -137,4 +141,4 @@ public class CorsoAmministratoreController {
 		return "/amministrazione/corsi/detail";
 	}
 
-} 
+}

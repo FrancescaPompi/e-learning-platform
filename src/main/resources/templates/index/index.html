@@ -6,15 +6,19 @@
 	<title>E-learning Platform</title>
 </head>
 
-<body>
-	<header class="container-fluid">
+<body>	
+<div class="container">
+<header class="container-fluid">
+	<div th:replace="fragments/navbar :: navbar(current)"></div>
+
 		<img class="w-100"
 			src="https://be-original.co.uk/wp-content/uploads/2019/11/wh-you-need-a-LInkedIn-header-850x266.jpg"
 			alt="e-learning">
 	</header>
 	<main>
 		<h1 class="text-uppercase text-center my-4">e-learning platform</h1>
-		<div class="container">
+		
+		
 			<div class="d-flex d-flex-row justfy-content-center text-center mb-2">
 				<div class="card mx-3" style="width: auto;">
 					<img src="https://www.claruscommerce.com/wp-content/uploads/2018/11/loyalty-lessons-from-2018-0x0.jpg"

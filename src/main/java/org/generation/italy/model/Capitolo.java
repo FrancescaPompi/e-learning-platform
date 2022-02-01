@@ -17,19 +17,19 @@ public class Capitolo {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-	@NotNull
+	@NotNull(message = "Inserisci il numero del capitolo")
 	@Column(name="numero_capitolo")
 	private Integer numeroCapitolo;
 	
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "Inserisci il titolo")
 	private String titolo;
 	
 	@Lob
 	private String descrizione;
 	
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = "Inserisci il video")
 	private String video;
 	
 	@ManyToOne

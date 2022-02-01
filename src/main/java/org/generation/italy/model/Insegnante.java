@@ -1,5 +1,7 @@
 package org.generation.italy.model;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -84,6 +86,19 @@ public class Insegnante {
 
 	public List<Prenotazione> getPrenotazioni() {
 		return prenotazioni;
+	}
+	
+	public List<Prenotazione> getPrenotazioniFuture() {
+		List<Prenotazione> prenotazioni = getPrenotazioni();
+		List<Prenotazione> prossimePrenotazioni = new ArrayList<>();
+		if(prenotazioni.size() != 0) {
+			for(Prenotazione prenotazione : prenotazioni) {
+				if(prenotazione.getDataPrenotazione().isAfter(LocalDate.now()) && prenotazione.getDataPrenotazione().isBefore(LocalDate.now().plusDays(7))) {
+					prossimePrenotazioni.add(prenotazione);
+				}
+			}
+		}
+		return prossimePrenotazioni;	
 	}
 
 	public void setPrenotazioni(List<Prenotazione> prenotazioni) {
