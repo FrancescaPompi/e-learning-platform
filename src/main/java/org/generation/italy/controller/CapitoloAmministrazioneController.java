@@ -76,12 +76,7 @@ public class CapitoloAmministrazioneController {
 		return "redirect:/amministrazione/corsi/detail/" + corso.getId();
 	}
 	
-	
-	
-	
-	
 	@GetMapping("/edit/{capitoloId}")
-
 	public String editCapitolo(@PathVariable("capitoloId") Integer capitoloId, Model model) {
 	
 		
@@ -119,13 +114,6 @@ public class CapitoloAmministrazioneController {
 
 		return "redirect:/amministrazione/corsi/detail/" + corso.getId();
 	}
-	
-	
-	
-	
-	
-	
-	
 
 	@GetMapping("/delete/{corsoId}/{id}")
 	public String doDelete(@PathVariable("id") Integer id, @PathVariable("corsoId") Integer corsoId, Model model,
