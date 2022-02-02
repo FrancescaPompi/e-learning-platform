@@ -83,7 +83,13 @@
 			<div class="alert alert-primary" role="alert" th:unless="${corso.capitoli.size() > 0}">
 				 Non ci sono capitoli
 			</div>
+			<div>
+					<a type="submit" class="btn btn-primary" onclick="addLike()" id="likebutton">Mi piace <i
+							class="fas fa-thumbs-up"></i></a>
+					<a id="like" for="likebutton" class="btn disabled" th:text="${corso.miPiace}"></a>
+				</div>
 		</div >
 		<div th:replace="fragments/resources :: scripts"></div>
+		<script th:src="@{/js/likebutton.js}"></script>
 	</body>
 </html>

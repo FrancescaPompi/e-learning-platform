@@ -12,29 +12,17 @@
 					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 				</div>
 			</th:block>
-			<h1 >Insegnanti</h1 >
+			<h1 class="text-center p-3">Insegnanti</h1 >
 			<hr />
-			<div class="mb-3">
-				<form th:action="@{/insegnanti}" method="get">
-					<div class="input-group">	
-						<div class="d-flex justify-content-beetween">
-							<input name="keyword" th:value="${keyword}" class="form-control" 
-								type="search" placeholder="Search"
-								aria-label="Search"
-							>
-							<button class="btn btn-danger" type="submit"><i class="fas fa-search"></i></button>
-						</div>
-					</div >
-				</form>
-			</div>
-			<div class="row mb-2 d-flex justify-content-between"  th:if="${list.size() > 0}">
+			<div class="row mb-2 pt-2 d-flex justify-content-between"  th:if="${list.size() > 0}">
 				<div th:each="item : ${list}" class="col-3">
-					<div class="card mx-3 shadow bg-body rounded">
+					<div class="card mx-3 shadow bg-body rounded" style="width: 18rem; height:43rem;">
 						<img th:src="|/insegnanti/${item.id}/foto|" class="card-img-top" th:alt="${item.nome}">
-						<div class="card-body">
+						<div class="card-body text-center">
 							<h5 class="card-title" th:text="${item.nome}"></h5>
 							<h4 class="card-title" th:text="${item.cognome}"></h4>
-							<a class="btn btn-danger" th:href="@{|/insegnanti/info/${item.id}|}"><iclass="fas fa-info-circle"></i></a>
+							<hr>
+							<a class="btn btn-danger" th:href="@{|/insegnanti/info/${item.id}|}"><i class="fas fa-info-circle"></i></a>
 						</div>
 					</div>
 				</div>

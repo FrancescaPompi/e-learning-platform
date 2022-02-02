@@ -14,48 +14,50 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-
 @Entity
 public class Corso {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	@Column(name="data_di_creazione") //, columnDefinition="date default CURRENT_DATE")	
+
+	@Column(name = "data_di_creazione") // , columnDefinition="date default CURRENT_DATE")
 	@NotNull(message = "Inserisci la data di creazione")
 	private LocalDate dataCreazione;
-	
+
 	@NotNull
 	@NotEmpty(message = "Inserisci il titolo")
 	private String titolo;
-	
+
 	@NotNull
 	@NotEmpty(message = "Inserisci una descrizione")
 	@Lob
 	private String descrizione;
-	
+
 	@NotNull
 	@NotEmpty(message = "Inserisci una categoria")
 	private String categoria;
-	
+
 	@NotNull
 	@NotEmpty(message = "Inserisci il livello di difficoltà")
 	private String livello;
-	
+
 	@NotNull(message = "Inserisci la durata")
-	
+
 	private int durata;
-	
+
 	@Column(columnDefinition = "integer default 0")
 	private Integer visualizzazioni = 0;
-	
-	@OneToMany(mappedBy="corso")
+
+	@Column(columnDefinition = "integer default 0")
+	private Integer miPiace = 0;
+
+	@OneToMany(mappedBy = "corso")
 	private List<Capitolo> capitoli;
-	
+
 	@ManyToMany
 	private List<Insegnante> insegnanti;
-	
+
 	@ManyToMany
 	private List<Tag> tags;
 
@@ -123,6 +125,14 @@ public class Corso {
 		this.visualizzazioni = visualizzazioni;
 	}
 
+	public Integer getMiPiace() {
+		return miPiace;
+	}
+
+	public void setMiPiace(Integer miPiace) {
+		this.miPiace = miPiace;
+	}
+
 	public List<Capitolo> getCapitoli() {
 		return capitoli;
 	}
@@ -146,6 +156,5 @@ public class Corso {
 	public void setTags(List<Tag> tags) {
 		this.tags = tags;
 	}
-	
-	
+
 }
