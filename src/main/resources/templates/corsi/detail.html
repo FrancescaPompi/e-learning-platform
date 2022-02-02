@@ -80,48 +80,6 @@
 				</div >
 			</div >
 			
-			
-			
-			<!-- <div class="row d-flex justify-content-center" th:if="${corso.capitoli.size() > 0}">
-				<div class="col-3 text-center p-3" th:each="cap : ${corso.capitoli}">
-					<div class="card bg-dark border border-light m-0 text-center shadow-lg" style="width: 18rem; height: 30rem;">
-						<div class="card-body text-light">
-							  <h5 class="card-title p-1" th:text="${cap.titolo}"></h5>
-							  <div class="d-flex justify-content-between text-center p-1 align-middle">
-								  <h6 class="card-subtitle" th:text="|N° capitolo: ${cap.numeroCapitolo}|"></h6>
-								  <a class="btn btn-danger" th:href="@{/corsi/capitolo/{id}/watch(id=${cap.id})}"><i class="fas fa-play"></i></a>
-							  </div >
-							  <hr>
-							  <p class="card-text" th:text="${cap.descrizione}"></p>
-						</div>
-					</div>
-				</div >
-			</div >-->
-			
-			
-			<!--  <div class="row mb-2 d-flex justify-content-between">
-
-					<table class="table" th:if="${corso.capitoli.size() > 0}">
-						<thead>
-							<tr>
-								<th>Numero del capitolo</th>
-								<th>Titolo</th>
-								<th>Descrizione</th>
-								<th></th>
-							</tr>
-						</thead >
-						<tbody>
-							<tr th:each="cap : ${corso.capitoli}">
-								<td th:text="${cap.numeroCapitolo}"></td>
-								<td th:text="${cap.titolo}"></td>
-								<td th:text="${cap.descrizione}"></td>
-								<td>
-									<a class="btn btn-primary" th:href="@{/corsi/capitolo/{id}/watch(id=${cap.id})}"><i class="fas fa-play"></i></a>
-								</td>
-							</tr >
-						</tbody>
-					</table > -->
-			
 			<div class="alert alert-primary" role="alert" th:unless="${corso.capitoli.size() > 0}">
 				 Non ci sono capitoli
 			</div>
