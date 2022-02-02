@@ -15,11 +15,9 @@
 				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 		</th:block>
-<<<<<<< HEAD
+
 		<h1 class="text-center">Insegnanti</h1 >
-=======
-		<h1 >Insegnanti</h1 >
->>>>>>> main
+
 		<hr />
 		<div class="mb-3">
 			<form th:action="@{/insegnanti}" method="get">
@@ -42,11 +40,7 @@
 		
 		
 			
-			<div class="row mb-2 d-flex justify-content-between"  th:if="${list.size() > 0}">
-				
-				
-				
-				
+			<div class="row mb-2 d-flex justify-content-between"  th:if="${list.size() > 0}">				
 				
 				<div th:each="item : ${list}" class="col-3">
 				<div class="card mx-3 shadow bg-body rounded">
