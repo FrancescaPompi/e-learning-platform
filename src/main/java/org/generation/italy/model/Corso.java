@@ -56,6 +56,7 @@ public class Corso {
 	private List<Capitolo> capitoli;
 
 	@ManyToMany
+	@NotNull
 	private List<Insegnante> insegnanti;
 
 	@ManyToMany

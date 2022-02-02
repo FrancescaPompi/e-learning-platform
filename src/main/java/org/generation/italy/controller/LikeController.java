@@ -1,7 +1,5 @@
 package org.generation.italy.controller;
 
-import javax.validation.Valid;
-
 import org.generation.italy.model.Corso;
 import org.generation.italy.model.CorsoLike;
 import org.generation.italy.service.CorsoService;
