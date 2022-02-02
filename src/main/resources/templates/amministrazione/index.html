@@ -64,7 +64,7 @@
 					
 					<div class="col-3 list-group overflow-auto h-75">
 					<h4 class="mt-5 text-center text-uppercase">Prossime lezioni</h4 >
-					  <a th:each="item : ${insegnanti}" th:href="@{|/insegnanti/info/${item.id}|}" class="list-group-item shadow p-3 mb-2 bg-body rounded" aria-current="true">
+					  <a th:each="item : ${insegnanti}" th:if="${item.getPrenotazioniFuture().size() > 0}" th:href="@{|/insegnanti/info/${item.id}|}" class="list-group-item shadow p-3 mb-2 bg-body rounded" aria-current="true">
 					    <div class="d-flex w-100 justify-content-between">
 					      <h5 class="mb-1" th:text="|${item.cognome} ${item.nome}|"></h5>
 					    </div>
@@ -73,8 +73,7 @@
 					</div >
 
 			</div >
-			<div class="d-flex justify-content-center">
-			<a th:href="@{/}" class="btn btn-danger my-5">Index</a>
+			<a th:href="@{/}" class="btn btn-danger my-5">Home</a>
 		</div>
 		</div>
 

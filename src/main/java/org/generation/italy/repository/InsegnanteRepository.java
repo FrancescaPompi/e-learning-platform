@@ -15,7 +15,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface InsegnanteRepository extends JpaRepository<Insegnante, Integer> {
 	List<Insegnante> findByNomeContainingIgnoreCaseOrderByCognome(String keyword);
 	
-	
-	
-	
 }
