@@ -5,42 +5,38 @@
 	<div th:replace="fragments/resources :: headTags"></div>
 	<title>E-learning Platform</title>
 </head>
-
-<body>	
-<div class="container">
-<header class="container-fluid">
-	<div th:replace="fragments/navbar :: navbar(current)"></div>
-
+<body>
+	<div th:replace="fragments/navbarHomepage :: navbarHomepage"></div>	
+	<header class="container-fluid m-0 p-0">
 		<img class="w-100"
 			src="https://be-original.co.uk/wp-content/uploads/2019/11/wh-you-need-a-LInkedIn-header-850x266.jpg"
-			alt="e-learning">
-	</header>
-	<main>
-		<h1 class="text-uppercase text-center my-4">e-learning platform</h1>
-		
-		
-			<div class="d-flex d-flex-row justfy-content-center text-center mb-2">
-				<div class="card mx-3" style="width: auto;">
-					<img src="https://www.claruscommerce.com/wp-content/uploads/2018/11/loyalty-lessons-from-2018-0x0.jpg"
-						class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Lista dei corsi</h5>
-						<a th:href="@{/corsi}" class="btn btn-primary">Vai alla lista</a>
+			alt="e-learning"
+		>
+	</header >
+	<div class="container">
+		<main>
+			<h1 class="text-uppercase text-center my-3">e-learning platform</h1>
+				<div class="d-flex d-flex-row justfy-content-center text-center mb-2">
+					<div class="card mx-3" style="width: auto;">
+						<img src="https://www.claruscommerce.com/wp-content/uploads/2018/11/loyalty-lessons-from-2018-0x0.jpg"
+							class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title">Lista dei corsi</h5>
+							<a th:href="@{/corsi}" class="btn btn-primary">Vai alla lista</a>
+						</div>
+					</div>
+					<div class="card mx-3" style="width: auto;">
+						<img src="https://www.claruscommerce.com/wp-content/uploads/2018/11/loyalty-lessons-from-2018-0x0.jpg"
+							class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title">Lista degli insegnanti</h5>
+							<a th:href="@{/insegnanti}" class="btn btn-primary">Vai alla lista</a>
+						</div>
 					</div>
 				</div>
-				<div class="card mx-3" style="width: auto;">
-					<img src="https://www.claruscommerce.com/wp-content/uploads/2018/11/loyalty-lessons-from-2018-0x0.jpg"
-						class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Lista degli insegnanti</h5>
-						<a th:href="@{/insegnanti}" class="btn btn-primary">Vai alla lista</a>
-					</div>
-				</div>
-			</div>
 			<a th:href="@{/amministrazione}" class="btn btn-primary my-5">Amministratore</a>
-		</div>
-	</main>
-
+		</main>
+	</div>
 	<div th:replace="fragments/resources :: scripts"></div>
 </body>
 

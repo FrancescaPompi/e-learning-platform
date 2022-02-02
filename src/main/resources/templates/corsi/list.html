@@ -5,13 +5,12 @@
 		<title>Corsi</title>
 	</head>
 	<body>
-	
+		<div th:replace="fragments/navbar :: navbar(current)"></div>
 		<div class="container mb-3">
-				<div th:replace="fragments/navbar :: navbar(current)"></div>
-			<h1 class="text-center">Lista corsi</h1 >
+			<h1 class="text-center p-3">Lista corsi</h1 >
 			<hr>
 			
-			<div class="mb-3 d-flex justify-content-beetween">
+			<!-- <div class="mb-3 d-flex justify-content-beetween">
 				<form th:action="@{/corsi}" method="get">
 					<div class="input-group">
 						<input name="keyword" th:value="${keyword}" class="form-control" type="search" placeholder="Search"
@@ -19,10 +18,8 @@
 						<button class="btn btn-danger" type="submit"><i class="fas fa-search"></i></button>
 					</div>
 				</form>
-			</div>
-			
-			
-			
+<<<<<<< HEAD
+			</div> -->
 		<!--	<table class="table" th:if="${list.size() > 0}">
 				<thead>
 					<tr>
@@ -49,45 +46,27 @@
 							
 			<div class="row mb-2 d-flex justify-content-between g-3"  th:if="${list.size() > 0}">
 				<div th:each="item : ${list}" class="col-3">
-				<div class="card mx-3 shadow bg-body rounded">
-									
-						<div class="card  mb-3 card-img-top" th:alt="${item.titolo}">
-				
-					<div class="card-body">
-				
-				
-						<h2 class="card-title" th:text="|${item.titolo}|"></h2>
-						<h5 class="card-text" th:text="|${item.dataCreazione}|"></h5>
-																						
-						<h6 class="card-text" th:text="|Difficoltà: ${item.livello}|"></h6>
-							
-									
-						<h6 class="card-text" th:text="|Visualizzazioni: ${item.visualizzazioni}|"></h6>
-						
-				
-				
-						<a class="btn btn-danger" th:href="@{|/corsi/${item.id}/detail|}">
-						<i class="fas fa-info-circle"></i></a>
-				
-					</div>
+					<div class="card mx-3 shadow bg-body rounded" style="width: 18rem; height:18rem;">
+						<div class="card-body mb-3 text-center" th:alt="${item.titolo}">
+							<h2 class="card-title" th:text="|${item.titolo}|"></h2>
+							<hr>
+							<h5 class="card-text" th:text="|${item.dataCreazione}|"></h5>
+							<h6 class="card-text" th:text="|Difficoltà: ${item.livello}|"></h6>
+							<h6 class="card-text" th:text="|Visualizzazioni: ${item.visualizzazioni}|"></h6>
+							<a class="btn btn-danger" th:href="@{|/corsi/${item.id}/detail|}">
+							<i class="fas fa-info-circle"> Scopri il corso</i></a>
 						</div>
-				</div>
 					</div>
-					
-				
-			</div >
-			
-			<br/>
-				<div class="d-flex justify-content-center">
-						<a class="btn btn-danger" th:href="@{/}"><i class="fas fa-undo"></i> Indietro</a>
-			
-				
 				</div>
+			</div>
+			<br/>
+			<div class="d-flex justify-content-center">
+				<a class="btn btn-danger" th:href="@{/}"><i class="fas fa-undo"></i> Indietro</a>
+			</div>
 			<div class="alert alert-primary" role="alert" th:unless="${list.size() > 0}">
 				 Non ci sono corsi in lista
 			</div>
 		</div>
-		
-		<div th:replace="fragments/resources :: scripts"></div>
+	<div th:replace="fragments/resources :: scripts"></div>
 	</body>
 </html>

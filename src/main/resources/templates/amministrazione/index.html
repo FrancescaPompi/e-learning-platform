@@ -6,15 +6,18 @@
 	<title>E-learning Platform</title>
 </head>
 
+
 <body>
+	<div th:replace="fragments/navbarHomepage :: navbarHomepage"></div>
 	<img style="width: 100%;"
+
 			src="/img/38amministrazione.png"
 			alt="e-learning">
-	<main>
 
+	<main>
 		<div class="container py-5 my-5">
 			<div class="d-flex d-flex-row justfy-content-center text-center mb-5">
-				<div class="mx-3 card" style="width: auto;">
+				<div class="mx-3 card shadow bg-body rounded" style="width: auto;">
 					<img src="/img/corsiindex.png"
 						class="card-img-top img-fluid" alt="corsi">
 					<div class="card-body">
@@ -22,7 +25,7 @@
 						<a th:href="@{/amministrazione/corsi/list}" class="btn btn-danger">Vai alla modifica</a>
 					</div>
 				</div>
-				<div class="mx-3 card" style="width: auto;">
+				<div class="mx-3 card shadow bg-body rounded" style="width: auto;">
 					<img src="https://www.wgu.edu/content/dam/web-sites/blog-newsroom/blog/images/national/2020/march/6-ways-to-improve-online-teaching.jpg"
 						class="card-img-top img-fluid" alt="insegnanti">
 					<div class="card-body">
@@ -36,7 +39,7 @@
 		<div class="container mt-4">
 			<div class="row justify-content-around pt-5" style="height: 550px;">
 					
-				<div class="col-3 list-group overflow-auto h-75">
+				<div class="col-3 list-group overflow-auto h-75 ">
 				<h4 class="text-center text-uppercase">Corsi più visualizzati</h4 >
 				  <a th:each="item : ${corsi}" th:href="@{|/amministrazione/corsi/detail/${item.id}|}" class="list-group-item shadow p-3 mb-2 bg-body rounded" aria-current="true">
 				    <div class="d-flex w-100 justify-content-between">
@@ -54,6 +57,7 @@
 					      <h5 class="mb-1" th:text="${item.titolo}"></h5>
 					      <small th:text="${item.dataCreazione}"></small >
 					    </div>
+
 					    <p class="mb-1" th:text="${item.livello}"></p>
 					  </a>
 					</div >
@@ -70,6 +74,7 @@
 
 			</div >
 			<a th:href="@{/}" class="btn btn-danger my-5">Home</a>
+		</div>
 		</div>
 
 	</main>
