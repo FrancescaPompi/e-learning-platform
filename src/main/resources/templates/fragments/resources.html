@@ -1,19 +1,25 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
+
+<head>
 	<!-- head resources -->
 	<th:block th:fragment="headTags">
-	    <meta charset="utf-8">
-	   	<meta name="viewport" content="width=device-width, initial-scale=1">
-	    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
-	    <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.15.4/css/all.css} "/>
-	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}" />
+		<link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.15.4/css/all.css} " />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 	</th:block>
-	</head>
-	<body>
+</head>
+
+<body>
 	<!-- script resources -->
-		<div th:fragment="scripts">
-			<script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.bundle.min.js}"></script>
-		</div>
-	</body>
+	<div th:fragment="scripts">
+		<script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.bundle.min.js}"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.25.0/axios.min.js"
+			integrity="sha512-/Q6t3CASm04EliI1QyIDAA/nDo9R8FQ/BULoUFyN4n/BDdyIxeH7u++Z+eobdmr11gG5D/6nPFyDlnisDwhpYA=="
+			crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	</div>
+</body>
+
 </html>
