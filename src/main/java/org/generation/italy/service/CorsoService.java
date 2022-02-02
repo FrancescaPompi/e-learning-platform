@@ -25,16 +25,16 @@ public class CorsoService {
 		return corsoRepo.getById(id);
 	}
 	
-//	public List<Corso> findByKeywords(String keyword) {
-//		return corsoRepo.findByTitoloContainingIgnoreCaseOrderByTitolo(keyword);
-//	}
-	
 	public List<Corso> listAll(String keyword) {
         if (keyword != null) {
             return corsoRepo.search(keyword);
         }
         return corsoRepo.findAll();
     }
+	
+	public List<Corso> corsiPiuVisualizzati() {
+		return corsoRepo.dashboard();
+	}
 	
 	public Corso save(Corso corso) {
 		if (corso.getDataCreazione() == null) {

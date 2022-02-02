@@ -1,65 +1,87 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-	<div th:replace="fragments/resources :: headTags"></div>
-	<title th:text="${insegnante.cognome}"></title>
-</head>
-
-<body>
-	<nav th:replace="fragments/navbar :: navbar('insegnanti')"></nav>
-	<div class="container" th:object="${insegnante}">
-		<h1 th:text="|ID insegnante: *{id}|"></h1>
-		<h2 th:text="Test" class="text-muted"></h2>
-		<hr />
-		<div class="row">
-			<div class="col-8">
-				<dl>
-					<dt>Nome</dt>
-					<dd th:text="*{nome}"></dd>
-					<dt>Cognome</dt>
-					<dd th:text="*{Cognome}"></dd>
-					<dt>Foto</dt>
-					<dd></dd>
-				</dl>
-			</div>
-			<div class="col-4">
-
-				<h3>Prenotazioni attive</h3>
-				<ul class="list-group">
-					<li class="list-group-item d-flex justify-content-between align-items-start" th:each="pre : *{prenotazioni}">
-						<div class="ms-2 me-auto">
-							<div class="fw-bold" th:text="${pre.dataPrenotazione}"></div >
-							<div th:text="|Ore: ${pre.fasciaOraria.fasciaOraria}|"></div >						
-						</div>
-					</li>
-				</ul >
-
-
-			</div>
-			<div class="col-4">
-				<h3>Corsi</h3>
-				<ul>
-					<li th:each="item : *{corsi}" th:text="${item.titolo}"></li>
-				</ul>
-			</div>
-			<div th:each="item :${list}" class="col-3">
+	<head>
+		<div th:replace="fragments/resources :: headTags"></div>
+		<title th:text="${insegnante.cognome}"></title>
+	</head>
+	<body>
+			<div class="container" th:object="${insegnante}">
+			<nav th:replace="fragments/navbar :: navbar('insegnanti')"></nav>
+			<br/>
 			
+		
 			
-				<div class="card">
 				
-					<img th:src="|/insegnanti/${item.id}/foto|" class="card-img-top"/>
-					<div class="card-body">
-					<div class="h5 card-title" th:text=${item.nome}></div>
+				
+			
+			
+				<div class="row d-flex justify-content-between shadow p-3 mb-5 bg-body rounded ">
+					<div class="col-3 ">
+						<h3 class="text-danger">Corsi</h3 >
+						<ul>
+							<li th:each="item : *{corsi}" th:text="${item.titolo}"></li>
+						</ul>
+					</div>
+					
+					
+					
+					<div class="col-4 ">
+						<h3 class="text-danger">Prenotazioni attive</h3 >
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item  " th:each="pre : *{prenotazioni}">
+								<div class="ms-2 me-auto d-flex justify-content-between ">
+									<div class="fw-bold" th:text="${pre.dataPrenotazione}"></div >
+									<div th:text="|Ore: ${pre.fasciaOraria.fasciaOraria}|"></div >
+											
+								</div>
+							</li>
+						</ul >
+						<br/>
+						<a class="btn btn-danger" aria-current="page" th:href="@{|/insegnanti/info/${insegnante.id}/prenota|}">Prenota qui!</a>
 					</div>
 				</div>
-			</div>
-		</div>
-			<a class="btn btn-primary" aria-current="page" th:href="@{|/insegnanti/info/${insegnante.id}/prenota|}">Prenota qui!</a>
-			<a class="btn btn-primary" th:href="@{/insegnanti}"><i class="fas fa-undo"></i> Indietro</a>
-		</div>
-	</div>
+
+
+
+			
+					<div class="s text-center d-flex justify-content-center bd-highlight mb-3">
+					
+					<div th:each="item :${list}" class="col-3">
+					
+				<div class="row d-flex justify-content-between shadow bg-body rounded">
+				 <div class="p-2 bd-highlight">
+					<h1 th:text="|*{nome}|"></h1>
+					<h2 th:text="|*{cognome}|"></h2>
+					</div>
+					
+					  <div class="ms-auto p-2 bd-highlight">
+								<div class="card shadow bg-body rounded">
+								<img th:src="|/insegnanti/${item.id}/foto|" class="card-img-top"/>
+							</div>				
+						</div>
+			
+						</div >
+				</div>
+					
+			</div>	
+					
+				<br/>
+				
+				<div class="d-flex justify-content-center">
+					<a class="btn btn-danger" th:href="@{/insegnanti}"><i class="fas fa-undo"></i> Indietro</a>
+					
+				</div >
+
+			
+
+	
+</div>
+		
+</div>	
 	<div th:replace="fragments/resources :: scripts"></div>
 </body>
+
+
 
 </html>
