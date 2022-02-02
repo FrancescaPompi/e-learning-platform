@@ -43,7 +43,6 @@ public class Corso {
 	private String livello;
 
 	@NotNull(message = "Inserisci la durata")
-
 	private int durata;
 
 	@Column(columnDefinition = "integer default 0")

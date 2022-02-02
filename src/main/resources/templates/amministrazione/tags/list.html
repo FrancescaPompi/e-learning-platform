@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<div th:replace="fragments/resources :: headTags"></div>
+	<title>Tag ඞ</title>
+</head>
+
+<body>
+	<div th:replace="fragments/navbar :: navbar(current)"></div>
+	<img src="/img/banner-lista-corsi.png" style="width: 100%; height: 161px" class="mb-4">
+	<div class="container p-3">
+		<th:block th:if="${successMessage != null}">
+			<div class="alert alert-success alert-dismissible fade show" role="alert">
+				<span th:text="${successMessage}"></span>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		</th:block>
+		<div class="mb-3 d-flex justify-content-between">
+			<form th:action="@{/amministrazione/corsi/list}" method="get">
+				<div class="input-group">
+					<input name="keyword" th:value="${keyword}" class="form-control" type="search" placeholder="Search"
+						aria-label="Search">
+					<button class="btn btn-danger" type="submit"><i class="fas fa-search"></i></button>
+				</div>
+			</form>
+		</div>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Tag</th>
+					<th class="text-center">Azioni</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="item : ${list}">
+					<td th:text="${item.nome}"></td>
+					<td class="text-center">
+						<a class="btn btn-danger" th:href="@{|/amministrazione/tags/edit/${item.id}|}"><i
+								class="fas fa-edit"></i></a>
+						<a class="btn btn-danger" th:href="@{|/amministrazione/tags/delete/${item.id}|}"
+							onclick="return confirm('Sicuro di voler cancellare il tag? ඞ')"><i
+								class="fas fa-trash-alt"></i></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+	<div class="container text-center">
+		<a th:href="@{/amministrazione/tags/create}" class="btn btn-danger my-5">Crea un nuovo tag</a>
+		<a class="btn btn-danger" th:href="@{/amministrazione/corsi/list}"><i class="fas fa-undo"></i> Indietro</a>
+	</div>
+	</div>
+	<div th:replace="fragments/resources :: scripts"></div>
+</body>
+
+</html>
