@@ -31,6 +31,7 @@ public class CorsoController {
 		List<Corso> lista = service.listAll(keyword);
 		model.addAttribute("list", lista);
 		model.addAttribute("keyword", keyword);
+		model.addAttribute("words", true);
 		return "/corsi/list";
 	}
 	

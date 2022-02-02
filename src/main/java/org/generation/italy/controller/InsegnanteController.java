@@ -29,9 +29,11 @@ public class InsegnanteController {
 		List<Insegnante> result;
 		if (keyword != null) {
 			result = service.findByKeywordSortedByCognome(keyword);
+			model.addAttribute("words", false);
 			model.addAttribute("keyword", keyword);
-		} else
+		} else {
 			result = service.findAllSortedByCognome();
+		}
 		model.addAttribute("list", result);
 		return "/corso/insegnanti/list";
 	}
