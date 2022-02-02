@@ -6,16 +6,9 @@
 		<title th:text="${insegnante.cognome}"></title>
 	</head>
 	<body>
+		<nav th:replace="fragments/navbar :: navbar('insegnanti')"></nav>
 			<div class="container" th:object="${insegnante}">
-			<nav th:replace="fragments/navbar :: navbar('insegnanti')"></nav>
 			<br/>
-			
-		
-			
-				
-				
-			
-			
 				<div class="row d-flex justify-content-between shadow p-3 mb-5 bg-body rounded ">
 					<div class="col-3 ">
 						<h3 class="text-danger">Corsi</h3 >

@@ -1,95 +1,52 @@
 <html xmlns:th="http://www.thymeleaf.org">
-
-<head>
-	<div th:replace="fragments/resources :: headTags"></div>
-	<title>Insegnanti</title>
-</head>
-
-<body>
-	
-<div class="container">
-	<nav th:replace="fragments/navbar :: navbar(current)"></nav>
-		<th:block th:if="${successMessage != null}">
-			<div class="alert alert-success alert-dismissible fade show" role="alert">
-				<span th:text="${successMessage}"></span>
-				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-			</div>
-		</th:block>
-		<h1 >Insegnanti</h1 >
-		<hr />
-		<div class="mb-3">
-			<form th:action="@{/insegnanti}" method="get">
-				
-				
-				<div class="input-group">
-									
+	<head>
+		<div th:replace="fragments/resources :: headTags"></div>
+		<title>Insegnanti</title>
+	</head>
+	<body>
+		<div th:replace="fragments/navbar :: navbar(current)"></div>
+		<div class="container mb-3">
+			<th:block th:if="${successMessage != null}">
+				<div class="alert alert-success alert-dismissible fade show mt-1" role="alert">
+					<span th:text="${successMessage}"></span>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			</th:block>
+			<h1 >Insegnanti</h1 >
+			<hr />
+			<div class="mb-3">
+				<form th:action="@{/insegnanti}" method="get">
+					<div class="input-group">	
 						<div class="d-flex justify-content-beetween">
-					<input name="keyword" th:value="${keyword}" class="form-control" type="search" placeholder="Search"
-						aria-label="Search">
-					<button class="btn btn-danger" type="submit"><i class="fas fa-search"></i></button>
-					
+							<input name="keyword" th:value="${keyword}" class="form-control" 
+								type="search" placeholder="Search"
+								aria-label="Search"
+							>
+							<button class="btn btn-danger" type="submit"><i class="fas fa-search"></i></button>
 						</div>
-							</div >
-		
-				
-			</form>
-		</div>
-		
-		
-		
-			
-			<div class="row mb-2 d-flex justify-content-between"  th:if="${list.size() > 0}">
-				
-				
-				
-				
-				
-				<div th:each="item : ${list}" class="col-3">
-				<div class="card mx-3 shadow bg-body rounded">
-					<img th:src="|/insegnanti/${item.id}/foto|"
-				
-						class="card-img-top" th:alt="${item.nome}">
-				
-					<div class="card-body">
-				
-						<h5 class="card-title" th:text="${item.nome}"></h5>
-						<h4 class="card-title" th:text="${item.cognome}"></h4>
-				
-						<a class="btn btn-danger" th:href="@{|/insegnanti/info/${item.id}|}"><i
-				
-								class="fas fa-info-circle"></i></a>
-				
-					</div>
-				
-				</div>
-			
+					</div >
+				</form>
 			</div>
-		
-	
-		</div>
-		
-		<br/>
-		
-		
-						
-				<div class="d-flex justify-content-center">
-						<a class="btn btn-danger" th:href="@{/}"><i class="fas fa-undo"></i> Indietro</a>
-			
-				
+			<div class="row mb-2 d-flex justify-content-between"  th:if="${list.size() > 0}">
+				<div th:each="item : ${list}" class="col-3">
+					<div class="card mx-3 shadow bg-body rounded">
+						<img th:src="|/insegnanti/${item.id}/foto|" class="card-img-top" th:alt="${item.nome}">
+						<div class="card-body">
+							<h5 class="card-title" th:text="${item.nome}"></h5>
+							<h4 class="card-title" th:text="${item.cognome}"></h4>
+							<a class="btn btn-danger" th:href="@{|/insegnanti/info/${item.id}|}"><iclass="fas fa-info-circle"></i></a>
+						</div>
+					</div>
 				</div>
-				
-	
-		<div class="alert alert-primary" role="alert" th:unless="${list.size() > 0}">
-		
-			There are no insegnanti in the database
-	
+			</div>
+			<br/>		
+			<div class="d-flex justify-content-center">
+				<a class="btn btn-danger" th:href="@{/}"><i class="fas fa-undo"></i> Indietro</a>
+			</div>
+			<div class="alert alert-primary" role="alert" th:unless="${list.size() > 0}">
+				There are no insegnanti in the database
+			</div>
 		</div>
-	
-	
-	
-	<div th:replace="fragments/resources :: scripts"></div>
-
-</body>
-
-
+		<div th:replace="fragments/resources :: scripts"></div>
+	</body>
 </html>
