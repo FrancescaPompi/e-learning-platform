@@ -9,32 +9,35 @@
 	<div th:replace="fragments/navbarHomepage :: navbarHomepage"></div>	
 	<header class="container-fluid m-0 p-0">
 		<img class="w-100"
-			src="https://be-original.co.uk/wp-content/uploads/2019/11/wh-you-need-a-LInkedIn-header-850x266.jpg"
-			alt="e-learning"
+			src="/img/38.png"
+			alt="e-learning">
 		>
 	</header >
 	<div class="container">
-		<main>
-			<h1 class="text-uppercase text-center my-3">e-learning platform</h1>
-				<div class="d-flex d-flex-row justfy-content-center text-center mb-2">
-					<div class="card mx-3" style="width: auto;">
-						<img src="https://www.claruscommerce.com/wp-content/uploads/2018/11/loyalty-lessons-from-2018-0x0.jpg"
-							class="card-img-top" alt="...">
-						<div class="card-body">
-							<h5 class="card-title">Lista dei corsi</h5>
-							<a th:href="@{/corsi}" class="btn btn-primary">Vai alla lista</a>
-						</div>
-					</div>
-					<div class="card mx-3" style="width: auto;">
-						<img src="https://www.claruscommerce.com/wp-content/uploads/2018/11/loyalty-lessons-from-2018-0x0.jpg"
-							class="card-img-top" alt="...">
-						<div class="card-body">
-							<h5 class="card-title">Lista degli insegnanti</h5>
-							<a th:href="@{/insegnanti}" class="btn btn-primary">Vai alla lista</a>
-						</div>
+<main>
+		<div class="container py-5 my-5">
+			<div class="d-flex d-flex-row justfy-content-center text-center mb-5">
+				<div class="mx-3 card shadow bg-body shadow-lg m-3 bg-dark border border-light rounded" style="width: auto;">
+					<img src="/img/corsiindex.png"
+						class="card-img-top img-fluid" alt="corsi">
+					<div class="card-body">
+						<h5 class="card-title">Corsi</h5>
+						<a th:href="@{/corsi}" class="btn btn-danger">Vai alla modifica</a>
 					</div>
 				</div>
-			<a th:href="@{/amministrazione}" class="btn btn-primary my-5">Amministratore</a>
+				<div class="mx-3 card shadow bg-body rounded shadow-lg m-3 bg-dark border border-light" style="width: auto;">
+					<img src="https://www.wgu.edu/content/dam/web-sites/blog-newsroom/blog/images/national/2020/march/6-ways-to-improve-online-teaching.jpg"
+						class="card-img-top img-fluid" alt="insegnanti">
+					<div class="card-body">
+						<h5 class="card-title">Insegnanti</h5>
+						<a th:href="@{/insegnanti}" class="btn btn-danger">Vai alla modifica</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="d-flex justify-content-center">
+			<a th:href="@{/amministrazione}" class="btn btn-danger my-5">Amministratore</a>
+		</div>
 		</main>
 	</div>
 	<div th:replace="fragments/resources :: scripts"></div>
