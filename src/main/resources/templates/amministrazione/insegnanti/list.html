@@ -7,8 +7,11 @@
 
 <body>
 
+	<nav th:replace="fragments/navbar :: navbar('insegnanti')"></nav>
+	<img src="/img/banner-insegnanti.png" style="width: 100%; height: 161px;" class="mb-2">
+
 	<div class="container text-center">
-		<nav th:replace="fragments/navbar :: navbar(current)"></nav>
+	
 
 		<th:block th:if="${successMessage != null}">
 			<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -16,51 +19,37 @@
 				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 		</th:block>
-		<h1>Insegnanti</h1>
-		<hr />
-		
-		<div class="mb-3 d-flex justify-content-between">
+
+		<div class="mt-5 d-flex justify-content-between">
 			<form th:action="@{/amministrazione/insegnanti}" method="get">
 				<div class="input-group">
 					<input name="keyword" th:value="${keyword}" class="form-control" type="search" placeholder="Search"
 						aria-label="Search">
-					<button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+					<button class="btn btn-danger" type="submit"><i class="fas fa-search"></i></button>
 				</div>
 				
 				
 			</form>
 		</div>
 		
-		<table class="table  shadow bg-body rounded" th:if="${list.size() > 0}">
-			<thead>
-				<tr>
-					<th>Nome</th>
-					<th>Cognome</th>
-					
-					<th>Info</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="item : ${list}">
-					<td th:text="${item.nome}"></td>
-					<td th:text="${item.cognome}"></td>
-				
-					<td>
-						<a class="btn btn-primary" th:href="@{|/insegnanti/info/${item.id}|}"><i
-								class="fas fa-info-circle"></i></a>
-						<a class="btn btn-primary" th:href="@{|/amministrazione/insegnanti/edit/${item.id}|}"><i
-								class="fas fa-edit"></i></a>
-						<a class="btn btn-primary" th:href="@{|/amministrazione/insegnanti/delete/${item.id}|}"
-							onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+
+		<div class="row justify-content-center g-3 mt-5">
+			<div class="card col-3 mx-3 shadow bg-body rounded" style="width: 18rem;" th:each="item : ${list}">
+			  <img th:src="|/insegnanti/${item.id}/foto|" class="card-img-top mt-2" th:alt="${item.nome}">
+			  <div class="card-body">
+			    <h5 class="card-title" th:text="|${item.nome} ${item.cognome}|"></h5>
+			    <a class="btn btn-danger d-inline" th:href="@{|/insegnanti/info/${item.id}|}"><i class="fas fa-book"></i></a>
+				<a class="btn btn-danger d-inline" th:href="@{|/amministrazione/insegnanti/edit/${item.id}|}"><i class="fas fa-edit"></i></a>
+				<a class="btn btn-danger d-inline" th:href="@{|/amministrazione/insegnanti/delete/${item.id}|}" onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
+			  </div>
+			</div>
+		</div >
+
 		<div class="alert alert-primary" role="alert" th:unless="${list.size() > 0}">
 			There are no insegnanti in the database
 		</div>
-		<a th:href="@{/amministrazione/insegnanti/create}" class="btn btn-primary my-5">Crea un nuovo insegnante</a>
-		<a class="btn btn-primary" th:href="@{/amministrazione}"><i class="fas fa-undo"></i> Indietro</a>
+		<a th:href="@{/amministrazione/insegnanti/create}" class="btn btn-danger my-5">Crea un nuovo insegnante</a>
+		<a class="btn btn-danger" th:href="@{/amministrazione}"><i class="fas fa-undo"></i> Indietro</a>
 	</div>
 	<div th:replace="fragments/resources :: scripts"></div>
 </body>
