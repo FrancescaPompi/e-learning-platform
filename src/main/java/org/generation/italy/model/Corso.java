@@ -43,6 +43,7 @@ public class Corso {
 	private String livello;
 
 	@NotNull(message = "Inserisci la durata")
+
 	private int durata;
 
 	@Column(columnDefinition = "integer default 0")
@@ -56,6 +57,7 @@ public class Corso {
 
 	@ManyToMany
 	@NotNull
+	@NotEmpty(message = "Seleziona un insegnante")
 	private List<Insegnante> insegnanti;
 
 	@ManyToMany
