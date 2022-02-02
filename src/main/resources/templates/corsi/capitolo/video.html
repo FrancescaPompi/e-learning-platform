@@ -9,13 +9,21 @@
 		
 		<div class="bg-dark p-2 align-middle opacity-100"s>
 			<div class="d-flex justify-content-between p-3">
-				<div>
-					<h2 class="text-light ps-4 pt-4 fw-bold" th:text="${capitolo.corso.titolo}"></h2>
+				<div class="pt-3">
+					<h1 class="text-light ps-4 mt-4 fw-bold" th:text="${capitolo.corso.titolo}"></h1>
+					<hr class="ms-4" style="color: white">
 					<p class="text-light ps-4 fs-4" th:text="|Capitolo: ${capitolo.numeroCapitolo}|"></p >
-				</div>
-				<button class="bg-dark border border-dark p-4">
-					<a class="btn btn-danger fw-bold text-light" th:href="@{/corsi/{id}/detail(id=${corso.id})}"><i class="fas fa-undo-alt"></i> Torna al dettaglio</a>
-				</button >
+				</div  >
+				<div class="col-4 me-5 p-1 align-bottom d-flex justify-content-center">
+					<div class="card bg-dark text-center border border-white shadow-lg" style="width: 18rem; height:13rem;">
+						<img th:src="@{/img/elearning_cover.jpg}" class="card-img-top" alt="corsi">
+						<div class="card-body">
+					    	<button class="bg-dark border border-dark">
+								<a class="btn btn-danger fw-bold text-light" th:href="@{/corsi/{id}/detail(id=${corso.id})}"><i class="fas fa-undo-alt"></i> Torna al dettaglio</a>
+							</button >
+						</div>
+					</div>
+				</div >
 			</div >
 		</div >
 		<div class="container border p-0 m-4">

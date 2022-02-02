@@ -12,21 +12,21 @@
 				<h1 class="text-light fw-bold p-1" th:text="${corso.titolo}"></h1>
 				<p class="text-light p-1 fs-4" th:text="${corso.descrizione}"></p>
 				<hr style="color: white">
-				<dl class="d-flex justify-content-between text-center p-1 pt-3">
+				<dl class="d-flex justify-content-between text-center pt-3">
 					<div class="text-light">
-						<dt>Categoria:</dt >
+						<dt><i class="fas fa-clipboard-list"></i> Categoria:</dt >
 						<dd th:text="${corso.categoria}"></dd>
 					</div >
 					<div class="text-light">
-						<dt>Livello di difficoltà:</dt >
+						<dt><i class="fas fa-exclamation-triangle"></i> Livello di difficoltà:</dt >
 						<dd th:text="${corso.livello}"></dd>
 					</div >
 					<div>
-						<dt class="text-light">Creato da:</dt >
+						<dt class="text-light"><i class="fas fa-graduation-cap"></i> Creato da:</dt >
 						<dd class="text-light" th:each="item : ${listIns}" th:text="|${item.nome} ${item.cognome}|"></dd >
 					</div>
 					<div class="text-light">
-						<dt>Durata corso (ore):</dt >
+						<dt><i class="fas fa-hourglass-half"></i> Durata corso (ore):</dt >
 						<dd th:text="${corso.durata}"></dd>
 					</div >
 				</dl >
@@ -46,7 +46,7 @@
 			
 			<div class="col-12 d-flex justify-content-around text-center mt-2">
 				<div>
-					<span class="text-light fw-bold">Tags:</span>
+					<span class="text-light fw-bold"><i class="fas fa-tags"></i> Tags:</span>
 					<span class="text-light" th:each="item : ${listTag}" th:text="|${item.nome} |"></span>
 				</div >
 				<div>
@@ -54,15 +54,16 @@
 					<dd class="text-light" th:text="${corso.visualizzazioni}"></dd >
 				</div >
 				<div class="text-light">
-					<dt>Data di creazione:</dt >
+					<dt><i class="fas fa-calendar-day"></i> Data di creazione:</dt >
 					<dd th:text="${corso.dataCreazione}"></dd>
 				</div >
 			</div >
 		</div >
 		
-		
-		<div class="container mt-3">
-			<h2 class="text-center p-4">Capitoli</h2 >
+		<h1 class="text-center p-3"><i class="fas fa-tasks"></i> Programma del corso:</h1 >
+		<hr>
+		<div class="container mt-3 mb-2">
+			<h2 class="text-center p-3"><i class="fas fa-bookmark"></i> Capitoli</h2 >
 			
 			<div class="row d-flex justify-content-center" th:if="${corso.capitoli.size() > 0}">
 				<div class="col-6 text-center p-3 border">
