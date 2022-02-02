@@ -2,30 +2,56 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 	<!-- main navbar -->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="navbar(current)">
-	  <div class="container-fluid">
-	    <a class="navbar-brand" th:href="@{/}"><i class="bi bi-book-half"></i></a>
-	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-	      <span class="navbar-toggler-icon"></span>
-	    </button>
-	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-	      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-	      	<li class="nav-item">
-	          <a class="nav-link" aria-current="page" th:href="@{/}">Home</a>
-	        </li>
-	        <li class="nav-item">
-	          <a class="nav-link" aria-current="page" th:href="@{/corsi}">Corsi</a>
-	        </li>
-	        <li class="nav-item">
-	          <a class="nav-link" aria-current="page" th:href="@{/insegnanti}">Insegnanti</a>
-	        </li>
-	  		<form class="d-flex">
-		      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-		      <button class="btn btn-outline-success" type="submit">Search</button>
-		    </form>
-	      </ul>
-	    </div>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:fragment="navbar(current)">
+	  <div class="container-fluid d-flex justify-content-between p-1">
+	  	<div class="d-flex ms-4">
+	  		<a class="navbar-brand text-light" th:href="@{/}"><i class="bi bi-book-half"></i></a>
+		    <a class="nav-link text-light" aria-current="page" th:href="@{/}"><i class="fas fa-home"></i> Home</a>
+		    <a class="nav-link text-light" aria-current="page" th:href="@{/corsi}"><i class="fas fa-book"></i> Corsi</a>
+		    <a class="nav-link text-light" aria-current="page" th:href="@{/insegnanti}"><i class="fas fa-graduation-cap"></i> Insegnanti</a>
+	  	</div >
+	    <div class="w-50">
+	    	<form class="d-flex"  
+	    		th:action="${words} ? @{/corsi} : @{/insegnanti}" 
+	    		method="get"
+	    	>
+				<div class="input-group">
+					<input name="keyword" th:value="${keyword}" class="form-control me-2" type="search" placeholder="Search"
+						aria-label="Search">
+					<button class="btn btn-outline-light text-light" type="submit"><i class="fas fa-search"></i> Search</button>
+				</div>
+			</form>
+	    </div  >
+		<div class="me-4">
+			<a class="nav-link text-light" aria-current="page" th:href="@{/amministrazione}"><i class="fas fa-users-cog"></i> Amministrazione</a>
+		</div >
 	  </div>
 	</nav>
+	<!-- <nav class="navbar navbar-expand-lg navbar-light bg-dark" th:fragment="navbar(current)">
+		<div class="container-fluid">
+	    	<a class="navbar-brand text-light" th:href="@{/}"><i class="bi bi-book-half"></i></a>
+	    	<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	      		<span class="navbar-toggler-icon"></span>
+	    	</button>
+	    	<div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
+	      		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+	      			<li class="nav-item">
+	          			<a class="nav-link text-light" aria-current="page" th:href="@{/}">Home</a>
+	        		</li>
+	        		<li class="nav-item">
+	          			<a class="nav-link text-light" aria-current="page" th:href="@{/corsi}">Corsi</a>
+	        		</li>
+			        <li class="nav-item">
+			        	<a class="nav-link text-light" aria-current="page" th:href="@{/insegnanti}">Insegnanti</a>
+			        </li>
+	  				<form class="d-flex">
+		      			<input class="form-control me-2 text-light" type="search" placeholder="Search" aria-label="Search">
+		      			<button class="btn btn-outline-light text-light" type="submit">Search</button>
+		    		</form>
+	      		</ul>
+	    	</div>
+	  	</div>
+	</nav> -->
+	
 </body>
 </html>

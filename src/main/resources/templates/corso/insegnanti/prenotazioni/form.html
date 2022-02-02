@@ -14,14 +14,12 @@
 						<tr>
 							<th>Data Prenotazione</th>
 							<th>Orario</th>
-							<th>Note</th>
 						</tr>
 					</thead >
 					<tbody>
 						<tr th:each="item : ${list}">
 							<td th:text="${item.dataPrenotazione}"></td>
 							<td th:text="${item.fasciaOraria.fasciaOraria}"></td>
-							<td th:text="${item.note}"></td >
 						</tr >
 					</tbody>
 			</table >
@@ -49,10 +47,38 @@
 				th:action="@{|/insegnanti/info/${id}/prenota|}"
 				method="post"
 			>
-				<div class="row">
-					<div class="col-8">
-						<div class="row d-flex flex-column">
-							<div class="col-6 mb-4">
+						<div class="row g-4">
+							<div class="col-4">
+								<label class="form-label" for="nome">Nome</label>
+								<input type="text" class="form-control" id="nome" placeholder="Inserisci il tuo nome" th:field="*{nome}"
+									th:errorClass="is-invalid" required>
+								<div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
+									<ul>
+										<li th:each="err : ${#fields.errors('nome')}" th:text="${err}"></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-4">
+								<label class="form-label" for="cognome">Cognome</label>
+								<input type="text" class="form-control" id="cognome" placeholder="Inserisci il tuo cognome" th:field="*{cognome}"
+									th:errorClass="is-invalid" required>
+								<div th:if="${#fields.hasErrors('cognome')}" class="invalid-feedback">
+									<ul>
+										<li th:each="err : ${#fields.errors('cognome')}" th:text="${err}"></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-4">
+								<label class="form-label" for="email">Email</label>
+								<input type="email" class="form-control" id="email" placeholder="Inserisci la tua email" th:field="*{email}"
+									th:errorClass="is-invalid" required>
+								<div th:if="${#fields.hasErrors('email')}" class="invalid-feedback">
+									<ul>
+										<li th:each="err : ${#fields.errors('email')}" th:text="${err}"></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-4">
 								<label class="form-label" for="inizio">Scegli una data</label>
 								<input type="date" class="form-control" id="inizio" th:field="*{dataPrenotazione}" 
 									th:errorClass="is-invalid" required>
@@ -62,7 +88,7 @@
 									</ul>
 								</div>
 							</div>
-							<div class="col-6 mb-4">
+							<div class="col-4">
 								<label class="form-label" for="orari">Scegli una fascia oraria</label>
 								<select class="form-select" aria-label="Orari" id="orari" th:field="*{fasciaOraria}" 
 									th:errorClass="is-invalid" required>
@@ -75,18 +101,13 @@
 									</ul>
 								</div>
 							</div>
-							<div class="col-12">
-								<label class="form-label" for="note">Note</label>
-								<textarea class="form-control" id="note" th:field="*{note}" rows="6"></textarea>
-								
-							</div>
-							<div class="col-12 d-flex d-flex-row mt-3">
+							
+							<div class="col-12 d-flex d-flex-row mt-5">
 								<button class="btn btn-info me-2" type="submit"> Save</button>
 								<a class="btn btn-secondary" th:href="@{|/insegnanti/info/${id}|}"> Cancel</a>
 							</div>
 						</div >
-					</div >
-				</div >
+
 	        </form>
 		</div>
 		
