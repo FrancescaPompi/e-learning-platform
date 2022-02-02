@@ -17,4 +17,21 @@ public class TagService {
 	public List<Tag> findAllSortByNome() {
 		return tagRepository.findAll(Sort.by("nome"));
 	}
+	
+	public Tag save(Tag tag) {
+		return tagRepository.save(tag);
+	}
+	
+	public void deleteById(Integer id) {
+		tagRepository.deleteById(id);
+	}
+	
+	public void deleteAll(List<Tag> list) {
+		tagRepository.deleteAll(list);
+	}
+	
+	public Tag getById(Integer id) {
+		return tagRepository.getById(id);
+	}
+
 }

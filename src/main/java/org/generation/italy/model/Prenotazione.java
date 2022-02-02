@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
@@ -17,13 +16,19 @@ public class Prenotazione {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
+	@NotNull
+	private String nome;
+	
+	@NotNull
+	private String cognome;
+	
+	@NotNull
+	private String email;
+	
 	@Column(name="data_prenotazione")
 	@NotNull
 	private LocalDate dataPrenotazione;
-	
-	@Lob
-	private String note;
-	
+
 	@ManyToOne
 	private Insegnante insegnante;
 	
@@ -44,14 +49,6 @@ public class Prenotazione {
 
 	public void setDataPrenotazione(LocalDate dataPrenotazione) {
 		this.dataPrenotazione = dataPrenotazione;
-	}
-
-	public String getNote() {
-		return note;
-	}
-
-	public void setNote(String note) {
-		this.note = note;
 	}
 
 	public Insegnante getInsegnante() {
@@ -77,6 +74,30 @@ public class Prenotazione {
 		} else {
 			return false;
 		}
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getCognome() {
+		return cognome;
+	}
+
+	public void setCognome(String cognome) {
+		this.cognome = cognome;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 }
