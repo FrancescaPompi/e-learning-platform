@@ -97,9 +97,9 @@ public class CorsoAmministratoreController {
 
 		}
 		List<Capitolo> listCapitolo = corsiService.getById(id).getCapitoli();
-		
+
 		capService.deleteAll(listCapitolo);
-	
+
 		corsiService.deleteById(id);
 		redirectAttributes.addFlashAttribute("successMessage", "Corso cancellato!");
 		return "redirect:/amministrazione/corsi/list";

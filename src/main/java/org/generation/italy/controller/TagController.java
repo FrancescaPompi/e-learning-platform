@@ -69,17 +69,22 @@ public class TagController {
 	}
 
 	@GetMapping("/delete/{id}")
-	public String doDelete(@PathVariable("id") Integer id, Model model,
-			RedirectAttributes redirectAttributes) {
+	public String doDelete(@PathVariable("id") Integer id, Model model, RedirectAttributes redirectAttributes) {
 		if (tagService.getById(id) == null) {
 
 		}
-		tagService.deleteById(id);
-		redirectAttributes.addFlashAttribute("successMessage", "Tag cancellato!");
+		try {
+			tagService.deleteById(id);
+			redirectAttributes.addFlashAttribute("successMessage", "Tag cancellato!");
+		} catch (Exception e) {
+			e.getMessage();
+			redirectAttributes.addFlashAttribute("successMessage",
+					"Impossibile cancellare il tag se associato ad un corso.");
+		}
 		return "redirect:/amministrazione/tags";
-		
+
 	}
-	
+
 	@GetMapping
 	public String list(Model model, @RequestParam(name = "keyword", required = false) String keyword) {
 		List<Tag> lista = tagService.findAllSortByNome();
@@ -87,17 +92,17 @@ public class TagController {
 		model.addAttribute("keyword", keyword);
 		return "/amministrazione/tags/list";
 	}
-	
+
 	@GetMapping("/edit/{id}")
 	public String modificaCorso(@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("edit", true);
 		model.addAttribute("tagObj", tagService.getById(id));
 		return "/amministrazione/tags/edit";
 	}
-	
+
 	@PostMapping("/edit/{id}")
-	public String modificaCorso(@Valid @ModelAttribute("corso") Tag formTag, BindingResult bindingResult,
-			Model model, RedirectAttributes redirectAttributes) throws Exception{
+	public String modificaCorso(@Valid @ModelAttribute("corso") Tag formTag, BindingResult bindingResult, Model model,
+			RedirectAttributes redirectAttributes) throws Exception {
 
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("edit", true);
@@ -105,14 +110,14 @@ public class TagController {
 			return "/amministrazione/tags/edit";
 		}
 		try {
-		tagService.save(formTag);
-		redirectAttributes.addFlashAttribute("successMessage", "Corso modificato nel sistema!");
-	} catch (Exception e) {
-		redirectAttributes.addFlashAttribute("errorMessage", "Impossibile salvare il corso!");
-		e.printStackTrace();
-	}
+			tagService.save(formTag);
+			redirectAttributes.addFlashAttribute("successMessage", "Corso modificato nel sistema!");
+		} catch (Exception e) {
+			redirectAttributes.addFlashAttribute("errorMessage", "Impossibile salvare il corso!");
+			e.printStackTrace();
+		}
 		return "redirect:/amministrazione/tags";
-		
+
 	}
 
 }
