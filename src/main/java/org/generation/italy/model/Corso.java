@@ -54,7 +54,8 @@ public class Corso {
 
 	@OneToMany(mappedBy = "corso")
 	private List<Capitolo> capitoli;
-
+	
+	@NotNull(message = "Inserisci una categoria")
 	@ManyToMany
 	private List<Insegnante> insegnanti;
 

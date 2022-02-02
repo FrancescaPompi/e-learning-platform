@@ -13,9 +13,11 @@
 	<img src="/img/banner-edit-corsi.png" style="width: 100%; height: 161px">
 	
 	<div class="container mt-5">
-			<form id="corsi-form" th:object="${corso}"
-				th:action="${edit} ? @{|/amministrazione/corsi/edit/${id}|} : @{|/amministrazione/corsi/create|}"
-				method="post">
+	
+			<form id="corsi-form"
+				 th:object="${corso}"
+				 th:action="${edit} ? @{|/amministrazione/corsi/edit/${id}|} : @{|/amministrazione/corsi/create|}"
+				 method="post">
 
 				<div class="mb-3 ">
 
@@ -94,12 +96,17 @@
 						<h6 class="fw-bold">Insegnanti</h6 >
 						<div class="form-check" th:each="item : ${insegnanti}">
 							<label class="form-check-label" th:for="|insegnante_${item.id}|" th:text="|${item.cognome} ${item.nome}|"></label>
-						  	<input class="form-check-input" type="checkbox" th:id="|insegnante_${item.id}|" th:value="${item.id}" th:field="*{insegnanti}" th:errorClass="is-invalid" checked>
+						  	<input class="form-check-input" type="checkbox" th:checked="${flag} ? 'checked'" th:id="|insegnante_${item.id}|" th:value="${item.id}" th:field="*{insegnanti}" th:errorClass="is-invalid">
 						  		<div th:if="${#fields.hasErrors('insegnanti')}" class="invalid-feedback">
 								<ul>
 									<li th:each="err : ${#fields.errors('insegnanti')}" th:text="${err}"></li>
 								</ul>
 							</div>
+							
+		
+
+
+							
 						</div>
 					</div>
 					
@@ -107,7 +114,7 @@
 						<h6 class="fw-bold">Tag</h6 >
 						<div class="form-check" th:each="item : ${tags}">
 							<label class="form-check-label" th:for="|tag_${item.id}|" th:text="${item.nome}"></label>
-						  	<input class="form-check-input" type="checkbox" th:id="|tag_${item.id}|" th:value="${item.id}" th:field="*{tags}">
+						  	<input class="form-check-input"  type="checkbox" th:id="|tag_${item.id}|" th:value="${item.id}" th:field="*{tags}">
 						</div>
 					</div >
 				
@@ -132,8 +139,14 @@
 
       	</form >
     </div>
+    
+
+    	<script th:src="@{/js/checkboxValidator.js}"></script>
 		
 	<div th:replace="fragments/resources :: scripts"></div>
+	
+	
+					
 </body>
 
 
