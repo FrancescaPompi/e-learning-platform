@@ -39,10 +39,10 @@ public class CorsoController {
 		Corso corso = service.getById(id);
 		model.addAttribute("corso", corso);
 		List<Insegnante> listIns = service.getById(id).getInsegnanti();
-		service.increment(corso);
 		model.addAttribute("listIns", listIns);
 		List<Tag> listTag = service.getById(id).getTags();
 		model.addAttribute("listTag", listTag);
+		service.increment(corso);
 		return "/corsi/detail";
 	}
 	
