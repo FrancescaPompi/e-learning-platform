@@ -13,28 +13,32 @@
 			alt="e-learning"
 		>
 	</header >
-	<div class="container">
+	<section class="row p-5 mt-5 mb-5 d-flex justify-content-center">
+		<div class="col-6 p-4 mb-2 text-center shadow-lg bg-light">
+			<h1 class="p-1 text-uppercase my-3">ඞ La piattaforma e-learning che semplifica la formazione online</h1>
+			<h6 class="p-2">Benvenuto nel luogo in cui avrà inizio il tuo successo. Scopri i corsi migliori per te oppure prenota una lezione privata con una nostra insegnante.</h6>
+		</div >
+	</section >
+	<div class="container mb-5">
 		<main>
-			<h1 class="text-uppercase text-center my-3">e-learning platform</h1>
-				<div class="d-flex d-flex-row justfy-content-center text-center mb-2">
-					<div class="card mx-3" style="width: auto;">
-						<img src="https://www.claruscommerce.com/wp-content/uploads/2018/11/loyalty-lessons-from-2018-0x0.jpg"
-							class="card-img-top" alt="...">
-						<div class="card-body">
-							<h5 class="card-title">Lista dei corsi</h5>
-							<a th:href="@{/corsi}" class="btn btn-primary">Vai alla lista</a>
-						</div>
-					</div>
-					<div class="card mx-3" style="width: auto;">
-						<img src="https://www.claruscommerce.com/wp-content/uploads/2018/11/loyalty-lessons-from-2018-0x0.jpg"
-							class="card-img-top" alt="...">
-						<div class="card-body">
-							<h5 class="card-title">Lista degli insegnanti</h5>
-							<a th:href="@{/insegnanti}" class="btn btn-primary">Vai alla lista</a>
-						</div>
+			<div class="d-flex d-flex-row justify-content-center text-center mb-2">
+				<div class="card mx-3 shadow-lg" style="width: 32rem; height: 30rem;">
+					<img src="https://www.claruscommerce.com/wp-content/uploads/2018/11/loyalty-lessons-from-2018-0x0.jpg"
+						class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title p-1">Lista dei corsi</h5>
+						<a th:href="@{/corsi}" class="btn btn-danger mt-1">Vai alla lista</a>
 					</div>
 				</div>
-			<a th:href="@{/amministrazione}" class="btn btn-primary my-5">Amministratore</a>
+				<div class="card mx-3 shadow-lg" style="width: 32rem; height: 30rem;">
+					<img src="https://www.claruscommerce.com/wp-content/uploads/2018/11/loyalty-lessons-from-2018-0x0.jpg"
+						class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title p-1">Lista degli insegnanti</h5>
+						<a th:href="@{/insegnanti}" class="btn btn-danger mt-1">Vai alla lista</a>
+					</div>
+				</div>
+			</div>
 		</main>
 	</div>
 	<div th:replace="fragments/resources :: scripts"></div>
