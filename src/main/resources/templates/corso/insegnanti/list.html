@@ -1,4 +1,5 @@
 <html xmlns:th="http://www.thymeleaf.org">
+
 	<head>
 		<div th:replace="fragments/resources :: headTags"></div>
 		<title>Insegnanti</title>
@@ -7,6 +8,7 @@
 		<div th:replace="fragments/navbar :: navbar(current)"></div>
 		<img src="/img/banner-insegnanti.png" style="width: 100%; height: 161px;">
 		<div class="container my-5">
+
 			<th:block th:if="${successMessage != null}">
 				<div class="alert alert-success alert-dismissible fade show mt-1" role="alert">
 					<span th:text="${successMessage}"></span>
@@ -15,8 +17,11 @@
 			</th:block>
 
 			<div class="row mb-2 pt-2 d-flex justify-content-between"  th:if="${list.size() > 0}">
+
 				<div th:each="item : ${list}" class="col-3">
-					<div class="card mx-3 shadow bg-body rounded">
+
+					<div class="card shadow bg-body rounded" style="width: 18rem;">
+
 						<img th:src="|/insegnanti/${item.id}/foto|" class="card-img-top" th:alt="${item.nome}">
 						<div class="card-body text-center">
 							<h5 class="card-title" th:text="${item.nome}"></h5>

@@ -57,6 +57,7 @@ public class Corso {
 
 	@ManyToMany
 	@NotNull
+	@NotEmpty(message = "Seleziona un insegnante")
 	private List<Insegnante> insegnanti;
 
 	@ManyToMany
