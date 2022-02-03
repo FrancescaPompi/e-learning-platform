@@ -114,7 +114,7 @@ public class CorsoAmministratoreController {
 	}
 
 	@PostMapping("/edit/{id}")
-	public String modificaCorso(@Valid @ModelAttribute("corso") Corso formCorsi, @PathVariable Integer id,
+	public String modificaCorso(@Valid @ModelAttribute("corso") Corso formCorsi, 
 			BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) throws Exception {
 
 		if (bindingResult.hasErrors()) {
@@ -124,7 +124,7 @@ public class CorsoAmministratoreController {
 			return "redirect:/amministrazione/corsi/edit/{id}";
 		}
 		try {
-			Corso corso = corsiService.getById(id);
+			Corso corso = corsiService.getById(formCorsi.getId());
 			formCorsi.setVisualizzazioni(corso.getVisualizzazioni());
 			formCorsi.setMiPiace(corso.getMiPiace());
 			corsiService.save(formCorsi);
