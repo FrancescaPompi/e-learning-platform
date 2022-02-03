@@ -8,7 +8,7 @@
 	<body>
 		<div th:replace="fragments/navbar :: navbar(current)"></div>
 		<img src="/img/banner-dettagli-corso.png" style="width: 100%; height: 161px;">
-		<div class="container text-center" th:object="${corso}">
+		<div class="container" th:object="${corso}">
 
 			<th:block th:if="${successMessage != null}">
 				<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -24,7 +24,7 @@
 			
 			<hr>
 			
-			<div class="row justify-content-center pt-5">
+			<div class="row justify-content-evenly pt-5">
 				<div class="col-4">
 					<dl>
 						<dt>Titolo</dt>
@@ -47,8 +47,8 @@
 						<dd th:text="*{visualizzazioni}"></dd>
 					</dl>
 				</div >
-				<div class="col-8">
-					<h4 class="mb-3">Capitoli:</h4 >
+				<div class="col-6">
+					<h4 class="mb-3 text-center">Capitoli:</h4 >
 					<table class="table" th:if="${corso.capitoli.size() > 0}">
 						<thead>
 						
