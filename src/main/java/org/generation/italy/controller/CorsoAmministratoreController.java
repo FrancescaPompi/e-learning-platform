@@ -124,16 +124,19 @@ public class CorsoAmministratoreController {
 			return "redirect:/amministrazione/corsi/edit/{id}";
 		}
 		try {
-
-		corsiService.save(formCorsi);
-		redirectAttributes.addFlashAttribute("successMessage", "Corso modificato nel sistema!");
-	} catch (Exception e) {
-		redirectAttributes.addFlashAttribute("errorMessage", "Impossibile salvare il corso!");
-		e.printStackTrace();
-	}
-		
-
+			Corso corso = corsiService.getById(id);
+			formCorsi.setVisualizzazioni(corso.getVisualizzazioni());
+			formCorsi.setMiPiace(corso.getMiPiace());
+			corsiService.save(formCorsi);
+			redirectAttributes.addFlashAttribute("successMessage", "Corso modificato nel sistema!");
+			
+		} catch (Exception e) {
+			redirectAttributes.addFlashAttribute("errorMessage", "Impossibile salvare il corso!");
+			e.printStackTrace();
+			
+		}
 		return "redirect:/amministrazione/corsi/list";
+		
 	}
 
 	@GetMapping("/detail/{id}")
