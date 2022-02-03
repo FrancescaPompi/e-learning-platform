@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.generation.italy.model.Corso;
-import org.generation.italy.model.Insegnante;
 import org.generation.italy.model.Tag;
 import org.generation.italy.service.CorsoService;
 import org.generation.italy.service.TagService;
@@ -111,9 +109,9 @@ public class TagController {
 		}
 		try {
 			tagService.save(formTag);
-			redirectAttributes.addFlashAttribute("successMessage", "Corso modificato nel sistema!");
+			redirectAttributes.addFlashAttribute("successMessage", "Tag modificato nel sistema!");
 		} catch (Exception e) {
-			redirectAttributes.addFlashAttribute("errorMessage", "Impossibile salvare il corso!");
+			redirectAttributes.addFlashAttribute("errorMessage", "Impossibile salvare il tag!");
 			e.printStackTrace();
 		}
 		return "redirect:/amministrazione/tags";
