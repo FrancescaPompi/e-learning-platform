@@ -6,26 +6,28 @@
 	</head>
 	<body class="bg-light">
 		<div th:replace="fragments/navbar :: navbar(current)"></div>
-		
-		<div class="bg-dark p-2 align-middle opacity-100"s>
-			<div class="d-flex justify-content-between p-3">
-				<div class="pt-3">
-					<h1 class="text-light ps-4 mt-4 fw-bold" th:text="${capitolo.corso.titolo}"></h1>
-					<hr class="ms-4" style="color: white">
-					<p class="text-light text-center ps-4 fs-4" th:text="|Capitolo: ${capitolo.numeroCapitolo}|"></p>
-				</div  >
-				<div class="col-4 me-5 p-1 align-bottom d-flex justify-content-center">
-					<div class="card bg-dark text-center border border-white shadow-lg" style="width: 18rem; height:13rem;">
-						<img th:src="@{/img/elearning_cover.jpg}" class="card-img-top" alt="corsi">
-						<div class="card-body">
-					    	<button class="bg-dark border border-dark">
-								<a class="btn btn-danger fw-bold text-light" th:href="@{/corsi/{id}/detail(id=${corso.id})}"><i class="fas fa-undo-alt"></i> Torna al dettaglio</a>
-							</button >
+		<div class="container-fluid">
+			<div class="row bg-black p-2 align-middle opacity-100">
+				<div class="d-flex justify-content-between p-3">
+					<div class="pt-3">
+						<h1 class="text-light ps-4 mt-4 fw-bold" th:text="${capitolo.corso.titolo}"></h1>
+						<hr class="ms-4" style="color: white">
+						<p class="text-light text-center ps-4 fs-4" th:text="|Capitolo: ${capitolo.numeroCapitolo}|"></p>
+					</div  >
+					<div class="col-4 me-5 p-1 align-bottom d-flex justify-content-center">
+						<div class="card bg-dark text-center border border-white shadow-lg" style="width: 18rem; height:13rem;">
+							<img th:src="@{/img/elearning_cover.jpg}" class="card-img-top" alt="corsi">
+							<div class="card-body">
+						    	<button class="bg-dark border border-dark">
+									<a class="btn btn-danger text-light" th:href="@{/corsi/{id}/detail(id=${corso.id})}"><i class="fas fa-undo-alt"></i> Torna al dettaglio</a>
+								</button >
+							</div>
 						</div>
-					</div>
+					</div >
 				</div >
 			</div >
 		</div >
+
 		<div class="container border p-0 m-4">
 		
 			<div class="row mt-2 ms-2 me-2 gy-3 justify-content-between">
@@ -40,8 +42,8 @@
 					<p class="p-2 m-0" th:text="${capitolo.descrizione}"></p >
 				</div >
 				<div class="col-4 text-center">
-					<a class="btn btn-danger fw-bold me-4" th:href="@{/corsi/capitolo/{id}/before(id=${capitolo.id})}"><i class="fas fa-undo"> Indietro</i></a>
-					<a class="btn btn-danger fw-bold ms-4" th:href="@{/corsi/capitolo/{id}/next(id=${capitolo.id})}"><i class="fas fa-forward"> Avanti</i></a>
+					<a class="btn btn-danger me-4" th:href="@{/corsi/capitolo/{id}/before(id=${capitolo.id})}"><i class="fas fa-undo"></i> Indietro</a>
+					<a class="btn btn-danger ms-4" th:href="@{/corsi/capitolo/{id}/next(id=${capitolo.id})}"><i class="fas fa-forward"></i> Avanti</a>
 					<hr>
 					
 					<table class="table bg-white border align-middle" th:if="${corso.capitoli.size() > 0}">
