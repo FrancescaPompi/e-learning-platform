@@ -43,7 +43,7 @@ public class CorsoAmministratoreController {
 
 	@GetMapping
 	public String corsi(Model model) {
-		return "/amministrazione/corsi/edit";
+		return "/amministrazione/corsi";
 	}
 
 	@GetMapping("/create")
