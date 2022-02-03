@@ -96,7 +96,9 @@ public class CorsoAmministratoreController {
 
 		}
 		List<Capitolo> listCapitolo = corsiService.getById(id).getCapitoli();
+
 		capService.deleteAll(listCapitolo);
+
 		corsiService.deleteById(id);
 		redirectAttributes.addFlashAttribute("successMessage", "Corso cancellato!");
 		return "redirect:/amministrazione/corsi/list";
@@ -117,19 +119,19 @@ public class CorsoAmministratoreController {
 
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("edit", true);
-
-			return "/amministrazione/corsi/edit";
+			model.addAttribute("insegnanti", insegnanteService.findAllSortedByCognome());
+			model.addAttribute("tags", tagService.findAllSortByNome());
+			return "redirect:/amministrazione/corsi/edit/{id}";
 		}
 		try {
-			Corso corso = corsiService.getById(id);
-			formCorsi.setVisualizzazioni(corso.getVisualizzazioni());
-			formCorsi.setMiPiace(corso.getMiPiace());
-			corsiService.save(formCorsi);
-			redirectAttributes.addFlashAttribute("successMessage", "Corso modificato nel sistema!");
-		} catch (Exception e) {
-			redirectAttributes.addFlashAttribute("errorMessage", "Impossibile salvare il corso!");
-			e.printStackTrace();
-		}
+
+		corsiService.save(formCorsi);
+		redirectAttributes.addFlashAttribute("successMessage", "Corso modificato nel sistema!");
+	} catch (Exception e) {
+		redirectAttributes.addFlashAttribute("errorMessage", "Impossibile salvare il corso!");
+		e.printStackTrace();
+	}
+		
 
 		return "redirect:/amministrazione/corsi/list";
 	}
