@@ -1,6 +1,5 @@
 package org.generation.italy.controller;
 
-
 import java.util.List;
 
 import javax.validation.Valid;
@@ -72,7 +71,7 @@ public class CorsoAmministratoreController {
 
 		}
 		try {
-			
+
 			corsiService.save(formCorsi);
 			redirectAttributes.addFlashAttribute("successMessage", "Corso salvato nel sistema!");
 		} catch (Exception e) {
@@ -98,7 +97,9 @@ public class CorsoAmministratoreController {
 
 		}
 		List<Capitolo> listCapitolo = corsiService.getById(id).getCapitoli();
+
 		capService.deleteAll(listCapitolo);
+
 		corsiService.deleteById(id);
 		redirectAttributes.addFlashAttribute("successMessage", "Corso cancellato!");
 		return "redirect:/amministrazione/corsi/list";
@@ -114,8 +115,8 @@ public class CorsoAmministratoreController {
 	}
 
 	@PostMapping("/edit/{id}")
-	public String modificaCorso(@Valid @ModelAttribute("corso") Corso formCorsi, BindingResult bindingResult,
-			Model model, RedirectAttributes redirectAttributes) throws Exception{
+	public String modificaCorso(@Valid @ModelAttribute("corso") Corso formCorsi, 
+			BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) throws Exception {
 
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("edit", true);
@@ -124,14 +125,19 @@ public class CorsoAmministratoreController {
 			return "redirect:/amministrazione/corsi/edit/{id}";
 		}
 		try {
-		corsiService.save(formCorsi);
-		redirectAttributes.addFlashAttribute("successMessage", "Corso modificato nel sistema!");
-	} catch (Exception e) {
-		redirectAttributes.addFlashAttribute("errorMessage", "Impossibile salvare il corso!");
-		e.printStackTrace();
-	}
-
+			Corso corso = corsiService.getById(formCorsi.getId());
+			formCorsi.setVisualizzazioni(corso.getVisualizzazioni());
+			formCorsi.setMiPiace(corso.getMiPiace());
+			corsiService.save(formCorsi);
+			redirectAttributes.addFlashAttribute("successMessage", "Corso modificato nel sistema!");
+			
+		} catch (Exception e) {
+			redirectAttributes.addFlashAttribute("errorMessage", "Impossibile salvare il corso!");
+			e.printStackTrace();
+			
+		}
 		return "redirect:/amministrazione/corsi/list";
+		
 	}
 
 	@GetMapping("/detail/{id}")
