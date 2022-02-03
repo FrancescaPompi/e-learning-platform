@@ -6,9 +6,12 @@
 		<title>Dettaglio corso</title>
 	</head>
 	<body>
+	
 		<div th:replace="fragments/navbar :: navbar(current)"></div>
 		<img src="/img/banner-dettagli-corso.png" style="width: 100%; height: 161px;">
-		<div class="container text-center" th:object="${corso}">
+		
+		
+		<div class="container" th:object="${corso}">
 
 			<th:block th:if="${successMessage != null}">
 				<div class="alert alert-success alert-dismissible fade show" role="alert">
