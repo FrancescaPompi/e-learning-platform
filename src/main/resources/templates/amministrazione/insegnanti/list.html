@@ -15,18 +15,6 @@
 				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 		</th:block>
-
-		<div class="mt-5 d-flex justify-content-between">
-			<form th:action="@{/amministrazione/insegnanti}" method="get">
-				<div class="input-group">
-					<input name="keyword" th:value="${keyword}" class="form-control" type="search" placeholder="Search"
-						aria-label="Search">
-					<button class="btn btn-danger" type="submit"><i class="fas fa-search"></i></button>
-				</div>
-				
-				
-			</form>
-		</div>
 		
 		<div class="row justify-content-center g-3 mt-5">
 			<div class="card col-3 mx-3 shadow bg-body rounded" style="width: 18rem;" th:each="item : ${list}">
