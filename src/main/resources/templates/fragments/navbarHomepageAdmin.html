@@ -2,31 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 	<!-- main navbar -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:fragment="navbar(current)">
-	  <div class="container-fluid d-flex justify-content-between">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-danger" th:fragment="navbarHomepageAdmin">
+	  <div class="container-fluid d-flex justify-content-between p-1">
 	  	<div class="d-flex ms-4">
 	  		<a class="navbar-brand text-light" th:href="@{/}"><i class="bi bi-book-half"></i></a>
 		    <a class="nav-link text-light" aria-current="page" th:href="@{/}"><i class="fas fa-home"></i> Home</a>
 		    <a class="nav-link text-light" aria-current="page" th:href="@{/corsi}"><i class="fas fa-book"></i> Corsi</a>
 		    <a class="nav-link text-light" aria-current="page" th:href="@{/insegnanti}"><i class="fas fa-graduation-cap"></i> Insegnanti</a>
 	  	</div >
-	    <div class="w-50">
-	    	<form class="d-flex"  
-	    		th:action="${words} ? @{/corsi} : @{/insegnanti}" 
-	    		method="get"
-	    	>
-				<div class="input-group">
-					<input name="keyword" th:value="${keyword}" class="form-control me-2" type="search" placeholder="Search"
-						aria-label="Search">
-					<button class="btn btn-outline-light text-light" type="submit"><i class="fas fa-search"></i> Search</button>
-				</div>
-			</form>
-	    </div  >
 		<div class="me-4">
 			<a class="nav-link text-light" aria-current="page" th:href="@{/amministrazione}"><i class="fas fa-users-cog"></i> Amministrazione</a>
 		</div >
 	  </div>
 	</nav>
-	
 </body>
 </html>

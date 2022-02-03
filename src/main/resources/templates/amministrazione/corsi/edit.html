@@ -14,7 +14,7 @@
 	
 	<div class="container mt-5">
 			<form id="corsi-form" th:object="${corso}"
-				th:action="${edit} ? @{|/amministrazione/corsi/edit/${id}|} : @{|/amministrazione/corsi/create|}"
+				th:action="${edit} ? @{|/amministrazione/corsi/edit/${id}|} : @{/amministrazione/corsi/create}"
 				method="post">
 
 				<div class="mb-3 ">

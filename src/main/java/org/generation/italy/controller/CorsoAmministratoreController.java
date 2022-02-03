@@ -88,6 +88,7 @@ public class CorsoAmministratoreController {
 		List<Corso> lista = corsiService.listAll(keyword);
 		model.addAttribute("list", lista);
 		model.addAttribute("keyword", keyword);
+		model.addAttribute("words", true);
 		return "/amministrazione/corsi/list";
 	}
 
@@ -118,8 +119,9 @@ public class CorsoAmministratoreController {
 
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("edit", true);
-
-			return "/amministrazione/corsi/edit";
+			model.addAttribute("insegnanti", insegnanteService.findAllSortedByCognome());
+			model.addAttribute("tags", tagService.findAllSortByNome());
+			return "redirect:/amministrazione/corsi/edit/{id}";
 		}
 		try {
 		corsiService.save(formCorsi);

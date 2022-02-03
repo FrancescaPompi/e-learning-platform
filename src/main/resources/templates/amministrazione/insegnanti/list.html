@@ -6,7 +6,7 @@
 </head>
 
 <body>
-	<nav th:replace="fragments/navbar :: navbar('insegnanti')"></nav>
+	<nav th:replace="fragments/navbarAdmin :: navbarAdmin('insegnanti')"></nav>
 	<img src="/img/banner-insegnanti.png" style="width: 100%; height: 161px;" class="mb-2">
 	<div class="container text-center">
 		<th:block th:if="${successMessage != null}">
