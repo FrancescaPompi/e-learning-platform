@@ -6,44 +6,9 @@
 	</head>
 	<body>
 		<div th:replace="fragments/navbar :: navbar(current)"></div>
-		<div class="container mb-3">
-			<h1 class="text-center p-3">Lista corsi</h1 >
-			<hr>
-			
-			<!-- <div class="mb-3 d-flex justify-content-beetween">
-				<form th:action="@{/corsi}" method="get">
-					<div class="input-group">
-						<input name="keyword" th:value="${keyword}" class="form-control" type="search" placeholder="Search"
-							aria-label="Search">
-						<button class="btn btn-danger" type="submit"><i class="fas fa-search"></i></button>
-					</div>
-				</form>
-<<<<<<< HEAD
-			</div> -->
-		<!--	<table class="table" th:if="${list.size() > 0}">
-				<thead>
-					<tr>
-						<th>Titolo</th>
-						<th>Data di creazione</th>
-						<th>Livello</th>
-						<th></th>
-						<th>Visualizzazioni</th>
-					</tr>
-				</thead >
-				<tbody>
-					<tr th:each="item : ${list}">
-						<td th:text="${item.titolo}"></td>
-						<td th:text="${item.dataCreazione}"></td>
-						<td th:text="${item.livello}"></td >
-						<td>
-							<a class="btn btn-primary" th:href="@{|/corsi/${item.id}/detail|}"><i class="fas fa-book"></i></a>
-						</td>
-						<td th:text="${item.visualizzazioni}"></td >
-					</tr >
-				</tbody>
-			</table >-->
-			
-							
+		<img src="/img/banner-lista-corsi.png" style="width: 100%; height: 161px;">
+		<div class="container my-5">
+				
 			<div class="row mb-2 d-flex justify-content-between g-3"  th:if="${list.size() > 0}">
 				<div th:each="item : ${list}" class="col-3">
 					<div class="card mx-3 shadow bg-body rounded" style="width: 18rem; height:18rem;">
