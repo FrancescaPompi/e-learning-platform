@@ -7,14 +7,16 @@
 	</head>
 	<body>
 		<nav th:replace="fragments/navbar :: navbar('insegnanti')"></nav>
-			<div class="container" th:object="${insegnante}">
+		<img src="/img/banner-dettagli-insegnante.png" style="width: 100%; height: 161px;">
+			<div class="container mb-5" th:object="${insegnante}">
 			<br/>
 				<div class="row d-flex justify-content-between shadow p-3 mb-5 bg-body rounded ">
 					<div class="col-3 ">
 						<h3 class="text-danger">Corsi</h3 >
 						<ul>
-							<li th:each="item : *{corsi}" th:text="${item.titolo}"></li>
+							<li th:each="item : *{corsi}" th:text="${item.titolo}"></li>					
 						</ul>
+						<a class="btn btn-danger" aria-current="page" th:href="@{/corsi}">Vai ai corsi</a>
 					</div>
 					
 					
