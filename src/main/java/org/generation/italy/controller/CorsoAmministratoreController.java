@@ -120,8 +120,9 @@ public class CorsoAmministratoreController {
 
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("edit", true);
-
-			return "/amministrazione/corsi/edit";
+			model.addAttribute("insegnanti", insegnanteService.findAllSortedByCognome());
+			model.addAttribute("tags", tagService.findAllSortByNome());
+			return "redirect:/amministrazione/corsi/edit/{id}";
 		}
 		try {
 		corsiService.save(formCorsi);
@@ -130,7 +131,7 @@ public class CorsoAmministratoreController {
 		redirectAttributes.addFlashAttribute("errorMessage", "Impossibile salvare il corso!");
 		e.printStackTrace();
 	}
-
+		
 		return "redirect:/amministrazione/corsi/list";
 	}
 
