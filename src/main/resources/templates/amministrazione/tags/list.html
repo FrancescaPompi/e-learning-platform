@@ -8,7 +8,7 @@
 
 <body>
 	<div th:replace="fragments/navbar :: navbar(current)"></div>
-	<img src="/img/banner-lista-corsi.png" style="width: 100%; height: 161px" class="mb-4">
+	<img src="/img/banner-lista-tag.png" style="width: 100%; height: 161px" class="mb-4">
 	<div class="container p-3">
 		<th:block th:if="${successMessage != null}">
 			<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -16,17 +16,8 @@
 				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 		</th:block>
-		<div class="mb-3 d-flex justify-content-between">
-			<form th:action="@{/amministrazione/corsi/list}" method="get">
-				<div class="input-group">
-					<input name="keyword" th:value="${keyword}" class="form-control" type="search" placeholder="Search"
-						aria-label="Search">
-					<button class="btn btn-danger" type="submit"><i class="fas fa-search"></i></button>
-				</div>
-			</form>
-		</div>
 
-		<table class="table">
+		<table class="table mt-4">
 			<thead>
 				<tr>
 					<th>Tag</th>
