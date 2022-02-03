@@ -7,8 +7,7 @@
 	<body>
 		<div th:replace="fragments/navbar :: navbar(current)"></div>
 		<img src="/img/banner-lista-corsi.png" style="width: 100%; height: 161px;">
-		<div class="container my-5">
-				
+		<div class="container my-5">			
 			<div class="row mb-2 d-flex justify-content-between g-3"  th:if="${list.size() > 0}">
 				<div th:each="item : ${list}" class="col-3">
 					<div class="card mx-3 shadow bg-body rounded" style="width: 18rem; height:18rem;">
