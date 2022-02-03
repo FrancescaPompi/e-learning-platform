@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 	<!-- main navbar -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:fragment="navbar(current)">
-	  <div class="container-fluid d-flex justify-content-between">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:fragment="navbarAdmin(current)">
+	  <div class="container-fluid d-flex justify-content-between p-1">
 	  	<div class="d-flex ms-4">
 	  		<a class="navbar-brand text-light" th:href="@{/}"><i class="bi bi-book-half"></i></a>
 		    <a class="nav-link text-light" aria-current="page" th:href="@{/}"><i class="fas fa-home"></i> Home</a>
@@ -12,7 +12,7 @@
 	  	</div >
 	    <div class="w-50">
 	    	<form class="d-flex"  
-	    		th:action="${words} ? @{/corsi} : @{/insegnanti}" 
+	    		th:action="${words} ? @{/amministrazione/corsi/list} : @{/amministrazione/insegnanti}" 
 	    		method="get"
 	    	>
 				<div class="input-group">
