@@ -88,6 +88,7 @@ public class InsegnanteAmministratoreController {
 		List<Insegnante> result;
 		if (keyword != null) {
 			result = insegnanteService.findByKeywordSortedByCognome(keyword);
+			model.addAttribute("words", false);
 			model.addAttribute("keyword", keyword);
 		} else
 			result = insegnanteService.findAllSortedByCognome();

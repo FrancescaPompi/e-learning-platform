@@ -13,11 +13,17 @@
 	<img src="/img/banner-edit-corsi.png" style="width: 100%; height: 161px">
 	
 	<div class="container mt-5">
+<<<<<<< HEAD
 	
 			<form id="corsi-form"
 				 th:object="${corso}"
 				 th:action="${edit} ? @{|/amministrazione/corsi/edit/${id}|} : @{|/amministrazione/corsi/create|}"
 				 method="post">
+=======
+			<form id="corsi-form" th:object="${corso}"
+				th:action="${edit} ? @{|/amministrazione/corsi/edit/${id}|} : @{/amministrazione/corsi/create}"
+				method="post">
+>>>>>>> main
 
 				<div class="mb-3 ">
 

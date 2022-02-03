@@ -87,6 +87,7 @@ public class CorsoAmministratoreController {
 		List<Corso> lista = corsiService.listAll(keyword);
 		model.addAttribute("list", lista);
 		model.addAttribute("keyword", keyword);
+		model.addAttribute("words", true);
 		return "/amministrazione/corsi/list";
 	}
 

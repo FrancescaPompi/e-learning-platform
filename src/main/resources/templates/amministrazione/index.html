@@ -8,7 +8,7 @@
 
 
 <body>
-	<div th:replace="fragments/navbarHomepage :: navbarHomepage"></div>
+	<div th:replace="fragments/navbarHomepageAdmin :: navbarHomepageAdmin"></div>
 	<img style="width: 100%;"
 
 			src="/img/38amministrazione.png"
@@ -16,21 +16,23 @@
 
 	<main>
 		<div class="container py-5 my-5">
-			<div class="d-flex d-flex-row justfy-content-center text-center mb-5">
-				<div class="mx-3 card shadow bg-body rounded" style="width: auto;">
+			<div class="d-flex d-flex-row justify-content-center text-center mb-5">
+				<div class="mx-3 card shadow-lg bg-body rounded" style="width: 32rem; height: 30rem;">
 					<img src="/img/corsiindex.png"
 						class="card-img-top img-fluid" alt="corsi">
 					<div class="card-body">
 						<h5 class="card-title">Gestore corsi</h5>
-						<a th:href="@{/amministrazione/corsi/list}" class="btn btn-danger">Vai alla modifica</a>
+						<a th:href="@{/amministrazione/corsi/list}" class="btn btn-light shadow-lg border text-danger">Vai alla modifica</a>
 					</div>
 				</div>
-				<div class="mx-3 card shadow bg-body rounded" style="width: auto;">
+				<div class="mx-3 card shadow-lg bg-body rounded" style="width: 32rem; height: 30rem;">
 					<img src="https://www.wgu.edu/content/dam/web-sites/blog-newsroom/blog/images/national/2020/march/6-ways-to-improve-online-teaching.jpg"
 						class="card-img-top img-fluid" alt="insegnanti">
 					<div class="card-body">
 						<h5 class="card-title">Gestore insegnanti</h5>
-						<a th:href="@{/amministrazione/insegnanti}" class="btn btn-light text-danger">Vai alla modifica</a>
+
+						<a th:href="@{/amministrazione/insegnanti}" class="btn btn-light shadow-lg border text-danger">Vai alla modifica</a>
+
 					</div>
 				</div>
 			</div>
@@ -73,7 +75,7 @@
 					</div >
 
 			</div >
-			<a th:href="@{/}" class="btn btn-warning my-5">Home</a>
+
 		</div>
 		</div>
 
