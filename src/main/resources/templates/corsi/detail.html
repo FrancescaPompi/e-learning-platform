@@ -7,61 +7,66 @@
 	<body>
 		
 		<div th:replace="fragments/navbar :: navbar(current)"></div>
-	<div class="container text-center">
-		<div class="row justify-content-between bg-dark align-middle p-4">
-		
-			<div class="col-6 ms-5 p-4">
-				<h1 class="text-light fw-bold p-1" th:text="${corso.titolo}"></h1>
-				<p class="text-light p-1 fs-4" th:text="${corso.descrizione}"></p>
-				<hr style="color: white">
-				<dl class="d-flex justify-content-between text-center pt-3">
-					<div class="text-light">
-						<dt><i class="fas fa-clipboard-list"></i> Categoria:</dt >
 
-						<dd th:text="${corso.categoria}"></dd>
-					</div >
-					<div class="text-light">
-						<dt><i class="fas fa-exclamation-triangle"></i> Livello di difficoltà:</dt >
-						<dd th:text="${corso.livello}"></dd>
+		<div class="container-fluid">
+			<div class="row justify-content-between bg-black align-middle p-4">
+
+
+				<div class="col-6 text-center p-4">
+					<h1 class="text-light fw-bold p-1" th:text="${corso.titolo}"></h1>
+					<p class="text-light p-1 fs-4" th:text="${corso.descrizione}"></p>
+					<hr style="color: white">
+					<dl class="d-flex justify-content-between text-center pt-3">
+						<div class="text-light">
+							<dt><i class="fas fa-clipboard-list"></i> Categoria:</dt >
+							<dd th:text="${corso.categoria}"></dd>
+						</div >
+						<div class="text-light">
+							<dt><i class="fas fa-exclamation-triangle"></i> Livello di difficoltà:</dt >
+							<dd th:text="${corso.livello}"></dd>
+						</div >
+						<div>
+							<dt class="text-light"><i class="fas fa-graduation-cap"></i> Creato da:</dt >
+							<dd class="text-light" th:each="item : ${listIns}" th:text="|${item.nome} ${item.cognome}|"></dd >
+						</div>
+						<div class="text-light">
+							<dt><i class="fas fa-hourglass-half"></i> Durata corso (ore):</dt >
+							<dd th:text="${corso.durata}"></dd>
+						</div >
+					</dl >
+				</div >
+				
+				<div class="col-4 me-5 p-4 align-bottom d-flex justify-content-center">
+					<div class="card bg-dark text-center border border-white shadow-lg" style="width: 18rem; height:15rem;">
+						<img th:src="@{/img/corso-online.jpg}" class="card-img-top" alt="corsi">
+						<div class="card-body">
+					    	<button class="bg-dark border border-dark">
+								<a class="btn btn-danger text-light" th:href="@{/corsi}"><i class="fas fa-undo-alt"></i> Torna alla lista</a>
+							</button >
+						</div>
+					</div>
+				</div >
+				<hr style="color: white">
+
+				
+				<div class="col-12 d-flex justify-content-around text-center mt-2">
+					<div>
+						<span class="text-light fw-bold"><i class="fas fa-tags"></i> Tags:</span>
+						<span class="text-light" th:each="item : ${listTag}" th:text="|${item.nome} |"></span>
+
 					</div >
 					<div>
-						<dt class="text-light"><i class="fas fa-graduation-cap"></i> Creato da:</dt >
-						<dd class="text-light" th:each="item : ${listIns}" th:text="|${item.nome} ${item.cognome}|"></dd >
-					</div>
-					<div class="text-light">
-						<dt><i class="fas fa-hourglass-half"></i> Durata corso (ore):</dt >
-						<dd th:text="${corso.durata}"></dd>
+						<dt class="text-light"><i class="fas fa-eye"></i> Visualizzazioni:</dt >
+						<dd class="text-light" th:text="${corso.visualizzazioni}"></dd >
 					</div >
-				</dl >
-			</div >
-			
-			<div class="col-4 me-5 p-4 align-bottom d-flex justify-content-center">
-				<div class="card bg-dark text-center border border-white shadow-lg" style="width: 18rem; height:15rem;">
-					<img th:src="@{/img/corso-online.jpg}" class="card-img-top" alt="corsi">
-					<div class="card-body">
-				    	<button class="bg-dark border border-dark">
-							<a class="btn btn-danger text-light fw-bold" th:href="@{/corsi}"><i class="fas fa-undo-alt"></i> Torna alla lista</a>
-						</button >
-					</div>
-				</div>
-			</div >
-			<hr style="color: white">
-			
-			<div class="col-12 d-flex justify-content-around text-center mt-2">
-				<div>
-					<span class="text-light fw-bold"><i class="fas fa-tags"></i> Tags:</span>
-					<span class="text-light" th:each="item : ${listTag}" th:text="|${item.nome} |"></span>
-				</div >
-				<div>
-					<dt class="text-light"><i class="fas fa-eye"></i> Visualizzazioni:</dt >
-					<dd class="text-light" th:text="${corso.visualizzazioni}"></dd >
-				</div >
-				<div class="text-light">
-					<dt><i class="fas fa-calendar-day"></i> Data di creazione:</dt >
-					<dd th:text="${corso.dataCreazione}"></dd>
+					<div class="text-light">
+						<dt><i class="fas fa-calendar-day"></i> Data di creazione:</dt >
+						<dd th:text="${corso.dataCreazione}"></dd>
+					</div >
 				</div >
 			</div >
 		</div >
+		
 		
 		<h1 class="text-center p-3"><i class="fas fa-tasks"></i> Programma del corso:</h1 >
 		<hr>

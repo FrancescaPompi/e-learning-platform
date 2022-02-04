@@ -14,19 +14,9 @@
 				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 		</th:block>
-			<div class="mb-3 d-flex justify-content-between">
-				<form th:action="@{/amministrazione/corsi/list}" method="get">
-					<div class="input-group">
-						<input name="keyword" th:value="${keyword}" class="form-control" type="search" placeholder="Search"
-							aria-label="Search">
-						<button class="btn btn-danger" type="submit"><i class="fas fa-search"></i></button>
-					</div>
-				</form>
-				<a class="btn btn-danger" th:href="@{/amministrazione/tags}">Lista tag <i class="fas fa-hashtag"></i></a>
-			</div>
 			
 
-			<table class="table shadow p-3 mb-5 bg-body rounded" >
+			<table class="table mt-5">
 
 				<thead>
 					<tr>
@@ -54,9 +44,9 @@
 			
 			</div >
 			<div class="container text-center">
-		<a th:href="@{/amministrazione/corsi/create}" class="btn btn-danger my-5">Crea un nuovo corso</a>
-		<a class="btn btn-danger" th:href="@{/amministrazione}"><i class="fas fa-undo"></i> Indietro</a>
-	</div>
+				<a th:href="@{/amministrazione/corsi/create}" class="btn btn-danger my-5">Crea un nuovo corso</a>
+				<a class="btn btn-danger" th:href="@{/amministrazione/tags}">Lista tag <i class="fas fa-hashtag"></i></a>
+				<div><a class="btn btn-danger" th:href="@{/amministrazione}"><i class="fas fa-undo"></i> Indietro</a></div>
 		</div >
 		<div th:replace="fragments/resources :: scripts"></div>
 	</body>
